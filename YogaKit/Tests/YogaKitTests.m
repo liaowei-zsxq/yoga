@@ -19,12 +19,12 @@
 - (void)testConfigureLayoutIsNoOpWithNilBlock {
   UIView* view = [[UIView alloc] initWithFrame:CGRectZero];
   id block = nil;
-  XCTAssertNoThrow([view configureLayoutWithBlock:block]);
+  XCTAssertNoThrow([view.yoga configureLayoutWithBlock:block]);
 }
 
 - (void)testConfigureLayoutBlockWorksWithValidBlock {
   UIView* view = [[UIView alloc] initWithFrame:CGRectZero];
-  [view configureLayoutWithBlock:^(YGLayout* layout) {
+  [view.yoga configureLayoutWithBlock:^(YGLayout* layout) {
     XCTAssertNotNil(layout);
     layout.isEnabled = YES;
     layout.width = YGPointValue(25);
@@ -756,6 +756,49 @@
 
   view.yoga.borderEndWidth = 7;
   XCTAssertEqual(view.yoga.borderEndWidth, 7);
+}
+
+- (void)testOverflowPropertiesWork {
+    UIView* container = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 30, 30)];
+    [container.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+        layout.isEnabled = YES;
+        layout.flexDirection = YGFlexDirectionRow;
+        layout.alignItems = YGAlignCenter;
+    }];
+
+    UIView* view = [[UIView alloc] initWithFrame:CGRectZero];
+    [container addSubview:view];
+    [view.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+        layout.isEnabled = YES;
+        layout.width = YGPointValue(22);
+        layout.height = YGPointValue(22);
+    }];
+
+    UILabel* label = [[UILabel alloc] init];
+    label.text = @"longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong";
+    [container addSubview:label];
+    [label.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+        layout.isEnabled = YES;
+    }];
+
+    [container.yoga applyLayoutPreservingOrigin:YES];
+    XCTAssertEqual(CGRectGetWidth(container.frame), 30);
+    XCTAssertEqual(CGRectGetWidth(label.frame), 30);
+
+    container.yoga.overflow = YGOverflowScroll;
+    [container.yoga applyLayoutPreservingOrigin:YES];
+    XCTAssertEqual(CGRectGetWidth(container.frame), 30);
+    XCTAssertGreaterThan(CGRectGetWidth(label.frame), 30);
+
+    container.yoga.overflow = YGOverflowHidden;
+    [container.yoga applyLayoutPreservingOrigin:YES];
+    XCTAssertEqual(CGRectGetWidth(container.frame), 30);
+    XCTAssertEqual(CGRectGetWidth(label.frame), 30);
+
+    container.yoga.overflow = YGOverflowVisible;
+    [container.yoga applyLayoutPreservingOrigin:YES];
+    XCTAssertEqual(CGRectGetWidth(container.frame), 30);
+    XCTAssertEqual(CGRectGetWidth(label.frame), 30);
 }
 
 @end

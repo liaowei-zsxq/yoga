@@ -162,7 +162,8 @@
 				153B526324E6AD8D008156D3 /* YogaKitTests.m */,
 				154A6EF424E6B1260091264C /* dummy.swift */,
 			);
-			path = YogaKitTests;
+			name = YogaKitTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		153D326C24E6545A00EDDBEA /* Supporting Files */ = {

@@ -538,8 +538,8 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
 #endif
 
   CGRect frame = (CGRect) {
-    .origin = (CGPoint) { .x = topLeft.x + origin.x, .y = topLeft.y + origin.y, },
-    .size = (CGSize) { .width = MAX(bottomRight.x - topLeft.x, 0), .height = MAX(bottomRight.y - topLeft.y, 0), }
+    .origin = (CGPoint) { .x = topLeft.x + origin.x, .y = topLeft.y + origin.y },
+    .size = (CGSize) { .width = MAX(bottomRight.x - topLeft.x, 0), .height = MAX(bottomRight.y - topLeft.y, 0) }
   };
 
 #if TARGET_OS_OSX

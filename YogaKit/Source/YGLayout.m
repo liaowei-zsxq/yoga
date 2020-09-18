@@ -521,9 +521,9 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
       .y = YGNodeLayoutGetTop(node)
   };
 
-  const CGPoint bottomRight = {
-      .x = (CGFloat)(topLeft.x + YGNodeLayoutGetWidth(node)),
-      .y = (CGFloat)(topLeft.y + YGNodeLayoutGetHeight(node)),
+  const CGSize size = {
+      .width = MAX((CGFloat)YGNodeLayoutGetWidth(node), 0),
+      .height = MAX((CGFloat)YGNodeLayoutGetHeight(node), 0)
   };
 
 #if TARGET_OS_OSX
@@ -539,7 +539,7 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
 
   CGRect frame = (CGRect) {
     .origin = (CGPoint) { .x = topLeft.x + origin.x, .y = topLeft.y + origin.y },
-    .size = (CGSize) { .width = MAX(bottomRight.x - topLeft.x, 0), .height = MAX(bottomRight.y - topLeft.y, 0) }
+    .size = size
   };
 
 #if TARGET_OS_OSX
@@ -550,12 +550,12 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
 
   view.frame = (CGRect) {
     .origin = frame.origin,
-    .size = YGPixelAlignSize(frame.size)
+    .size = YGPixelAlignSize(size)
   };
 #else
   view.bounds = (CGRect) {
     .origin = view.bounds.origin,
-    .size = YGPixelAlignSize(frame.size)
+    .size = YGPixelAlignSize(size)
   };
 
   view.center = (CGPoint) {

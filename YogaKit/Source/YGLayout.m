@@ -148,14 +148,6 @@
   YG_VALUE_EDGE_PROPERTY(                                            \
       lowercased_name, capitalized_name, capitalized_name, YGEdgeAll)
 
-YGValue YGPointValue(CGFloat value) {
-  return (YGValue){.value = (YGFloat)value, .unit = YGUnitPoint};
-}
-
-YGValue YGPercentValue(CGFloat value) {
-  return (YGValue){.value = (YGFloat)value, .unit = YGUnitPercent};
-}
-
 static CGFloat YGScaleFactor() {
   static CGFloat scale;
   static dispatch_once_t onceToken;
@@ -492,7 +484,7 @@ static void YGRemoveAllChildren(const YGNodeRef node) {
   YGNodeRemoveAllChildren(node);
 }
 
-static inline CGSize YGPixelAlignSize(CGSize s) {
+NS_INLINE CGSize YGPixelAlignSize(CGSize s) {
   CGFloat scale = YGScaleFactor();
   return (CGSize) { .width = ceil(s.width * scale) / scale, .height = ceil(s.height * scale) / scale };
 }

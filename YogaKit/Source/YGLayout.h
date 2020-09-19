@@ -24,14 +24,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^YGLayoutConfigurationBlock)(YGLayout* layout);
 
-YG_EXTERN_C_BEGIN
+NS_INLINE YGValue YGPointValue(CGFloat value) NS_SWIFT_UNAVAILABLE("Use the swift Int and FloatingPoint extensions instead") {
+    return (YGValue){.value = (YGFloat)value, .unit = YGUnitPoint};
+}
 
-extern YGValue YGPointValue(CGFloat value) NS_SWIFT_UNAVAILABLE(
-    "Use the swift Int and FloatingPoint extensions instead");
-extern YGValue YGPercentValue(CGFloat value) NS_SWIFT_UNAVAILABLE(
-    "Use the swift Int and FloatingPoint extensions instead");
-
-YG_EXTERN_C_END
+NS_INLINE YGValue YGPercentValue(CGFloat value) NS_SWIFT_UNAVAILABLE("Use the swift Int and FloatingPoint extensions instead") {
+    return (YGValue){.value = (YGFloat)value, .unit = YGUnitPercent};
+}
 
 typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
   YGDimensionFlexibilityFlexibleWidth = 1 << 0,

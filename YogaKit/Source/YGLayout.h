@@ -9,6 +9,7 @@
 #if TARGET_OS_OSX
 #import <AppKit/AppKit.h>
 #define UIView NSView
+#define UIControl NSControl
 #else
 #import <UIKit/UIKit.h>
 #endif

@@ -185,7 +185,7 @@ static YGConfigRef YGGlobalConfig() {
 @interface YGLayout ()
 
 @property(nonatomic, weak, readonly) UIView* view;
-@property(nonatomic, assign, readonly) BOOL isUIView;
+@property(nonatomic, assign, readonly) BOOL isBaseView;
 @property(nonatomic, assign) BOOL isApplingLayout;
 
 @end
@@ -203,7 +203,7 @@ static YGConfigRef YGGlobalConfig() {
     YGNodeSetContext(_node, (__bridge void*)view);
     _isEnabled = NO;
     _isIncludedInLayout = YES;
-    _isUIView = [view isMemberOfClass:[UIView class]];
+    _isBaseView = [view isMemberOfClass:UIView.class] || [view isMemberOfClass:UIControl.class];
   }
 
   return self;
@@ -397,7 +397,7 @@ static YGSize YGMeasureView(
   // UIKit returns the existing size.
   //
   // See https://github.com/facebook/yoga/issues/606 for more information.
-  if (!view.yoga.isUIView || [view.subviews count] > 0) {
+  if (!view.yoga.isBaseView || [view.subviews count] > 0) {
 #if TARGET_OS_OSX
     CGSize fittingSize = view.fittingSize;
     sizeThatFits = (CGSize){

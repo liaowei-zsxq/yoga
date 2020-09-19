@@ -185,8 +185,8 @@ static YGConfigRef YGGlobalConfig() {
 @interface YGLayout ()
 
 @property(nonatomic, weak, readonly) UIView* view;
-@property(nonatomic, assign, readonly) BOOL isBaseView;
-@property(nonatomic, assign) BOOL isApplingLayout;
+@property(nonatomic, readonly) BOOL isBaseView;
+@property(nonatomic) BOOL isApplingLayout;
 
 @end
 

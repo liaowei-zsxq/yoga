@@ -58,80 +58,80 @@ typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
   The property that decides if we should include this view when calculating
   layout. Defaults to YES.
  */
-@property(nonatomic, readwrite, assign, setter=setIncludedInLayout:)
+@property(nonatomic, setter=setIncludedInLayout:)
     BOOL isIncludedInLayout;
 
 /**
  The property that decides during layout/sizing whether or not styling
  properties should be applied. Defaults to NO.
  */
-@property(nonatomic, readwrite, assign, setter=setEnabled:) BOOL isEnabled;
+@property(nonatomic, setter=setEnabled:) BOOL isEnabled;
 
-@property(nonatomic, readwrite, assign) YGDirection direction;
-@property(nonatomic, readwrite, assign) YGFlexDirection flexDirection;
-@property(nonatomic, readwrite, assign) YGJustify justifyContent;
-@property(nonatomic, readwrite, assign) YGAlign alignContent;
-@property(nonatomic, readwrite, assign) YGAlign alignItems;
-@property(nonatomic, readwrite, assign) YGAlign alignSelf;
-@property(nonatomic, readwrite, assign) YGPositionType position;
-@property(nonatomic, readwrite, assign) YGWrap flexWrap;
-@property(nonatomic, readwrite, assign) YGOverflow overflow;
-@property(nonatomic, readwrite, assign) YGDisplay display;
+@property(nonatomic) YGDirection direction;
+@property(nonatomic) YGFlexDirection flexDirection;
+@property(nonatomic) YGJustify justifyContent;
+@property(nonatomic) YGAlign alignContent;
+@property(nonatomic) YGAlign alignItems;
+@property(nonatomic) YGAlign alignSelf;
+@property(nonatomic) YGPositionType position;
+@property(nonatomic) YGWrap flexWrap;
+@property(nonatomic) YGOverflow overflow;
+@property(nonatomic) YGDisplay display;
 
-@property(nonatomic, readwrite, assign) CGFloat flex;
-@property(nonatomic, readwrite, assign) CGFloat flexGrow;
-@property(nonatomic, readwrite, assign) CGFloat flexShrink;
-@property(nonatomic, readwrite, assign) YGValue flexBasis;
+@property(nonatomic) CGFloat flex;
+@property(nonatomic) CGFloat flexGrow;
+@property(nonatomic) CGFloat flexShrink;
+@property(nonatomic) YGValue flexBasis;
 
-@property(nonatomic, readwrite, assign) YGValue left;
-@property(nonatomic, readwrite, assign) YGValue top;
-@property(nonatomic, readwrite, assign) YGValue right;
-@property(nonatomic, readwrite, assign) YGValue bottom;
-@property(nonatomic, readwrite, assign) YGValue start;
-@property(nonatomic, readwrite, assign) YGValue end;
+@property(nonatomic) YGValue left;
+@property(nonatomic) YGValue top;
+@property(nonatomic) YGValue right;
+@property(nonatomic) YGValue bottom;
+@property(nonatomic) YGValue start;
+@property(nonatomic) YGValue end;
 
-@property(nonatomic, readwrite, assign) YGValue marginLeft;
-@property(nonatomic, readwrite, assign) YGValue marginTop;
-@property(nonatomic, readwrite, assign) YGValue marginRight;
-@property(nonatomic, readwrite, assign) YGValue marginBottom;
-@property(nonatomic, readwrite, assign) YGValue marginStart;
-@property(nonatomic, readwrite, assign) YGValue marginEnd;
-@property(nonatomic, readwrite, assign) YGValue marginHorizontal;
-@property(nonatomic, readwrite, assign) YGValue marginVertical;
-@property(nonatomic, readwrite, assign) YGValue margin;
+@property(nonatomic) YGValue marginLeft;
+@property(nonatomic) YGValue marginTop;
+@property(nonatomic) YGValue marginRight;
+@property(nonatomic) YGValue marginBottom;
+@property(nonatomic) YGValue marginStart;
+@property(nonatomic) YGValue marginEnd;
+@property(nonatomic) YGValue marginHorizontal;
+@property(nonatomic) YGValue marginVertical;
+@property(nonatomic) YGValue margin;
 
-@property(nonatomic, readwrite, assign) YGValue paddingLeft;
-@property(nonatomic, readwrite, assign) YGValue paddingTop;
-@property(nonatomic, readwrite, assign) YGValue paddingRight;
-@property(nonatomic, readwrite, assign) YGValue paddingBottom;
-@property(nonatomic, readwrite, assign) YGValue paddingStart;
-@property(nonatomic, readwrite, assign) YGValue paddingEnd;
-@property(nonatomic, readwrite, assign) YGValue paddingHorizontal;
-@property(nonatomic, readwrite, assign) YGValue paddingVertical;
-@property(nonatomic, readwrite, assign) YGValue padding;
+@property(nonatomic) YGValue paddingLeft;
+@property(nonatomic) YGValue paddingTop;
+@property(nonatomic) YGValue paddingRight;
+@property(nonatomic) YGValue paddingBottom;
+@property(nonatomic) YGValue paddingStart;
+@property(nonatomic) YGValue paddingEnd;
+@property(nonatomic) YGValue paddingHorizontal;
+@property(nonatomic) YGValue paddingVertical;
+@property(nonatomic) YGValue padding;
 
-@property(nonatomic, readwrite, assign) CGFloat borderLeftWidth;
-@property(nonatomic, readwrite, assign) CGFloat borderTopWidth;
-@property(nonatomic, readwrite, assign) CGFloat borderRightWidth;
-@property(nonatomic, readwrite, assign) CGFloat borderBottomWidth;
-@property(nonatomic, readwrite, assign) CGFloat borderStartWidth;
-@property(nonatomic, readwrite, assign) CGFloat borderEndWidth;
-@property(nonatomic, readwrite, assign) CGFloat borderWidth;
+@property(nonatomic) CGFloat borderLeftWidth;
+@property(nonatomic) CGFloat borderTopWidth;
+@property(nonatomic) CGFloat borderRightWidth;
+@property(nonatomic) CGFloat borderBottomWidth;
+@property(nonatomic) CGFloat borderStartWidth;
+@property(nonatomic) CGFloat borderEndWidth;
+@property(nonatomic) CGFloat borderWidth;
 
-@property(nonatomic, readwrite, assign) YGValue width;
-@property(nonatomic, readwrite, assign) YGValue height;
-@property(nonatomic, readwrite, assign) YGValue minWidth;
-@property(nonatomic, readwrite, assign) YGValue minHeight;
-@property(nonatomic, readwrite, assign) YGValue maxWidth;
-@property(nonatomic, readwrite, assign) YGValue maxHeight;
+@property(nonatomic) YGValue width;
+@property(nonatomic) YGValue height;
+@property(nonatomic) YGValue minWidth;
+@property(nonatomic) YGValue minHeight;
+@property(nonatomic) YGValue maxWidth;
+@property(nonatomic) YGValue maxHeight;
 
 // Yoga specific properties, not compatible with flexbox specification
-@property(nonatomic, readwrite, assign) CGFloat aspectRatio;
+@property(nonatomic) CGFloat aspectRatio;
 
 /**
  Get the resolved direction of this node. This won't be YGDirectionInherit
  */
-@property(nonatomic, readonly, assign) YGDirection resolvedDirection;
+@property(nonatomic, readonly) YGDirection resolvedDirection;
 
 /**
  Perform a layout calculation and update the frames of the views in the
@@ -154,7 +154,7 @@ typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
  Returns the size of the view if no constraints were given. This could
  equivalent to calling [self sizeThatFits:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
  */
-@property(nonatomic, readonly, assign) CGSize intrinsicSize;
+@property(nonatomic, readonly) CGSize intrinsicSize;
 
 /**
   Returns the size of the view based on provided constraints. Pass NaN for an
@@ -166,19 +166,19 @@ typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
 /**
  Returns the number of children that are using Flexbox.
  */
-@property(nonatomic, readonly, assign) NSUInteger numberOfChildren;
+@property(nonatomic, readonly) NSUInteger numberOfChildren;
 
 /**
  Return a BOOL indiciating whether or not we this node contains any subviews
  that are included in Yoga's layout.
  */
-@property(nonatomic, readonly, assign) BOOL isLeaf;
+@property(nonatomic, readonly) BOOL isLeaf;
 
 /**
  Return's a BOOL indicating if a view is dirty. When a node is dirty
  it usually indicates that it will be remeasured on the next layout pass.
  */
-@property(nonatomic, readonly, assign) BOOL isDirty;
+@property(nonatomic, readonly) BOOL isDirty;
 
 /**
  Mark that a view's layout needs to be recalculated. Only works for leaf views.

@@ -14,11 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The YGLayout that is attached to this view. It is lazily created.
  */
-@property(nonatomic, readonly, strong) YGLayout* yoga;
+@property(nonatomic, readonly) YGLayout* yoga;
 /**
  Indicates whether or not Yoga is enabled
  */
-@property(nonatomic, readonly, assign) BOOL isYogaEnabled;
+@property(nonatomic, readonly) BOOL isYogaEnabled;
 
 /**
  In ObjC land, every time you access `view.yoga.*` you are adding another

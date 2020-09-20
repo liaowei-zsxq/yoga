@@ -37,7 +37,6 @@ static const void* kYGYogaAssociatedKey = &kYGYogaAssociatedKey;
 @end
 
 
-static const void* kYGBoundsSizeAssociatedKey = &kYGBoundsSizeAssociatedKey;
 static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizzledSelector);
 
 @implementation UIView (YogaKitAutoApplyLayout)
@@ -53,29 +52,6 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
     YogaSwizzleInstanceMethod(self, @selector(setBoundsSize:), @selector(_yoga_setBoundsSize:));
 #endif
   });
-}
-
-- (CGSize)_yoga_boundsSize {
-  NSValue *value = (NSValue *)objc_getAssociatedObject(self, kYGBoundsSizeAssociatedKey);
-
-  return value ?
-#if TARGET_OS_OSX
-            value.sizeValue
-#else
-            value.CGSizeValue
-#endif
-            : CGSizeMake(YGUndefined, YGUndefined);
-}
-
-- (void)set_yoga_boundsSize:(CGSize)size {
-  objc_setAssociatedObject(self,
-                            kYGBoundsSizeAssociatedKey,
-#if TARGET_OS_OSX
-                            [NSValue valueWithSize:size]
-#else
-                            [NSValue valueWithCGSize:size]
-#endif
-                             , OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (instancetype)_yoga_initWithFrame:(CGRect)frame {
@@ -114,12 +90,9 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
 #endif
 
 - (void)_yoga_applyLayout {
-  YGLayout *yoga = self.yoga;
-  if (yoga.isEnabled && yoga.isIncludedInLayout) {
-    CGSize size = self.bounds.size;
-    CGSize prev = self._yoga_boundsSize;
-    if (!CGSizeEqualToSize(size, prev)) {
-      self._yoga_boundsSize = size;
+  if (self.isYogaEnabled) {
+    YGLayout *yoga = self.yoga;
+    if (yoga.isEnabled && yoga.isIncludedInLayout) {
       [yoga applyLayoutPreservingOrigin:YES];
     }
   }

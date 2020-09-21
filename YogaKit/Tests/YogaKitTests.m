@@ -801,4 +801,33 @@
     XCTAssertEqual(CGRectGetWidth(label.frame), 30);
 }
 
+- (void)testIsIncludedInLayoutWork {
+  UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+  [view.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+    layout.isEnabled = YES;
+    layout.flexDirection = YGFlexDirectionColumn;
+  }];
+
+  UIControl* container = [[UIControl alloc] initWithFrame:CGRectZero];
+  [view addSubview:container];
+  [container.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+    layout.isEnabled = YES;
+    layout.flexDirection = YGFlexDirectionRow;
+  }];
+
+  UILabel* label = [[UILabel alloc] init];
+  label.text = @"abcdefgABCDEFG";
+  [container addSubview:label];
+  label.yoga.isEnabled = YES;
+  [label.yoga markDirty];
+
+  [view.yoga applyLayoutPreservingOrigin:YES];
+  XCTAssertGreaterThan(CGRectGetHeight(container.frame), 0);
+
+  label.yoga.isIncludedInLayout = NO;
+
+  [view.yoga applyLayoutPreservingOrigin:YES];
+  XCTAssertEqual(CGRectGetHeight(container.frame), 0);
+}
+
 @end

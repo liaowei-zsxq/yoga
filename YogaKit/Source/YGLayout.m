@@ -184,10 +184,6 @@ static YGConfigRef YGGlobalConfig() {
 
 @implementation YGLayout
 
-@synthesize isEnabled = _isEnabled;
-@synthesize isIncludedInLayout = _isIncludedInLayout;
-@synthesize node = _node;
-
 - (instancetype)initWithView:(UIView*)view {
   if (self = [super init]) {
     _view = view;
@@ -381,28 +377,33 @@ static YGSize YGMeasureView(
       (heightMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : height;
 
   UIView* view = (__bridge UIView*)YGNodeGetContext(node);
-  CGSize sizeThatFits = CGSizeZero;
 
   // The default implementation of sizeThatFits: returns the existing size of
-  // the view. That means that if we want to layout an empty UIView, which
+  // the view. That means that if we want to layout a member of UIView or UIControl, which
   // already has got a frame set, its measured size should be CGSizeZero, but
   // UIKit returns the existing size.
   //
   // See https://github.com/facebook/yoga/issues/606 for more information.
-  if (!view.yoga.isBaseView || [view.subviews count] > 0) {
-#if TARGET_OS_OSX
-    CGSize fittingSize = view.fittingSize;
-    sizeThatFits = (CGSize){
-      .width = MIN(constrainedWidth, fittingSize.width),
-      .height = MIN(constrainedHeight, fittingSize.height)
-    };
-#else
-    sizeThatFits = [view sizeThatFits:(CGSize){
-                                          .width = constrainedWidth,
-                                          .height = constrainedHeight,
-                                      }];
-#endif
+
+  YGLayout *yoga = view.yoga;
+  if (yoga.isBaseView) {
+    return YGSizeZero;
   }
+
+  CGSize sizeThatFits = CGSizeZero;
+
+#if TARGET_OS_OSX
+  CGSize fittingSize = view.fittingSize;
+  sizeThatFits = (CGSize){
+    .width = MIN(constrainedWidth, fittingSize.width),
+    .height = MIN(constrainedHeight, fittingSize.height)
+  };
+#else
+  sizeThatFits = [view sizeThatFits:(CGSize){
+    .width = constrainedWidth,
+    .height = constrainedHeight,
+  }];
+#endif
 
   return (YGSize){
       .width = (YGFloat)YGSanitizeMeasurement(
@@ -455,10 +456,10 @@ static void YGAttachNodesFromViewHierachy(UIView* const view) {
   } else {
     YGNodeSetMeasureFunc(node, NULL);
 
-    NSMutableArray<UIView*>* subviewsToInclude =
-        [[NSMutableArray alloc] initWithCapacity:view.subviews.count];
+    NSMutableArray<UIView*>* subviewsToInclude = [[NSMutableArray alloc] initWithCapacity:view.subviews.count];
     for (UIView* subview in view.subviews) {
-      if (subview.yoga.isEnabled && subview.yoga.isIncludedInLayout) {
+      YGLayout *yoga = subview.yoga;
+      if (yoga.isEnabled && yoga.isIncludedInLayout) {
         [subviewsToInclude addObject:subview];
       }
     }
@@ -477,7 +478,7 @@ static void YGAttachNodesFromViewHierachy(UIView* const view) {
 }
 
 static void YGRemoveAllChildren(const YGNodeRef node) {
-  if (node == NULL) {
+  if (!node) {
     return;
   }
 

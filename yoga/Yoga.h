@@ -29,6 +29,8 @@ typedef struct YGSize {
   YGFloat height;
 } YGSize;
 
+static const YGSize YGSizeZero = {0,0};
+
 typedef struct YGConfig* YGConfigRef;
 
 typedef struct YGNode* YGNodeRef;

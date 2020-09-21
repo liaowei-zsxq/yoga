@@ -830,4 +830,36 @@
   XCTAssertEqual(CGRectGetHeight(container.frame), 0);
 }
 
+- (void)testOnePixelWork {
+    CGFloat onePixel = 1 / UIScreen.mainScreen.scale;
+
+    UIView* view = [[UIView alloc] initWithFrame:CGRectZero];
+    [view.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+        layout.isEnabled = YES;
+        layout.flexDirection = YGFlexDirectionColumn;
+    }];
+
+    UIView* subView1 = [[UIView alloc] initWithFrame:CGRectZero];
+    [view addSubview:subView1];
+    [subView1.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+        layout.isEnabled = YES;
+        layout.width = YGPointValue(320);
+        layout.height = YGPointValue(320 + onePixel);
+    }];
+
+    UIView* subView2 = [[UIView alloc] initWithFrame:CGRectZero];
+    [view addSubview:subView2];
+    [subView2.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+        layout.isEnabled = YES;
+        layout.marginTop = YGPointValue(20);
+        layout.width = YGPointValue(320);
+        layout.height = YGPointValue(onePixel);
+    }];
+
+    CGSize fittingSize = [view.yoga calculateLayoutWithSize:CGSizeMake(320, YGUndefined)];
+    view.frame = (CGRect){CGPointZero, fittingSize};
+    [view.yoga applyLayoutPreservingOrigin:YES];
+    XCTAssertLessThan(fabs(CGRectGetHeight(subView2.frame) - onePixel), FLT_EPSILON);
+}
+
 @end

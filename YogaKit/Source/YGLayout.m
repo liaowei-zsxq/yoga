@@ -522,11 +522,12 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
 #if TARGET_OS_OSX
   const CGPoint origin = preserveOrigin ? view.frame.origin : CGPointZero;
 #else
+  BOOL transformIsIdentity = CGAffineTransformIsIdentity(view.transform);
   // use bounds/center and not frame if non-identity transform.
-  const CGPoint origin = preserveOrigin ? (CGPoint) {
+  const CGPoint origin = preserveOrigin ? (transformIsIdentity ? view.frame.origin : (CGPoint) {
                                             .x = (CGFloat)(view.center.x - CGRectGetWidth(view.bounds) * 0.5),
                                             .y = (CGFloat)(view.center.y - CGRectGetHeight(view.bounds) * 0.5)
-                                          }
+                                          })
                                         : CGPointZero;
 #endif
 
@@ -546,15 +547,19 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
     .size = YGPixelAlignSize(size)
   };
 #else
-  view.bounds = (CGRect) {
-    .origin = view.bounds.origin,
-    .size = YGPixelAlignSize(size)
-  };
+  if (transformIsIdentity) {
+    view.frame = frame;
+  } else {
+    view.bounds = (CGRect) {
+      .origin = view.bounds.origin,
+      .size = YGPixelAlignSize(size)
+    };
 
-  view.center = (CGPoint) {
-    .x = CGRectGetMidX(frame),
-    .y = CGRectGetMidY(frame)
-  };
+    view.center = (CGPoint) {
+      .x = CGRectGetMidX(frame),
+      .y = CGRectGetMidY(frame)
+    };
+  }
 #endif
 
   if (!yoga.isLeaf) {

@@ -252,7 +252,7 @@
 }
 
 - (void)testFrameAndOriginPlacement {
-  const CGSize containerSize = CGSizeMake(320, 50);
+  const CGSize containerSize = CGSizeMake(330, 50);
 
   UIView* container = [[UIView alloc]
       initWithFrame:CGRectMake(
@@ -265,27 +265,15 @@
   subview1.yoga.flexGrow = 1;
   [container addSubview:subview1];
 
-  UIView *leafView = [[UIView alloc] init];
-  leafView.yoga.isEnabled = YES;
-  [subview1 addSubview:leafView];
-
   UIView* subview2 = [[UIView alloc] initWithFrame:CGRectZero];
   subview2.yoga.isEnabled = YES;
   subview2.yoga.flexGrow = 1;
   [container addSubview:subview2];
 
-  leafView = [[UIView alloc] init];
-  leafView.yoga.isEnabled = YES;
-  [subview2 addSubview:leafView];
-
   UIView* subview3 = [[UIView alloc] initWithFrame:CGRectZero];
   subview3.yoga.isEnabled = YES;
   subview3.yoga.flexGrow = 1;
   [container addSubview:subview3];
-
-  leafView = [[UIView alloc] init];
-  leafView.yoga.isEnabled = YES;
-  [subview3 addSubview:leafView];
 
   [container.yoga applyLayoutPreservingOrigin:YES];
 

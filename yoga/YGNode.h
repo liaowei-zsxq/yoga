@@ -37,7 +37,7 @@ private:
   static constexpr size_t printUsesContext_ = 6;
   static constexpr size_t useWebDefaults_ = 7;
 
-  void* context_ = nullptr;
+  const void* context_ = nullptr;
   uint8_t flags = 1;
   uint8_t reserved_ = 0;
   union {
@@ -107,7 +107,7 @@ public:
   YGNode& operator=(const YGNode&) = delete;
 
   // Getters
-  void* getContext() const { return context_; }
+  const void* getContext() const { return context_; }
 
   uint8_t& reserved() { return reserved_; }
   uint8_t reserved() const { return reserved_; }
@@ -227,7 +227,7 @@ public:
       const YGFloat widthSize) const;
   // Setters
 
-  void setContext(void* context) { context_ = context; }
+  void setContext(const void* context) { context_ = context; }
 
   void setPrintFunc(YGPrintFunc printFunc) {
     print_.noContext = printFunc;

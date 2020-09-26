@@ -140,11 +140,11 @@ detail::CompactValue YGComputedEdgeValue(
   return defaultValue;
 }
 
-YOGA_EXPORT void* YGNodeGetContext(YGNodeRef node) {
+YOGA_EXPORT const void* YGNodeGetContext(YGNodeRef node) {
   return node->getContext();
 }
 
-YOGA_EXPORT void YGNodeSetContext(YGNodeRef node, void* context) {
+YOGA_EXPORT void YGNodeSetContext(YGNodeRef node, const void* context) {
   return node->setContext(context);
 }
 

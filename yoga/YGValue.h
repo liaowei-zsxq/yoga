@@ -8,8 +8,8 @@
 #pragma once
 
 #include <math.h>
-#include "YGEnums.h"
-#include "YGMacros.h"
+#include <yoga/YGEnums.h>
+#include <yoga/YGMacros.h>
 
 #if defined(_MSC_VER) && defined(__clang__)
 #define COMPILING_WITH_CLANG_ON_WINDOWS

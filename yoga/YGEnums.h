@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "YGMacros.h"
+#include <yoga/YGMacros.h>
 
 #ifdef __cplusplus
 YG_EXTERN_CXX_BEGIN

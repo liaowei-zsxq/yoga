@@ -485,11 +485,6 @@ static void YGRemoveAllChildren(const YGNodeRef node) {
   YGNodeRemoveAllChildren(node);
 }
 
-NS_INLINE CGSize YGPixelAlignSize(CGSize s) {
-  CGFloat scale = YGScaleFactor();
-  return (CGSize) { .width = ceil(s.width * scale) / scale, .height = ceil(s.height * scale) / scale };
-}
-
 static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
   NSCAssert(
       [NSThread isMainThread],
@@ -542,18 +537,14 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
     frame.origin.y = height - CGRectGetMaxY(frame);
   }
 
-  view.frame = (CGRect) {
-    .origin = frame.origin,
-    .size = YGPixelAlignSize(size)
-  };
+  view.frame = frame;
 #else
   if (transformIsIdentity) {
     view.frame = frame;
   } else {
-    view.bounds = (CGRect) {
-      .origin = view.bounds.origin,
-      .size = YGPixelAlignSize(size)
-    };
+    CGRect bounds = view.bounds;
+    bounds.size = size;
+    view.bounds = bounds;
 
     view.center = (CGPoint) {
       .x = CGRectGetMidX(frame),

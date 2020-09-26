@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import YogaKit
+import SwiftYogaKit
 
 class TWTimelineViewController: UIViewController {
 
@@ -70,7 +70,7 @@ extension TWTimelineViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let size = timelineCell.contentView.yoga.calculateLayout(with: CGSize(width: tableView.bounds.width, height: CGFloat(YGUndefined)))
+        let size = timelineCell.contentView.yoga.calculateLayout(size: CGSize(width: tableView.bounds.width, height: CGFloat.nan))
 
         return size.height
     }

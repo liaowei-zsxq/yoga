@@ -1,26 +1,31 @@
-/*
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
+//
+//  ViewController.swift
+//  YogaKitOSXSample
+//
+//  Created by v on 2020/9/26.
+//  Copyright © 2020 facebook. All rights reserved.
+//
 
-import UIKit
+import Cocoa
 import SwiftYogaKit
 
-final class BasicViewController: UIViewController {
-    override func viewDidLoad() {
+class ViewController: NSViewController {
 
-        let root = self.view!
-        root.backgroundColor = .white
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let root = self.view
+        root.wantsLayer = true
+        root.layer?.backgroundColor = .white
         root.yoga.configureLayout { (layout) in
             layout.isEnabled = true
             layout.alignItems = .center
             layout.justifyContent = .center
         }
 
-        let child1 = UIView()
-        child1.backgroundColor = .blue
+        let child1 = NSView()
+        child1.wantsLayer = true
+        child1.layer?.backgroundColor = NSColor.blue.cgColor
         child1.yoga.configureLayout { (layout) in
             layout.isEnabled = true
             layout.width = 100
@@ -29,8 +34,9 @@ final class BasicViewController: UIViewController {
         }
         root.addSubview(child1)
 
-        let child2 = UIView()
-        child2.backgroundColor = .green
+        let child2 = NSView()
+        child2.wantsLayer = true
+        child2.layer?.backgroundColor = NSColor.green.cgColor
         child2.yoga.configureLayout { (layout) in
             layout.isEnabled = true
             layout.alignSelf = .flexEnd
@@ -39,8 +45,9 @@ final class BasicViewController: UIViewController {
         }
         root.addSubview(child2)
 
-        let child3 = UIView()
-        child3.backgroundColor = .yellow
+        let child3 = NSView()
+        child3.wantsLayer = true
+        child3.layer?.backgroundColor = NSColor.yellow.cgColor
         child3.yoga.configureLayout { (layout) in
             layout.isEnabled = true
             layout.alignSelf = .flexStart
@@ -49,4 +56,13 @@ final class BasicViewController: UIViewController {
         }
         root.addSubview(child3)
     }
+
+    override var representedObject: Any? {
+        didSet {
+        // Update the view, if already loaded.
+        }
+    }
+
+
 }
+

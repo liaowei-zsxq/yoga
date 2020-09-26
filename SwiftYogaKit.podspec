@@ -4,7 +4,7 @@
 # LICENSE file in the root directory of this source tree.
 
 podspec = Pod::Spec.new do |spec|
-  spec.name = 'YogaKit'
+  spec.name = 'SwiftYogaKit'
   spec.version = '1.18.2'
   spec.license =  { :type => 'MIT', :file => "LICENSE" }
   spec.homepage = 'https://facebook.github.io/yoga/'
@@ -20,15 +20,14 @@ podspec = Pod::Spec.new do |spec|
   }
 
   spec.platforms = { :ios => "8.0", :osx => "10.9", :tvos => "9.0" }
-  spec.module_name = 'YogaKit'
+  spec.module_name = 'SwiftYogaKit'
   spec.dependency 'Yoga', '~> 1.14.1'
   # Fixes the bug related the xcode 11 not able to find swift related frameworks.
   # https://github.com/Carthage/Carthage/issues/2825
   # https://twitter.com/krzyzanowskim/status/1151549874653081601?s=21
   spec.pod_target_xcconfig = {"LD_VERIFY_BITCODE": "NO"}
-  spec.source_files = 'YogaKit/Source/*.{h,m}'
-  spec.public_header_files = 'YogaKit/Source/{YGLayout,UIView+Yoga,YogaKit}.h'
-  spec.private_header_files = 'YogaKit/Source/YGLayout+Private.h'
+  spec.source_files = 'YogaKit/SwiftYogaKit/*.swift'
+  spec.swift_version = '5.0'
   spec.static_framework = true
 end
 

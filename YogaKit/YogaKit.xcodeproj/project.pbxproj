@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1511C063251EBF1C00A2C621 /* YGLayoutExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153D327024E654EF00EDDBEA /* YGLayoutExtensions.swift */; };
+		1511C071251EBF9A00A2C621 /* YGLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511C070251EBF9A00A2C621 /* YGLayout.swift */; };
+		1511C08C251ED11900A2C621 /* Yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15865FFE24E58BD800345BD7 /* Yoga.framework */; };
+		1511C096251ED5EB00A2C621 /* UIView+Yoga.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511C095251ED5EB00A2C621 /* UIView+Yoga.swift */; };
+		1511C0A0251EE7F500A2C621 /* YGLayoutUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511C09F251EE7F500A2C621 /* YGLayoutUtils.swift */; };
+		1511C0BB251F1BB600A2C621 /* YogaLayoutProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511C0BA251F1BB600A2C621 /* YogaLayoutProperties.swift */; };
 		153B526524E6AD8D008156D3 /* YogaKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 153B526324E6AD8D008156D3 /* YogaKitTests.m */; };
 		153B526B24E6ADFA008156D3 /* Yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15865FFE24E58BD800345BD7 /* Yoga.framework */; platformFilter = ios; };
 		153B526C24E6ADFA008156D3 /* YogaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15865F5424E5834E00345BD7 /* YogaKit.framework */; platformFilter = ios; };
 		153B526E24E6AECF008156D3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 153B526D24E6AECF008156D3 /* libc++.tbd */; platformFilter = ios; };
 		153D326F24E654A300EDDBEA /* Yoga-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 153D326E24E6549A00EDDBEA /* Yoga-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		153D327124E654EF00EDDBEA /* YGLayoutExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153D327024E654EF00EDDBEA /* YGLayoutExtensions.swift */; };
 		154A6EF524E6B1260091264C /* dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154A6EF424E6B1260091264C /* dummy.swift */; };
 		15865F6624E583F000345BD7 /* YGLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 15865F5F24E583F000345BD7 /* YGLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15865F6724E583F000345BD7 /* UIView+Yoga.h in Headers */ = {isa = PBXBuildFile; fileRef = 15865F6024E583F000345BD7 /* UIView+Yoga.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -54,6 +59,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1511C08A251ED11400A2C621 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15865F4B24E5834E00345BD7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15865FFD24E58BD800345BD7;
+			remoteInfo = Yoga;
+		};
 		153B526724E6ADF4008156D3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 15865F4B24E5834E00345BD7 /* Project object */;
@@ -78,6 +90,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1511C053251EBED100A2C621 /* SwiftYogaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftYogaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1511C070251EBF9A00A2C621 /* YGLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YGLayout.swift; sourceTree = "<group>"; };
+		1511C095251ED5EB00A2C621 /* UIView+Yoga.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Yoga.swift"; sourceTree = "<group>"; };
+		1511C09F251EE7F500A2C621 /* YGLayoutUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YGLayoutUtils.swift; sourceTree = "<group>"; };
+		1511C0BA251F1BB600A2C621 /* YogaLayoutProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YogaLayoutProperties.swift; sourceTree = "<group>"; };
 		153B525B24E6AD6B008156D3 /* YogaKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YogaKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		153B526324E6AD8D008156D3 /* YogaKitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YogaKitTests.m; path = Tests/YogaKitTests.m; sourceTree = SOURCE_ROOT; };
 		153B526424E6AD8D008156D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Tests/Info.plist; sourceTree = SOURCE_ROOT; };
@@ -127,6 +144,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1511C050251EBED100A2C621 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1511C08C251ED11900A2C621 /* Yoga.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		153B525824E6AD6B008156D3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -155,6 +180,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1511C054251EBED100A2C621 /* SwiftYogaKit */ = {
+			isa = PBXGroup;
+			children = (
+				1511C095251ED5EB00A2C621 /* UIView+Yoga.swift */,
+				1511C070251EBF9A00A2C621 /* YGLayout.swift */,
+				153D327024E654EF00EDDBEA /* YGLayoutExtensions.swift */,
+				1511C09F251EE7F500A2C621 /* YGLayoutUtils.swift */,
+				1511C0BA251F1BB600A2C621 /* YogaLayoutProperties.swift */,
+			);
+			path = SwiftYogaKit;
+			sourceTree = "<group>";
+		};
 		153B525C24E6AD6B008156D3 /* YogaKitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +215,7 @@
 		15865F4A24E5834E00345BD7 = {
 			isa = PBXGroup;
 			children = (
+				1511C054251EBED100A2C621 /* SwiftYogaKit */,
 				15865F5624E5834E00345BD7 /* YogaKit */,
 				15865FFF24E58BD800345BD7 /* Yoga */,
 				153D326C24E6545A00EDDBEA /* Supporting Files */,
@@ -193,6 +231,7 @@
 				15865F5424E5834E00345BD7 /* YogaKit.framework */,
 				15865FFE24E58BD800345BD7 /* Yoga.framework */,
 				153B525B24E6AD6B008156D3 /* YogaKitTests.xctest */,
+				1511C053251EBED100A2C621 /* SwiftYogaKit.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -200,7 +239,6 @@
 		15865F5624E5834E00345BD7 /* YogaKit */ = {
 			isa = PBXGroup;
 			children = (
-				153D327024E654EF00EDDBEA /* YGLayoutExtensions.swift */,
 				15865F6024E583F000345BD7 /* UIView+Yoga.h */,
 				15865F6324E583F000345BD7 /* UIView+Yoga.m */,
 				15865F5F24E583F000345BD7 /* YGLayout.h */,
@@ -277,6 +315,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		1511C04E251EBED100A2C621 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		15865F4F24E5834E00345BD7 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -317,6 +362,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		1511C052251EBED100A2C621 /* SwiftYogaKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1511C05A251EBED100A2C621 /* Build configuration list for PBXNativeTarget "SwiftYogaKit" */;
+			buildPhases = (
+				1511C04E251EBED100A2C621 /* Headers */,
+				1511C04F251EBED100A2C621 /* Sources */,
+				1511C050251EBED100A2C621 /* Frameworks */,
+				1511C051251EBED100A2C621 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1511C08B251ED11400A2C621 /* PBXTargetDependency */,
+			);
+			name = SwiftYogaKit;
+			productName = SwiftYogaKit;
+			productReference = 1511C053251EBED100A2C621 /* SwiftYogaKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		153B525A24E6AD6B008156D3 /* YogaKitTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 153B526024E6AD6B008156D3 /* Build configuration list for PBXNativeTarget "YogaKitTests" */;
@@ -382,6 +446,10 @@
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = facebook;
 				TargetAttributes = {
+					1511C052251EBED100A2C621 = {
+						CreatedOnToolsVersion = 12.0;
+						LastSwiftMigration = 1200;
+					};
 					153B525A24E6AD6B008156D3 = {
 						CreatedOnToolsVersion = 11.6;
 						LastSwiftMigration = 1160;
@@ -408,6 +476,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				1511C052251EBED100A2C621 /* SwiftYogaKit */,
 				15865F5324E5834E00345BD7 /* YogaKit */,
 				15865FFD24E58BD800345BD7 /* Yoga */,
 				153B525A24E6AD6B008156D3 /* YogaKitTests */,
@@ -416,6 +485,13 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1511C051251EBED100A2C621 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		153B525924E6AD6B008156D3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -440,6 +516,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1511C04F251EBED100A2C621 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1511C063251EBF1C00A2C621 /* YGLayoutExtensions.swift in Sources */,
+				1511C0BB251F1BB600A2C621 /* YogaLayoutProperties.swift in Sources */,
+				1511C071251EBF9A00A2C621 /* YGLayout.swift in Sources */,
+				1511C096251ED5EB00A2C621 /* UIView+Yoga.swift in Sources */,
+				1511C0A0251EE7F500A2C621 /* YGLayoutUtils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		153B525724E6AD6B008156D3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -453,7 +541,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				153D327124E654EF00EDDBEA /* YGLayoutExtensions.swift in Sources */,
 				15865F6A24E583F000345BD7 /* UIView+Yoga.m in Sources */,
 				15865F6924E583F000345BD7 /* YGLayout.m in Sources */,
 			);
@@ -481,6 +568,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1511C08B251ED11400A2C621 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15865FFD24E58BD800345BD7 /* Yoga */;
+			targetProxy = 1511C08A251ED11400A2C621 /* PBXContainerItemProxy */;
+		};
 		153B526824E6ADF4008156D3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
@@ -501,6 +593,54 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		1511C058251EBED100A2C621 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DONT_GENERATE_INFOPLIST_FILE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = me.lvv.SwiftYogaKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1511C059251EBED100A2C621 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DONT_GENERATE_INFOPLIST_FILE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = me.lvv.SwiftYogaKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		153B526124E6AD6B008156D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -780,6 +920,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1511C05A251EBED100A2C621 /* Build configuration list for PBXNativeTarget "SwiftYogaKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1511C058251EBED100A2C621 /* Debug */,
+				1511C059251EBED100A2C621 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		153B526024E6AD6B008156D3 /* Build configuration list for PBXNativeTarget "YogaKitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

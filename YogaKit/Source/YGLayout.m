@@ -298,21 +298,11 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
 }
 
 - (void)applyLayout {
-  if (self.isApplingLayout) {
-    return;
-  }
-
-  [self calculateLayoutWithSize:self.view.bounds.size];
-  YGApplyLayoutToViewHierarchy(self.view, NO);
+    [self applyLayoutPreservingOrigin:NO dimensionFlexibility:0];
 }
 
 - (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin {
-  if (self.isApplingLayout) {
-    return;
-  }
-
-  [self calculateLayoutWithSize:self.view.bounds.size];
-  YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
+    [self applyLayoutPreservingOrigin:preserveOrigin dimensionFlexibility:0];
 }
 
 - (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin
@@ -352,8 +342,8 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
       node, size.width, size.height, YGNodeStyleGetDirection(node));
 
   return (CGSize){
-      .width = YGNodeLayoutGetWidth(node),
-      .height = YGNodeLayoutGetHeight(node),
+      .width = MAX(YGNodeLayoutGetWidth(node), 0),
+      .height = MAX(YGNodeLayoutGetHeight(node), 0),
   };
 }
 
@@ -533,7 +523,7 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
 
 #if TARGET_OS_OSX
   if (!view.superview.isFlipped && view.superview.yoga.isEnabled && view.superview.yoga.isIncludedInLayout) {
-    CGFloat height = (CGFloat)YGNodeLayoutGetHeight(view.superview.yoga.node);
+    CGFloat height = (CGFloat)MAX(YGNodeLayoutGetHeight(view.superview.yoga.node), 0);
     frame.origin.y = height - CGRectGetMaxY(frame);
   }
 

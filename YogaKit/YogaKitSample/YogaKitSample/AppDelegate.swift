@@ -7,12 +7,15 @@
 
 import Foundation
 import UIKit
+import SwiftYogaKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func applicationDidFinishLaunching(_ application: UIApplication) {
+        UIView.SwiftYogaKitSwizzle()
+        
         self.window = UIWindow(frame: UIScreen.main.bounds)
         if let window = self.window {
             let navigationController = UINavigationController(rootViewController: ExamplesViewController())

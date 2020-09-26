@@ -6,7 +6,7 @@
  */
 
 import UIKit
-import YogaKit
+import SwiftYogaKit
 
 final class LayoutInclusionViewController: UIViewController {
     private let button: UIButton = UIButton(type: .system)
@@ -28,7 +28,7 @@ final class LayoutInclusionViewController: UIViewController {
         contentView.yoga.configureLayout { (layout) in
             layout.isEnabled = true
             layout.height = 300
-            layout.width = YGValue(self.view.bounds.size.width)
+            layout.width = 100%
             layout.flexDirection = .row
             layout.justifyContent = .center
             layout.paddingHorizontal = 25

@@ -13,6 +13,7 @@
 		1511C096251ED5EB00A2C621 /* UIView+Yoga.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511C095251ED5EB00A2C621 /* UIView+Yoga.swift */; };
 		1511C0A0251EE7F500A2C621 /* YGLayoutUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511C09F251EE7F500A2C621 /* YGLayoutUtils.swift */; };
 		1511C0BB251F1BB600A2C621 /* YogaLayoutProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511C0BA251F1BB600A2C621 /* YogaLayoutProperties.swift */; };
+		152FFA8D2520885A009DD30E /* UIView+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152FFA8C2520885A009DD30E /* UIView+Swizzling.swift */; };
 		153B526524E6AD8D008156D3 /* YogaKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 153B526324E6AD8D008156D3 /* YogaKitTests.m */; };
 		153B526B24E6ADFA008156D3 /* Yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15865FFE24E58BD800345BD7 /* Yoga.framework */; platformFilter = ios; };
 		153B526C24E6ADFA008156D3 /* YogaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15865F5424E5834E00345BD7 /* YogaKit.framework */; platformFilter = ios; };
@@ -95,6 +96,7 @@
 		1511C095251ED5EB00A2C621 /* UIView+Yoga.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Yoga.swift"; sourceTree = "<group>"; };
 		1511C09F251EE7F500A2C621 /* YGLayoutUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YGLayoutUtils.swift; sourceTree = "<group>"; };
 		1511C0BA251F1BB600A2C621 /* YogaLayoutProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YogaLayoutProperties.swift; sourceTree = "<group>"; };
+		152FFA8C2520885A009DD30E /* UIView+Swizzling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Swizzling.swift"; sourceTree = "<group>"; };
 		153B525B24E6AD6B008156D3 /* YogaKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YogaKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		153B526324E6AD8D008156D3 /* YogaKitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YogaKitTests.m; path = Tests/YogaKitTests.m; sourceTree = SOURCE_ROOT; };
 		153B526424E6AD8D008156D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Tests/Info.plist; sourceTree = SOURCE_ROOT; };
@@ -183,6 +185,7 @@
 		1511C054251EBED100A2C621 /* SwiftYogaKit */ = {
 			isa = PBXGroup;
 			children = (
+				152FFA8C2520885A009DD30E /* UIView+Swizzling.swift */,
 				1511C095251ED5EB00A2C621 /* UIView+Yoga.swift */,
 				1511C070251EBF9A00A2C621 /* YGLayout.swift */,
 				153D327024E654EF00EDDBEA /* YGLayoutExtensions.swift */,
@@ -520,6 +523,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				152FFA8D2520885A009DD30E /* UIView+Swizzling.swift in Sources */,
 				1511C063251EBF1C00A2C621 /* YGLayoutExtensions.swift in Sources */,
 				1511C0BB251F1BB600A2C621 /* YogaLayoutProperties.swift in Sources */,
 				1511C071251EBF9A00A2C621 /* YGLayout.swift in Sources */,

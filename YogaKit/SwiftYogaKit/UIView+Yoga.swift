@@ -16,7 +16,7 @@ import UIKit
 
 import ObjectiveC.runtime
 
-private var kYGYogaAssociatedKey: UInt = 0
+private var kYGYogaAssociatedKey: UInt8 = 0
 
 extension UIView {
 

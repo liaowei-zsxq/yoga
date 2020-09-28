@@ -124,11 +124,13 @@ extension UIView {
     #endif
 
     func _swift_yoga_apply_layout() {
-        let size = bounds.size
-        guard size.width > 0, size.height > 0, isYogaEnabled else {
+        guard isYogaEnabled else {
             return
         }
 
-        yoga.applyLayout(preservingOrigin: true)
+        let yoga = self.yoga
+        if yoga.isEnabled, yoga.isIncludedInLayout {
+            yoga.applyLayout(preservingOrigin: true)
+        }
     }
 }

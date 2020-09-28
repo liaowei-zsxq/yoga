@@ -313,12 +313,15 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
   }
 
   CGSize size = self.view.bounds.size;
+
   if (dimensionFlexibility & YGDimensionFlexibilityFlexibleWidth) {
     size.width = YGUndefined;
   }
+
   if (dimensionFlexibility & YGDimensionFlexibilityFlexibleHeight) {
     size.height = YGUndefined;
   }
+
   [self calculateLayoutWithSize:size];
   YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
 }
@@ -403,20 +406,24 @@ static YGSize YGMeasureView(
   };
 }
 
-static CGFloat YGSanitizeMeasurement(
+NS_INLINE CGFloat YGSanitizeMeasurement(
     CGFloat constrainedSize,
     CGFloat measuredSize,
     YGMeasureMode measureMode) {
   CGFloat result;
-  if (measureMode == YGMeasureModeExactly) {
-    result = constrainedSize;
-  } else if (measureMode == YGMeasureModeAtMost) {
-    result = MIN(constrainedSize, measuredSize);
-  } else {
-    result = measuredSize;
+  switch (measureMode) {
+    case YGMeasureModeExactly:
+      result = constrainedSize;
+      break;
+    case YGMeasureModeAtMost:
+      result = MIN(constrainedSize, measuredSize);
+      break;
+    default:
+      result = measuredSize;
+      break;
   }
 
-  return result;
+  return MAX(result, 0);
 }
 
 static BOOL YGNodeHasExactSameChildren(

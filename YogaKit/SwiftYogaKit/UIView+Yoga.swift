@@ -34,6 +34,7 @@ extension UIView {
 
     public var isYogaEnabled: Bool {
         let yoga = objc_getAssociatedObject(self, &kYGYogaAssociatedKey) as? YGLayout
+        
         return yoga != nil
     }
 }

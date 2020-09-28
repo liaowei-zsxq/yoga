@@ -39,18 +39,19 @@ func YGGlobalConfig() -> YGConfigRef {
     return once.config
 }
 
-func YGSanitizeMeasurement(_ constrainedSize: CGFloat, _ measuredSize: CGFloat, _ measureMode: YGMeasureMode) -> CGFloat {
+@inline(__always) func YGSanitizeMeasurement(_ constrainedSize: CGFloat, _ measuredSize: CGFloat, _ measureMode: YGMeasureMode) -> CGFloat {
     var result: CGFloat
 
-    if measureMode == YGMeasureMode.exactly {
+    switch measureMode {
+    case .exactly:
         result = constrainedSize
-    } else if measureMode == YGMeasureMode.atMost {
+    case .atMost:
         result = min(constrainedSize, measuredSize)
-    } else {
+    default:
         result = measuredSize
     }
 
-    return result
+    return max(result, 0)
 }
 
 func YGMeasureView(_ node: YGNodeRef!, _ width: YGFloat, _ widthMode: YGMeasureMode, _ height: YGFloat, _ heightMode: YGMeasureMode) -> YGSize {
@@ -99,6 +100,7 @@ func YGAttachNodesFromViewHierachy(_ view: UIView) {
     if yoga.isLeaf {
         YGNodeRemoveAllChildren(node)
         YGNodeSetMeasureFunc(node, YGMeasureView)
+
         return
     }
 
@@ -124,7 +126,7 @@ func YGAttachNodesFromViewHierachy(_ view: UIView) {
 
 func YGApplyLayoutToViewHierarchy(_ view: UIView, _ preserveOrigin: Bool) {
     let yoga = view.yoga
-    guard yoga.isEnabled, yoga.isIncludedInLayout, !yoga.isApplingLayout else {
+    guard !yoga.isApplingLayout, yoga.isEnabled, yoga.isIncludedInLayout else {
         return
     }
 
@@ -143,13 +145,8 @@ func YGApplyLayoutToViewHierarchy(_ view: UIView, _ preserveOrigin: Bool) {
     let transformIsIdentity = view.transform.isIdentity
 
     if preserveOrigin {
-        if transformIsIdentity {
-            origin = view.frame.origin
-        } else {
-            let x = view.center.x - view.bounds.width * 0.5
-            let y = view.center.y - view.bounds.height * 0.5
-            origin = CGPoint(x: x, y: y)
-        }
+        origin = transformIsIdentity ? view.frame.origin : CGPoint(x: view.center.x - view.bounds.width * 0.5,
+                                                                   y: view.center.y - view.bounds.height * 0.5)
     }
     #endif
 

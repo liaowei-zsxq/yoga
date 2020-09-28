@@ -174,7 +174,14 @@ func YGApplyLayoutToViewHierarchy(_ view: UIView, _ preserveOrigin: Bool) {
     
     if !yoga.isLeaf {
         for subview in view.subviews {
-            YGApplyLayoutToViewHierarchy(subview, false)
+            if !subview.isYogaEnabled {
+                continue
+            }
+
+            let yoga = subview.yoga
+            if yoga.isEnabled, yoga.isIncludedInLayout {
+                YGApplyLayoutToViewHierarchy(subview, false)
+            }
         }
     }
 

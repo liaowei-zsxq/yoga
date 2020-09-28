@@ -546,8 +546,15 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
 #endif
 
   if (!yoga.isLeaf) {
-    for (NSUInteger i = 0; i < view.subviews.count; i++) {
-      YGApplyLayoutToViewHierarchy(view.subviews[i], NO);
+    for (UIView *subview in view.subviews) {
+      if (!subview.isYogaEnabled) {
+        continue;
+      }
+
+      YGLayout *yoga = subview.yoga;
+      if (yoga.isEnabled && yoga.isIncludedInLayout) {
+        YGApplyLayoutToViewHierarchy(subview, NO);
+      }
     }
   }
 

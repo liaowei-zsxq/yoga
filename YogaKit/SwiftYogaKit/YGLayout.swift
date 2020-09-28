@@ -43,6 +43,8 @@ public class YGLayout {
 
     public var isLeaf: Bool {
         get {
+            assert(Thread.isMainThread, "This method must be called on the main thread.")
+            
             guard isEnabled else {
                 return true
             }

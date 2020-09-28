@@ -34,7 +34,7 @@ private func YogaSwizzleInstanceMethod(_ cls: AnyClass, _ originalSelector: Sele
 }
 
 private extension CGRect {
-    var isStandlized: Bool {
+    @inline(__always) var isStandlized: Bool {
         let x = minX, y = minY, w = width, h = height
 
         return !(x.isNaN || x.isInfinite ||
@@ -43,7 +43,7 @@ private extension CGRect {
                  h.isNaN || h.isInfinite)
     }
 
-    var standlized: CGRect {
+    @inline(__always) var standlized: CGRect {
         get {
             if isStandlized {
                 return self
@@ -66,7 +66,7 @@ private extension CGRect {
 
 #if os(macOS)
 private extension CGSize {
-    var standlized: CGSize {
+    @inline(__always) var standlized: CGSize {
         get {
             return CGRect(origin: .zero, size: self).standlized.size
         }

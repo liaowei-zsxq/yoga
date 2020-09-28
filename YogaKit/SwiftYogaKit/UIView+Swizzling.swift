@@ -33,6 +33,47 @@ private func YogaSwizzleInstanceMethod(_ cls: AnyClass, _ originalSelector: Sele
     }
 }
 
+private extension CGRect {
+    var isStandlized: Bool {
+        let x = minX, y = minY, w = width, h = height
+
+        return !(x.isNaN || x.isInfinite ||
+                 y.isNaN || y.isInfinite ||
+                 w.isNaN || w.isInfinite ||
+                 h.isNaN || h.isInfinite)
+    }
+
+    var standlized: CGRect {
+        get {
+            if isStandlized {
+                return self
+            }
+
+            let x = minX, y = minY
+            var origin = self.origin
+            origin.x = x.isNaN || x.isInfinite ? 0 : x
+            origin.y = y.isNaN || y.isInfinite ? 0 : y
+
+            let w = width, h = height
+            var size = self.size
+            size.width = w.isNaN || w.isInfinite ? 0 : w
+            size.height = h.isNaN || h.isInfinite ? 0 : h
+
+            return CGRect(origin: origin, size: size)
+        }
+    }
+}
+
+#if os(macOS)
+private extension CGSize {
+    var standlized: CGSize {
+        get {
+            return CGRect(origin: .zero, size: self).standlized.size
+        }
+    }
+}
+#endif
+
 extension UIView {
 
     @objc public class func SwiftYogaKitSwizzle() {
@@ -54,30 +95,30 @@ extension UIView {
     }
 
     @objc dynamic func _swift_yoga_init(frame: CGRect) -> Any? {
-        let instance = _swift_yoga_init(frame: frame)
+        let instance = _swift_yoga_init(frame: frame.standlized)
         _swift_yoga_apply_layout()
 
         return instance
     }
 
     @objc dynamic func _swift_yoga_set(frame: CGRect) {
-        _swift_yoga_set(frame: frame)
+        _swift_yoga_set(frame: frame.standlized)
         _swift_yoga_apply_layout()
     }
 
     @objc dynamic func _swift_yoga_set(bounds: CGRect) {
-        _swift_yoga_set(bounds: bounds)
+        _swift_yoga_set(bounds: bounds.standlized)
         _swift_yoga_apply_layout()
     }
 
     #if os(macOS)
     @objc dynamic func _swift_yoga_set(frameSize: CGSize) {
-        _swift_yoga_set(frameSize: frameSize)
+        _swift_yoga_set(frameSize: frameSize.standlized)
         _swift_yoga_apply_layout()
     }
 
     @objc dynamic func _swift_yoga_set(boundsSize: CGSize) {
-        _swift_yoga_set(boundsSize: boundsSize)
+        _swift_yoga_set(boundsSize: boundsSize.standlized)
         _swift_yoga_apply_layout()
     }
     #endif

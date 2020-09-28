@@ -36,6 +36,40 @@ static const void* kYGYogaAssociatedKey = &kYGYogaAssociatedKey;
 
 @end
 
+NS_INLINE BOOL CGRectIsStandlized(CGRect rect) {
+    CGFloat x = CGRectGetMinX(rect), y = CGRectGetMinY(rect), w = CGRectGetWidth(rect), h = CGRectGetHeight(rect);
+
+    return !(isnan(x) || isinf(x) ||
+             isnan(y) || isinf(y) ||
+             isnan(w) || isinf(w) ||
+             isnan(h) || isinf(h));
+}
+
+NS_INLINE CGRect StandlizedRect(CGRect rect) {
+    if (CGRectIsStandlized(rect)) {
+        return rect;
+    }
+
+    CGFloat x = CGRectGetMinX(rect), y = CGRectGetMinY(rect);
+    CGPoint origin = rect.origin;
+
+    origin.x = isnan(x) || isinf(x) ? 0 : x;
+    origin.y = isnan(y) || isinf(y) ? 0 : y;
+
+    CGFloat w = CGRectGetWidth(rect), h = CGRectGetHeight(rect);
+    CGSize size = rect.size;
+
+    size.width = isnan(w) || isinf(w) ? 0 : w;
+    size.height = isnan(h) || isinf(h) ? 0 : h;
+
+    return (CGRect){ origin, size };
+}
+
+#if TARGET_OS_OSX
+NS_INLINE NSSize StandlizedSize(NSSize size) {
+    return StandlizedRect((CGRect){ CGPointZero, size }).size;
+}
+#endif
 
 static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizzledSelector);
 
@@ -55,7 +89,7 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
 }
 
 - (instancetype)_yoga_initWithFrame:(CGRect)frame {
-  id _self = [self _yoga_initWithFrame:frame];
+  id _self = [self _yoga_initWithFrame:StandlizedRect(frame)];
   if (_self) {
     [self _yoga_applyLayout];
   }
@@ -64,26 +98,26 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
 }
 
 - (void)_yoga_setFrame:(CGRect)frame {
-  [self _yoga_setFrame:frame];
+  [self _yoga_setFrame:StandlizedRect(frame)];
 
   [self _yoga_applyLayout];
 }
 
 - (void)_yoga_setBounds:(CGRect)bounds {
-  [self _yoga_setBounds:bounds];
+  [self _yoga_setBounds:StandlizedRect(bounds)];
 
   [self _yoga_applyLayout];
 }
 
 #if TARGET_OS_OSX
 - (void)_yoga_setFrameSize:(NSSize)newSize {
-  [self _yoga_setFrameSize:newSize];
+  [self _yoga_setFrameSize:StandlizedSize(newSize)];
 
   [self _yoga_applyLayout];
 }
 
 - (void)_yoga_setBoundsSize:(NSSize)newSize {
-  [self _yoga_setBoundsSize:newSize];
+  [self _yoga_setBoundsSize:StandlizedSize(newSize)];
 
   [self _yoga_applyLayout];
 }

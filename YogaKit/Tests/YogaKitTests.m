@@ -530,8 +530,11 @@
   [subview1 addSubview:subview2];
 
   [container.yoga applyLayoutPreservingOrigin:YES];
+  XCTAssertTrue(!subview1.yoga.isLeaf && subview2.yoga.isLeaf);
+
   [subview2 removeFromSuperview];
   [container.yoga applyLayoutPreservingOrigin:YES];
+  XCTAssertTrue(subview1.yoga.isLeaf);
 }
 
 - (void)testPointPercent {
@@ -855,6 +858,28 @@
     XCTAssertEqual(v.frame.size.width, 0);
     v.frame = CGRectMake(0, 0, 10, NAN);
     XCTAssertEqual(v.frame.size.height, 0);
+}
+
+- (void)testBaseViewLeafNodeWork {
+    UIView *container = [[UIView alloc] initWithFrame:CGRectZero];
+    [container.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+        layout.isEnabled = YES;
+        layout.width = YGPointValue(300);
+        layout.height = YGPointValue(180);
+    }];
+
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    [container addSubview:v];
+    [v.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+        layout.isEnabled = YES;
+    }];
+    [container.yoga applyLayoutPreservingOrigin:YES];
+
+    XCTAssertEqual(v.frame.size.width, 300);
+    XCTAssertEqual(v.frame.size.height, 0);
+
+    XCTAssertEqual(container.frame.size.width, 300);
+    XCTAssertEqual(container.frame.size.height, 180);
 }
 
 @end

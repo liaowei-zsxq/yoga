@@ -448,7 +448,7 @@ static void YGAttachNodesFromViewHierachy(UIView* const view) {
 
   // Only leaf nodes should have a measure function
   if (yoga.isLeaf) {
-    YGRemoveAllChildren(node);
+    YGNodeRemoveAllChildren(node);
     YGNodeSetMeasureFunc(node, YGMeasureView);
   } else {
     YGNodeSetMeasureFunc(node, NULL);
@@ -462,7 +462,7 @@ static void YGAttachNodesFromViewHierachy(UIView* const view) {
     }
 
     if (!YGNodeHasExactSameChildren(node, subviewsToInclude)) {
-      YGRemoveAllChildren(node);
+      YGNodeRemoveAllChildren(node);
       for (int i = 0; i < subviewsToInclude.count; i++) {
         YGNodeInsertChild(node, subviewsToInclude[i].yoga.node, i);
       }
@@ -472,14 +472,6 @@ static void YGAttachNodesFromViewHierachy(UIView* const view) {
       YGAttachNodesFromViewHierachy(subview);
     }
   }
-}
-
-static void YGRemoveAllChildren(const YGNodeRef node) {
-  if (!node) {
-    return;
-  }
-
-  YGNodeRemoveAllChildren(node);
 }
 
 static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {

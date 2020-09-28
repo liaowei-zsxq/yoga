@@ -171,7 +171,7 @@ func YGApplyLayoutToViewHierarchy(_ view: UIView, _ preserveOrigin: Bool) {
         view.center = CGPoint(x: frame.midX, y: frame.midY)
     }
     #endif
-    
+
     if !yoga.isLeaf {
         for subview in view.subviews {
             if !subview.isYogaEnabled {

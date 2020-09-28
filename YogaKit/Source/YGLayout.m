@@ -308,7 +308,7 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
 - (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin
                dimensionFlexibility:
                    (YGDimensionFlexibility)dimensionFlexibility {
-  if (self.isApplingLayout) {
+  if (self.isApplingLayout || !self.isEnabled) {
     return;
   }
 
@@ -488,12 +488,7 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
       @"Framesetting should only be done on the main thread.");
 
   const YGLayout* yoga = view.yoga;
-
-  if (!yoga.isEnabled || !yoga.isIncludedInLayout) {
-    return;
-  }
-
-  if (yoga.isApplingLayout) {
+  if (yoga.isApplingLayout || !yoga.isEnabled) {
     return;
   }
 
@@ -529,7 +524,7 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
   };
 
 #if TARGET_OS_OSX
-  if (!view.superview.isFlipped && view.superview.yoga.isEnabled && view.superview.yoga.isIncludedInLayout) {
+  if (!view.superview.isFlipped && view.superview.isYogaEnabled && view.superview.yoga.isEnabled) {
     CGFloat height = (CGFloat)MAX(YGNodeLayoutGetHeight(view.superview.yoga.node), 0);
     frame.origin.y = height - CGRectGetMaxY(frame);
   }

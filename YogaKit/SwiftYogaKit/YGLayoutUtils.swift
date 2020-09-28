@@ -125,8 +125,10 @@ func YGAttachNodesFromViewHierachy(_ view: UIView) {
 }
 
 func YGApplyLayoutToViewHierarchy(_ view: UIView, _ preserveOrigin: Bool) {
+    assert(Thread.isMainThread, "Framesetting should only be done on the main thread.")
+
     let yoga = view.yoga
-    guard !yoga.isApplingLayout, yoga.isEnabled, yoga.isIncludedInLayout else {
+    guard !yoga.isApplingLayout, yoga.isEnabled else {
         return
     }
 
@@ -153,7 +155,7 @@ func YGApplyLayoutToViewHierarchy(_ view: UIView, _ preserveOrigin: Bool) {
     var frame = CGRect(origin: origin, size: size).offsetBy(dx: topLeft.x, dy: topLeft.y)
 
     #if os(macOS)
-    if let superview = view.superview, !superview.isFlipped, superview.yoga.isEnabled, superview.yoga.isIncludedInLayout {
+    if let superview = view.superview, !superview.isFlipped, superview.isYogaEnabled, superview.yoga.isEnabled {
         let height = CGFloat(max(YGNodeLayoutGetHeight(superview.yoga.node), 0))
         frame.origin.y = height - frame.maxY
     }

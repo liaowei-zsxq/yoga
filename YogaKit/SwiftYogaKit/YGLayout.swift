@@ -114,7 +114,7 @@ public class YGLayout {
     }
 
     public func applyLayout(preservingOrigin preserveOrigin: Bool, dimensionFlexibility: YGDimensionFlexibility) {
-        guard !isApplingLayout else {
+        guard !isApplingLayout, isEnabled else {
             return
         }
 
@@ -133,16 +133,14 @@ public class YGLayout {
     }
 
     public func calculateLayout(size: CGSize) -> CGSize {
-        guard isEnabled else {
-            return .zero
-        }
+        assert(Thread.isMainThread, "Yoga calculation must be done on main.")
+        assert(isEnabled, "Yoga is not enabled for this view.")
 
         YGAttachNodesFromViewHierachy(view)
         YGNodeCalculateLayout(node, YGFloat(size.width), YGFloat(size.height), YGNodeStyleGetDirection(node))
-        let w = CGFloat(max(YGNodeLayoutGetWidth(node), 0))
-        let h = CGFloat(max(YGNodeLayoutGetHeight(node), 0))
 
-        return CGSize(width: w, height: h)
+        return CGSize(width: CGFloat(max(YGNodeLayoutGetWidth(node), 0)),
+                      height: CGFloat(max(YGNodeLayoutGetHeight(node), 0)))
     }
 
     public func configureLayout(block: YGLayoutConfigurationBlock) {

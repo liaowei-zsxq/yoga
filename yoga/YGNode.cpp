@@ -353,7 +353,7 @@ YGValue YGNode::resolveFlexBasisPtr() const {
   if (flexBasis.unit != YGUnitAuto && flexBasis.unit != YGUnitUndefined) {
     return flexBasis;
   }
-  if (!style_.flex().isUndefined() && style_.flex().unwrap() > 0.0f) {
+  if (!style_.flex().isUndefined() && style_.flex().unwrap() > 0.0) {
     return facebook::yoga::detail::getBooleanData(flags, useWebDefaults_)
         ? YGValueAuto
         : YGValueZero;
@@ -419,7 +419,7 @@ YGFloat YGNode::resolveFlexGrow() const {
   if (!style_.flexGrow().isUndefined()) {
     return style_.flexGrow().unwrap();
   }
-  if (!style_.flex().isUndefined() && style_.flex().unwrap() > 0.0f) {
+  if (!style_.flex().isUndefined() && style_.flex().unwrap() > 0.0) {
     return style_.flex().unwrap();
   }
   return kDefaultFlexGrow;
@@ -433,7 +433,7 @@ YGFloat YGNode::resolveFlexShrink() const {
     return style_.flexShrink().unwrap();
   }
   if (!facebook::yoga::detail::getBooleanData(flags, useWebDefaults_) &&
-      !style_.flex().isUndefined() && style_.flex().unwrap() < 0.0f) {
+      !style_.flex().isUndefined() && style_.flex().unwrap() < 0.0) {
     return -style_.flex().unwrap();
   }
   return facebook::yoga::detail::getBooleanData(flags, useWebDefaults_)
@@ -459,7 +459,7 @@ YGFloat YGNode::getLeadingBorder(const YGFlexDirection axis) const {
 
   leadingBorder = YGComputedEdgeValue(
       style_.border(), leading[axis], CompactValue::ofZero());
-  return YGFloatMax(leadingBorder.value, 0.0f);
+  return YGFloatMax(leadingBorder.value, 0.0);
 }
 
 YGFloat YGNode::getTrailingBorder(const YGFlexDirection flexDirection) const {
@@ -467,14 +467,14 @@ YGFloat YGNode::getTrailingBorder(const YGFlexDirection flexDirection) const {
   if (YGFlexDirectionIsRow(flexDirection) &&
       !style_.border()[YGEdgeEnd].isUndefined()) {
     trailingBorder = style_.border()[YGEdgeEnd];
-    if (trailingBorder.value >= 0.0f) {
+    if (trailingBorder.value >= 0.0) {
       return trailingBorder.value;
     }
   }
 
   trailingBorder = YGComputedEdgeValue(
       style_.border(), trailing[flexDirection], CompactValue::ofZero());
-  return YGFloatMax(trailingBorder.value, 0.0f);
+  return YGFloatMax(trailingBorder.value, 0.0);
 }
 
 YGFloatOptional YGNode::getLeadingPadding(
@@ -484,7 +484,7 @@ YGFloatOptional YGNode::getLeadingPadding(
       YGResolveValue(style_.padding()[YGEdgeStart], widthSize);
   if (YGFlexDirectionIsRow(axis) &&
       !style_.padding()[YGEdgeStart].isUndefined() &&
-      !paddingEdgeStart.isUndefined() && paddingEdgeStart.unwrap() >= 0.0f) {
+      !paddingEdgeStart.isUndefined() && paddingEdgeStart.unwrap() >= 0.0) {
     return paddingEdgeStart;
   }
 
@@ -492,7 +492,7 @@ YGFloatOptional YGNode::getLeadingPadding(
       YGComputedEdgeValue(
           style_.padding(), leading[axis], CompactValue::ofZero()),
       widthSize);
-  return YGFloatOptionalMax(resolvedValue, YGFloatOptional(0.0f));
+  return YGFloatOptionalMax(resolvedValue, YGFloatOptional(0.0));
 }
 
 YGFloatOptional YGNode::getTrailingPadding(
@@ -509,7 +509,7 @@ YGFloatOptional YGNode::getTrailingPadding(
           style_.padding(), trailing[axis], CompactValue::ofZero()),
       widthSize);
 
-  return YGFloatOptionalMax(resolvedValue, YGFloatOptional(0.0f));
+  return YGFloatOptionalMax(resolvedValue, YGFloatOptional(0.0));
 }
 
 YGFloatOptional YGNode::getLeadingPaddingAndBorder(

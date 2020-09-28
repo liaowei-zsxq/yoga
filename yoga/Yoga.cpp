@@ -1160,10 +1160,10 @@ static inline bool YGNodeIsStyleDimDefined(
       node->getResolvedDimension(dim[axis]).unit == YGUnitAuto ||
       node->getResolvedDimension(dim[axis]).unit == YGUnitUndefined ||
       (node->getResolvedDimension(dim[axis]).unit == YGUnitPoint &&
-       !isUndefined && node->getResolvedDimension(dim[axis]).value < 0.0f) ||
+       !isUndefined && node->getResolvedDimension(dim[axis]).value < 0.0) ||
       (node->getResolvedDimension(dim[axis]).unit == YGUnitPercent &&
        !isUndefined &&
-       (node->getResolvedDimension(dim[axis]).value < 0.0f ||
+       (node->getResolvedDimension(dim[axis]).value < 0.0 ||
         YGFloatIsUndefined(ownerSize))));
 }
 
@@ -1171,7 +1171,7 @@ static inline bool YGNodeIsLayoutDimDefined(
     const YGNodeRef node,
     const YGFlexDirection axis) {
   const YGFloat value = node->getLayout().measuredDimensions[dim[axis]];
-  return !YGFloatIsUndefined(value) && value >= 0.0f;
+  return !YGFloatIsUndefined(value) && value >= 0.0;
 }
 
 static YGFloatOptional YGNodeBoundAxisWithinMinAndMax(
@@ -1823,9 +1823,9 @@ static bool YGNodeFixedSizeSetMeasuredDimensions(
     const YGFloat ownerWidth,
     const YGFloat ownerHeight) {
   if ((!YGFloatIsUndefined(availableWidth) &&
-       widthMeasureMode == YGMeasureModeAtMost && availableWidth <= 0.0f) ||
+       widthMeasureMode == YGMeasureModeAtMost && availableWidth <= 0.0) ||
       (!YGFloatIsUndefined(availableHeight) &&
-       heightMeasureMode == YGMeasureModeAtMost && availableHeight <= 0.0f) ||
+       heightMeasureMode == YGMeasureModeAtMost && availableHeight <= 0.0) ||
       (widthMeasureMode == YGMeasureModeExactly &&
        heightMeasureMode == YGMeasureModeExactly)) {
     auto marginAxisColumn =
@@ -1839,8 +1839,8 @@ static bool YGNodeFixedSizeSetMeasuredDimensions(
             YGFlexDirectionRow,
             YGFloatIsUndefined(availableWidth) ||
                     (widthMeasureMode == YGMeasureModeAtMost &&
-                     availableWidth < 0.0f)
-                ? 0.0f
+                     availableWidth < 0.0)
+                ? 0.0
                 : availableWidth - marginAxisRow,
             ownerWidth,
             ownerWidth),
@@ -1852,8 +1852,8 @@ static bool YGNodeFixedSizeSetMeasuredDimensions(
             YGFlexDirectionColumn,
             YGFloatIsUndefined(availableHeight) ||
                     (heightMeasureMode == YGMeasureModeAtMost &&
-                     availableHeight < 0.0f)
-                ? 0.0f
+                     availableHeight < 0.0)
+                ? 0.0
                 : availableHeight - marginAxisColumn,
             ownerHeight,
             ownerWidth),
@@ -1931,7 +1931,7 @@ static YGFloat YGNodeComputeFlexBasisForChildren(
     void* const layoutContext,
     const uint32_t depth,
     const uint32_t generationCount) {
-  YGFloat totalOuterFlexBasis = 0.0f;
+  YGFloat totalOuterFlexBasis = 0.0;
   YGNodeRef singleFlexChild = nullptr;
   const YGVector& children = node->getChildren();
   YGMeasureMode measureModeMainDim =
@@ -1943,8 +1943,8 @@ static YGFloat YGNodeComputeFlexBasisForChildren(
     for (auto child : children) {
       if (child->isNodeFlexible()) {
         if (singleFlexChild != nullptr ||
-            YGFloatsEqual(child->resolveFlexGrow(), 0.0f) ||
-            YGFloatsEqual(child->resolveFlexShrink(), 0.0f)) {
+            YGFloatsEqual(child->resolveFlexGrow(), 0.0) ||
+            YGFloatsEqual(child->resolveFlexShrink(), 0.0)) {
           // There is already a flexible child, or this flexible child doesn't
           // have flexGrow and flexShrink, abort
           singleFlexChild = nullptr;
@@ -3668,7 +3668,7 @@ YOGA_EXPORT YGFloat YGRoundValueToPixelGrid(
   double scaledValue = ((double) value) * pointScaleFactor;
   // We want to calculate `fractial` such that `floor(scaledValue) = scaledValue
   // - fractial`.
-  double fractial = fmod(scaledValue, 1.0f);
+  double fractial = fmod(scaledValue, 1.0);
   if (fractial < 0) {
     // This branch is for handling negative numbers for `value`.
     //
@@ -3690,20 +3690,20 @@ YOGA_EXPORT YGFloat YGRoundValueToPixelGrid(
   if (YGDoubleEqual(fractial, 0)) {
     // First we check if the value is already rounded
     scaledValue = scaledValue - fractial;
-  } else if (YGDoubleEqual(fractial, 1.0f)) {
-    scaledValue = scaledValue - fractial + 1.0f;
+  } else if (YGDoubleEqual(fractial, 1.0)) {
+    scaledValue = scaledValue - fractial + 1.0;
   } else if (forceCeil) {
     // Next we check if we need to use forced rounding
-    scaledValue = scaledValue - fractial + 1.0f;
+    scaledValue = scaledValue - fractial + 1.0;
   } else if (forceFloor) {
     scaledValue = scaledValue - fractial;
   } else {
     // Finally we just round the value
     scaledValue = scaledValue - fractial +
         (!YGFloatIsUndefined(fractial) &&
-                 (fractial > 0.5f || YGDoubleEqual(fractial, 0.5f))
-             ? 1.0f
-             : 0.0f);
+                 (fractial > 0.5 || YGDoubleEqual(fractial, 0.5))
+             ? 1.0
+             : 0.0);
   }
   return (YGFloatIsUndefined(scaledValue) ||
           YGFloatIsUndefined(pointScaleFactor))
@@ -4068,9 +4068,9 @@ YOGA_EXPORT void YGConfigSetPointScaleFactor(
       "Scale factor should not be less than zero");
 
   // We store points for Pixel as we will use it for rounding
-  if (pixelsInPoint == 0.0f) {
+  if (pixelsInPoint == 0.0) {
     // Zero is used to skip rounding
-    config->pointScaleFactor = 0.0f;
+    config->pointScaleFactor = 0.0;
   } else {
     config->pointScaleFactor = pixelsInPoint;
   }
@@ -4081,7 +4081,7 @@ static void YGRoundToPixelGrid(
     const double pointScaleFactor,
     const double absoluteLeft,
     const double absoluteTop) {
-  if (pointScaleFactor == 0.0f) {
+  if (pointScaleFactor == 0.0) {
     return;
   }
 
@@ -4229,7 +4229,7 @@ YOGA_EXPORT void YGNodeCalculateLayoutWithContext(
           gCurrentGenerationCount.load(std::memory_order_relaxed))) {
     node->setPosition(
         node->getLayout().direction(), ownerWidth, ownerHeight, ownerWidth);
-    YGRoundToPixelGrid(node, node->getConfig()->pointScaleFactor, 0.0f, 0.0f);
+    YGRoundToPixelGrid(node, node->getConfig()->pointScaleFactor, 0.0, 0.0);
 
 #ifdef DEBUG
     if (node->getConfig()->printTree) {
@@ -4285,8 +4285,8 @@ YOGA_EXPORT void YGNodeCalculateLayoutWithContext(
       YGRoundToPixelGrid(
           nodeWithoutLegacyFlag,
           nodeWithoutLegacyFlag->getConfig()->pointScaleFactor,
-          0.0f,
-          0.0f);
+          0.0,
+          0.0);
 
       // Set whether the two layouts are different or not.
       auto neededLegacyStretchBehaviour =

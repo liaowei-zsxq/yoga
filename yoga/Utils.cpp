@@ -43,19 +43,19 @@ bool YGValueEqual(const YGValue& a, const YGValue& b) {
     return true;
   }
 
-  return fabs(a.value - b.value) < 0.0001f;
+  return fabs(a.value - b.value) < 0.0001;
 }
 
 bool YGFloatsEqual(const YGFloat a, const YGFloat b) {
   if (!yoga::isUndefined(a) && !yoga::isUndefined(b)) {
-    return fabs(a - b) < 0.0001f;
+    return fabs(a - b) < 0.0001;
   }
   return yoga::isUndefined(a) && yoga::isUndefined(b);
 }
 
 bool YGDoubleEqual(const double a, const double b) {
   if (!yoga::isUndefined(a) && !yoga::isUndefined(b)) {
-    return fabs(a - b) < 0.0001f;
+    return fabs(a - b) < 0.0001;
   }
   return yoga::isUndefined(a) && yoga::isUndefined(b);
 }

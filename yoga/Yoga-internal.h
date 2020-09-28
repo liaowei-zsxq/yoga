@@ -139,9 +139,9 @@ public:
 } // namespace yoga
 } // namespace facebook
 
-static const YGFloat kDefaultFlexGrow = 0.0f;
-static const YGFloat kDefaultFlexShrink = 0.0f;
-static const YGFloat kWebDefaultFlexShrink = 1.0f;
+static const YGFloat kDefaultFlexGrow = 0.0;
+static const YGFloat kDefaultFlexShrink = 0.0;
+static const YGFloat kWebDefaultFlexShrink = 1.0;
 
 extern bool YGFloatsEqual(const YGFloat a, const YGFloat b);
 extern facebook::yoga::detail::CompactValue YGComputedEdgeValue(

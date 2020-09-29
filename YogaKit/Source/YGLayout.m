@@ -206,7 +206,7 @@ static YGConfigRef YGGlobalConfig() {
 }
 
 - (void)markDirty {
-  if (self.isDirty || !self.isLeaf) {
+  if (!self.isEnabled || self.isDirty || !self.isLeaf) {
     return;
   }
 

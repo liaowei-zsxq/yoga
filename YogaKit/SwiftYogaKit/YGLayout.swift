@@ -96,7 +96,7 @@ public class YGLayout {
     }
 
     public func markDirty() {
-        guard !isDirty, isLeaf else {
+        guard isEnabled, !isDirty, isLeaf else {
             return
         }
 

@@ -172,7 +172,8 @@ func YGApplyLayoutToViewHierarchy(_ view: UIView, _ preserveOrigin: Bool) {
     }
     #endif
 
-    if !yoga.isLeaf {
+    // no need layout subviews if width or height is zero.
+    if size.width > 0, size.height > 0, !yoga.isLeaf {
         for subview in view.subviews {
             if !subview.isYogaEnabled {
                 continue

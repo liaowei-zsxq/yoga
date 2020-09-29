@@ -66,67 +66,6 @@ typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
  */
 @property(nonatomic, setter=setEnabled:) BOOL isEnabled;
 
-@property(nonatomic) YGDirection direction;
-@property(nonatomic) YGFlexDirection flexDirection;
-@property(nonatomic) YGJustify justifyContent;
-@property(nonatomic) YGAlign alignContent;
-@property(nonatomic) YGAlign alignItems;
-@property(nonatomic) YGAlign alignSelf;
-@property(nonatomic) YGPositionType position;
-@property(nonatomic) YGWrap flexWrap;
-@property(nonatomic) YGOverflow overflow;
-@property(nonatomic) YGDisplay display;
-
-@property(nonatomic) CGFloat flex;
-@property(nonatomic) CGFloat flexGrow;
-@property(nonatomic) CGFloat flexShrink;
-@property(nonatomic) YGValue flexBasis;
-
-@property(nonatomic) YGValue left;
-@property(nonatomic) YGValue top;
-@property(nonatomic) YGValue right;
-@property(nonatomic) YGValue bottom;
-@property(nonatomic) YGValue start;
-@property(nonatomic) YGValue end;
-
-@property(nonatomic) YGValue marginLeft;
-@property(nonatomic) YGValue marginTop;
-@property(nonatomic) YGValue marginRight;
-@property(nonatomic) YGValue marginBottom;
-@property(nonatomic) YGValue marginStart;
-@property(nonatomic) YGValue marginEnd;
-@property(nonatomic) YGValue marginHorizontal;
-@property(nonatomic) YGValue marginVertical;
-@property(nonatomic) YGValue margin;
-
-@property(nonatomic) YGValue paddingLeft;
-@property(nonatomic) YGValue paddingTop;
-@property(nonatomic) YGValue paddingRight;
-@property(nonatomic) YGValue paddingBottom;
-@property(nonatomic) YGValue paddingStart;
-@property(nonatomic) YGValue paddingEnd;
-@property(nonatomic) YGValue paddingHorizontal;
-@property(nonatomic) YGValue paddingVertical;
-@property(nonatomic) YGValue padding;
-
-@property(nonatomic) CGFloat borderLeftWidth;
-@property(nonatomic) CGFloat borderTopWidth;
-@property(nonatomic) CGFloat borderRightWidth;
-@property(nonatomic) CGFloat borderBottomWidth;
-@property(nonatomic) CGFloat borderStartWidth;
-@property(nonatomic) CGFloat borderEndWidth;
-@property(nonatomic) CGFloat borderWidth;
-
-@property(nonatomic) YGValue width;
-@property(nonatomic) YGValue height;
-@property(nonatomic) YGValue minWidth;
-@property(nonatomic) YGValue minHeight;
-@property(nonatomic) YGValue maxWidth;
-@property(nonatomic) YGValue maxHeight;
-
-// Yoga specific properties, not compatible with flexbox specification
-@property(nonatomic) CGFloat aspectRatio;
-
 /**
  Get the resolved direction of this node. This won't be YGDirectionInherit
  */
@@ -192,6 +131,71 @@ typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
  */
 - (void)configureLayoutWithBlock:(NS_NOESCAPE YGLayoutConfigurationBlock)block
     NS_SWIFT_NAME(configureLayout(block:));
+
+@end
+
+@interface YGLayout (Properties)
+
+@property(nonatomic) YGDirection direction;
+@property(nonatomic) YGFlexDirection flexDirection;
+@property(nonatomic) YGJustify justifyContent;
+@property(nonatomic) YGAlign alignContent;
+@property(nonatomic) YGAlign alignItems;
+@property(nonatomic) YGAlign alignSelf;
+@property(nonatomic) YGPositionType position;
+@property(nonatomic) YGWrap flexWrap;
+@property(nonatomic) YGOverflow overflow;
+@property(nonatomic) YGDisplay display;
+
+@property(nonatomic) CGFloat flex;
+@property(nonatomic) CGFloat flexGrow;
+@property(nonatomic) CGFloat flexShrink;
+@property(nonatomic) YGValue flexBasis;
+
+@property(nonatomic) YGValue left;
+@property(nonatomic) YGValue top;
+@property(nonatomic) YGValue right;
+@property(nonatomic) YGValue bottom;
+@property(nonatomic) YGValue start;
+@property(nonatomic) YGValue end;
+
+@property(nonatomic) YGValue marginLeft;
+@property(nonatomic) YGValue marginTop;
+@property(nonatomic) YGValue marginRight;
+@property(nonatomic) YGValue marginBottom;
+@property(nonatomic) YGValue marginStart;
+@property(nonatomic) YGValue marginEnd;
+@property(nonatomic) YGValue marginHorizontal;
+@property(nonatomic) YGValue marginVertical;
+@property(nonatomic) YGValue margin;
+
+@property(nonatomic) YGValue paddingLeft;
+@property(nonatomic) YGValue paddingTop;
+@property(nonatomic) YGValue paddingRight;
+@property(nonatomic) YGValue paddingBottom;
+@property(nonatomic) YGValue paddingStart;
+@property(nonatomic) YGValue paddingEnd;
+@property(nonatomic) YGValue paddingHorizontal;
+@property(nonatomic) YGValue paddingVertical;
+@property(nonatomic) YGValue padding;
+
+@property(nonatomic) CGFloat borderLeftWidth;
+@property(nonatomic) CGFloat borderTopWidth;
+@property(nonatomic) CGFloat borderRightWidth;
+@property(nonatomic) CGFloat borderBottomWidth;
+@property(nonatomic) CGFloat borderStartWidth;
+@property(nonatomic) CGFloat borderEndWidth;
+@property(nonatomic) CGFloat borderWidth;
+
+@property(nonatomic) YGValue width;
+@property(nonatomic) YGValue height;
+@property(nonatomic) YGValue minWidth;
+@property(nonatomic) YGValue minHeight;
+@property(nonatomic) YGValue maxWidth;
+@property(nonatomic) YGValue maxHeight;
+
+// Yoga specific properties, not compatible with flexbox specification
+@property(nonatomic) CGFloat aspectRatio;
 
 @end
 

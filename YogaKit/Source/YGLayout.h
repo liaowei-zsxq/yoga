@@ -6,6 +6,7 @@
  */
 
 #import <TargetConditionals.h>
+
 #if TARGET_OS_OSX
 #import <AppKit/AppKit.h>
 #define UIView NSView
@@ -33,8 +34,8 @@ NS_INLINE YGValue YGPercentValue(CGFloat value) NS_SWIFT_UNAVAILABLE("Use the sw
 }
 
 typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
-  YGDimensionFlexibilityFlexibleWidth = 1 << 0,
-  YGDimensionFlexibilityFlexibleHeight = 1 << 1,
+    YGDimensionFlexibilityFlexibleWidth = 1 << 0,
+    YGDimensionFlexibilityFlexibleHeight = 1 << 1,
 };
 
 @interface YGLayout : NSObject
@@ -43,22 +44,19 @@ typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
  Make default init unavailable, as it will not initialise YGNode which is
  required for the setters and getters of YGLayout's properties to work properly.
 */
-- (instancetype)init
-    __attribute__((unavailable("you are not meant to initialise YGLayout")));
+- (instancetype)init __attribute__((unavailable("you are not meant to initialise YGLayout")));
 
 /**
  Make default init unavailable, as it will not initialise YGNode which is
  required for the setters and getters of YGLayout's properties to work properly.
  */
-+ (instancetype)new
-    __attribute__((unavailable("you are not meant to initialise YGLayout")));
++ (instancetype)new __attribute__((unavailable("you are not meant to initialise YGLayout")));
 
 /**
   The property that decides if we should include this view when calculating
   layout. Defaults to YES.
  */
-@property(nonatomic, setter=setIncludedInLayout:)
-    BOOL isIncludedInLayout;
+@property(nonatomic, setter=setIncludedInLayout:) BOOL isIncludedInLayout;
 
 /**
  The property that decides during layout/sizing whether or not styling

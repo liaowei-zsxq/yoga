@@ -20,6 +20,7 @@
 		153B526E24E6AECF008156D3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 153B526D24E6AECF008156D3 /* libc++.tbd */; platformFilter = ios; };
 		153D326F24E654A300EDDBEA /* Yoga-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 153D326E24E6549A00EDDBEA /* Yoga-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		154A6EF524E6B1260091264C /* dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154A6EF424E6B1260091264C /* dummy.swift */; };
+		157D48172524E70E006B1EDC /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 153B526D24E6AECF008156D3 /* libc++.tbd */; };
 		15865F6624E583F000345BD7 /* YGLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 15865F5F24E583F000345BD7 /* YGLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15865F6724E583F000345BD7 /* UIView+Yoga.h in Headers */ = {isa = PBXBuildFile; fileRef = 15865F6024E583F000345BD7 /* UIView+Yoga.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15865F6824E583F000345BD7 /* YGLayout+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 15865F6124E583F000345BD7 /* YGLayout+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -168,6 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				157D48172524E70E006B1EDC /* libc++.tbd in Frameworks */,
 				1586600824E58C0F00345BD7 /* Yoga.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -826,7 +828,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -852,7 +853,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -44,13 +44,13 @@ typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
  Make default init unavailable, as it will not initialise YGNode which is
  required for the setters and getters of YGLayout's properties to work properly.
 */
-- (instancetype)init __attribute__((unavailable("you are not meant to initialise YGLayout")));
+- (instancetype)init NS_EXTENSION_UNAVAILABLE("you are not meant to initialise YGLayout");
 
 /**
  Make default init unavailable, as it will not initialise YGNode which is
  required for the setters and getters of YGLayout's properties to work properly.
  */
-+ (instancetype)new __attribute__((unavailable("you are not meant to initialise YGLayout")));
++ (instancetype)new NS_EXTENSION_UNAVAILABLE("you are not meant to initialise YGLayout");
 
 /**
   The property that decides if we should include this view when calculating

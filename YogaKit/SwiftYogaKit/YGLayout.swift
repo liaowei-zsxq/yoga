@@ -29,7 +29,7 @@ public struct YGDimensionFlexibility: OptionSet {
     static let height = YGDimensionFlexibility(rawValue: 1 << 1)
 }
 
-public class YGLayout {
+final public class YGLayout {
 
     public var isEnabled = false
 

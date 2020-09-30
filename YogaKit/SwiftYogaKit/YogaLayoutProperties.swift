@@ -154,7 +154,7 @@ public extension YGLayout {
             case .auto:
                 YGNodeStyleSetFlexBasisAuto(node)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -170,9 +170,8 @@ public extension YGLayout {
                 YGNodeStyleSetPositionPercent(node, .left, newValue.value)
             case .point:
                 YGNodeStyleSetPosition(node, .left, newValue.value)
-
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -188,9 +187,8 @@ public extension YGLayout {
                 YGNodeStyleSetPositionPercent(node, .top, newValue.value)
             case .point:
                 YGNodeStyleSetPosition(node, .top, newValue.value)
-
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -206,9 +204,8 @@ public extension YGLayout {
                 YGNodeStyleSetPositionPercent(node, .right, newValue.value)
             case .point:
                 YGNodeStyleSetPosition(node, .right, newValue.value)
-
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -224,9 +221,8 @@ public extension YGLayout {
                 YGNodeStyleSetPositionPercent(node, .bottom, newValue.value)
             case .point:
                 YGNodeStyleSetPosition(node, .bottom, newValue.value)
-
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -242,9 +238,8 @@ public extension YGLayout {
                 YGNodeStyleSetPositionPercent(node, .start, newValue.value)
             case .point:
                 YGNodeStyleSetPosition(node, .start, newValue.value)
-
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -260,9 +255,8 @@ public extension YGLayout {
                 YGNodeStyleSetPositionPercent(node, .end, newValue.value)
             case .point:
                 YGNodeStyleSetPosition(node, .end, newValue.value)
-
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -281,7 +275,7 @@ public extension YGLayout {
             case .auto:
                 YGNodeStyleSetMarginAuto(node, .left)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -300,7 +294,7 @@ public extension YGLayout {
             case .auto:
                 YGNodeStyleSetMarginAuto(node, .top)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -319,7 +313,7 @@ public extension YGLayout {
             case .auto:
                 YGNodeStyleSetMarginAuto(node, .right)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -338,7 +332,7 @@ public extension YGLayout {
             case .auto:
                 YGNodeStyleSetMarginAuto(node, .bottom)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -357,7 +351,7 @@ public extension YGLayout {
             case .auto:
                 YGNodeStyleSetMarginAuto(node, .start)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -376,7 +370,7 @@ public extension YGLayout {
             case .auto:
                 YGNodeStyleSetMarginAuto(node, .end)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -395,7 +389,7 @@ public extension YGLayout {
             case .auto:
                 YGNodeStyleSetMarginAuto(node, .horizontal)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -414,7 +408,7 @@ public extension YGLayout {
             case .auto:
                 YGNodeStyleSetMarginAuto(node, .vertical)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -433,7 +427,7 @@ public extension YGLayout {
             case .auto:
                 YGNodeStyleSetMarginAuto(node, .all)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -450,7 +444,7 @@ public extension YGLayout {
             case .point:
                 YGNodeStyleSetPadding(node, .left, newValue.value)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -467,7 +461,7 @@ public extension YGLayout {
             case .point:
                 YGNodeStyleSetPadding(node, .top, newValue.value)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -484,7 +478,7 @@ public extension YGLayout {
             case .point:
                 YGNodeStyleSetPadding(node, .right, newValue.value)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -501,7 +495,7 @@ public extension YGLayout {
             case .point:
                 YGNodeStyleSetPadding(node, .bottom, newValue.value)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -518,7 +512,7 @@ public extension YGLayout {
             case .point:
                 YGNodeStyleSetPadding(node, .start, newValue.value)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -535,7 +529,7 @@ public extension YGLayout {
             case .point:
                 YGNodeStyleSetPadding(node, .end, newValue.value)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -552,7 +546,7 @@ public extension YGLayout {
             case .point:
                 YGNodeStyleSetPadding(node, .horizontal, newValue.value)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -569,7 +563,7 @@ public extension YGLayout {
             case .point:
                 YGNodeStyleSetPadding(node, .vertical, newValue.value)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -586,7 +580,7 @@ public extension YGLayout {
             case .point:
                 YGNodeStyleSetPadding(node, .all, newValue.value)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -675,7 +669,7 @@ public extension YGLayout {
             case .auto:
                 YGNodeStyleSetWidthAuto(node)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -694,7 +688,7 @@ public extension YGLayout {
             case .auto:
                 YGNodeStyleSetHeightAuto(node)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -711,7 +705,7 @@ public extension YGLayout {
             case .point:
                 YGNodeStyleSetMinWidth(node, newValue.value)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -728,7 +722,7 @@ public extension YGLayout {
             case .point:
                 YGNodeStyleSetMinHeight(node, newValue.value)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -745,7 +739,7 @@ public extension YGLayout {
             case .point:
                 YGNodeStyleSetMaxWidth(node, newValue.value)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }
@@ -762,7 +756,7 @@ public extension YGLayout {
             case .point:
                 YGNodeStyleSetMaxHeight(node, newValue.value)
             default:
-                break
+                assertionFailure("Not implemented")
             }
         }
     }

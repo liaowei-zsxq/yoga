@@ -24,12 +24,12 @@
 
 YG_EXTERN_C_BEGIN
 
-typedef struct YGSize {
+typedef struct {
   YGFloat width;
   YGFloat height;
 } YGSize;
 
-static const YGSize YGSizeZero = {0,0};
+static const YGSize YGSizeZero = { 0, 0 };
 
 typedef struct YGConfig* YGConfigRef;
 

@@ -1053,7 +1053,7 @@ static const std::array<YGEdge, 4> pos = {{
 static const std::array<YGDimension, 4> dim = {
     {YGDimensionHeight, YGDimensionHeight, YGDimensionWidth, YGDimensionWidth}};
 
-static inline YGFloat YGNodePaddingAndBorderForAxis(
+YG_INLINE YGFloat YGNodePaddingAndBorderForAxis(
     const YGNodeConstRef node,
     const YGFlexDirection axis,
     const YGFloat widthSize) {
@@ -1062,7 +1062,7 @@ static inline YGFloat YGNodePaddingAndBorderForAxis(
       .unwrap();
 }
 
-static inline YGAlign YGNodeAlignItem(const YGNode* node, const YGNode* child) {
+YG_INLINE YGAlign YGNodeAlignItem(const YGNode* node, const YGNode* child) {
   const YGAlign align = child->getStyle().alignSelf() == YGAlignAuto
       ? node->getStyle().alignItems()
       : child->getStyle().alignSelf();
@@ -1140,7 +1140,7 @@ static bool YGIsBaselineLayout(const YGNodeRef node) {
   return false;
 }
 
-static inline YGFloat YGNodeDimWithMargin(
+YG_INLINE YGFloat YGNodeDimWithMargin(
     const YGNodeRef node,
     const YGFlexDirection axis,
     const YGFloat widthSize) {
@@ -1150,7 +1150,7 @@ static inline YGFloat YGNodeDimWithMargin(
           .unwrap();
 }
 
-static inline bool YGNodeIsStyleDimDefined(
+YG_INLINE bool YGNodeIsStyleDimDefined(
     const YGNodeRef node,
     const YGFlexDirection axis,
     const YGFloat ownerSize) {
@@ -1167,7 +1167,7 @@ static inline bool YGNodeIsStyleDimDefined(
         YGFloatIsUndefined(ownerSize))));
 }
 
-static inline bool YGNodeIsLayoutDimDefined(
+YG_INLINE bool YGNodeIsLayoutDimDefined(
     const YGNodeRef node,
     const YGFlexDirection axis) {
   const YGFloat value = node->getLayout().measuredDimensions[dim[axis]];
@@ -1207,7 +1207,7 @@ static YGFloatOptional YGNodeBoundAxisWithinMinAndMax(
 
 // Like YGNodeBoundAxisWithinMinAndMax but also ensures that the value doesn't
 // go below the padding and border amount.
-static inline YGFloat YGNodeBoundAxis(
+YG_INLINE YGFloat YGNodeBoundAxis(
     const YGNodeRef node,
     const YGFlexDirection axis,
     const YGFloat value,
@@ -3629,7 +3629,7 @@ static const char* YGMeasureModeName(
   return performLayout ? kLayoutModeNames[mode] : kMeasureModeNames[mode];
 }
 
-static inline bool YGMeasureModeSizeIsExactAndMatchesOldMeasuredSize(
+YG_INLINE bool YGMeasureModeSizeIsExactAndMatchesOldMeasuredSize(
     YGMeasureMode sizeMode,
     YGFloat size,
     YGFloat lastComputedSize) {
@@ -3637,7 +3637,7 @@ static inline bool YGMeasureModeSizeIsExactAndMatchesOldMeasuredSize(
       YGFloatsEqual(size, lastComputedSize);
 }
 
-static inline bool YGMeasureModeOldSizeIsUnspecifiedAndStillFits(
+YG_INLINE bool YGMeasureModeOldSizeIsUnspecifiedAndStillFits(
     YGMeasureMode sizeMode,
     YGFloat size,
     YGMeasureMode lastSizeMode,
@@ -3647,7 +3647,7 @@ static inline bool YGMeasureModeOldSizeIsUnspecifiedAndStillFits(
       (size >= lastComputedSize || YGFloatsEqual(size, lastComputedSize));
 }
 
-static inline bool YGMeasureModeNewMeasureSizeIsStricterAndStillValid(
+YG_INLINE bool YGMeasureModeNewMeasureSizeIsStricterAndStillValid(
     YGMeasureMode sizeMode,
     YGFloat size,
     YGMeasureMode lastSizeMode,

@@ -31,14 +31,14 @@ static const uint32_t __nan = 0x7fc00000;
 static const YGFloat YGUndefined = NAN;
 #endif
 
-typedef struct YGValue {
+typedef struct {
   YGFloat value;
   YGUnit unit;
 } YGValue;
 
-YOGA_EXPORT extern const YGValue YGValueAuto;
-YOGA_EXPORT extern const YGValue YGValueUndefined;
-YOGA_EXPORT extern const YGValue YGValueZero;
+static const YGValue YGValueZero = { 0, YGUnitPoint };
+static const YGValue YGValueUndefined = { YGUndefined, YGUnitUndefined };
+static const YGValue YGValueAuto = { YGUndefined, YGUnitAuto };
 
 #if !defined(COMPILING_WITH_CLANG_ON_WINDOWS)
 YG_EXTERN_C_END

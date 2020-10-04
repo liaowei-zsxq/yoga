@@ -118,3 +118,84 @@ extension YGSize {
         }
     }
 }
+
+extension YGNodeRef {
+
+    var context: UnsafeRawPointer? {
+        get {
+            return YGNodeGetContext(self)
+        }
+
+        set {
+            YGNodeSetContext(self, newValue)
+        }
+    }
+
+    var childCount: UInt {
+        get {
+            return UInt(YGNodeGetChildCount(self))
+        }
+    }
+
+    func getChild(_ index: Int) -> YGNodeRef? {
+        return YGNodeGetChild(self, UInt32(index))
+    }
+
+    func removeAllChildren() {
+        YGNodeRemoveAllChildren(self)
+    }
+
+    var hasMeasureFunc: Bool {
+        get {
+            return YGNodeHasMeasureFunc(self)
+        }
+    }
+
+    func setMeasureFunc(_ fn: YGMeasureFunc?) {
+        YGNodeSetMeasureFunc(self, fn)
+    }
+
+    func insertChild(_ node: YGNodeRef, at index: Int) {
+        YGNodeInsertChild(self, node, UInt32(index))
+    }
+
+    var isDirty: Bool {
+        get {
+            return YGNodeIsDirty(self)
+        }
+    }
+
+    func markDirty() {
+        YGNodeMarkDirty(self)
+    }
+
+    var direction: YGDirection {
+        get {
+            return YGNodeLayoutGetDirection(self)
+        }
+    }
+
+    var top: YGFloat {
+        get {
+            return YGNodeLayoutGetTop(self)
+        }
+    }
+
+    var left: YGFloat {
+        get {
+            return YGNodeLayoutGetLeft(self)
+        }
+    }
+
+    var width: YGFloat {
+        get {
+            return max(YGNodeLayoutGetWidth(self), 0)
+        }
+    }
+
+    var height: YGFloat {
+        get {
+            return max(YGNodeLayoutGetHeight(self), 0)
+        }
+    }
+}

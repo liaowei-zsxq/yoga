@@ -32,6 +32,7 @@ func YGGlobalConfig() -> YGConfigRef {
             let config = YGConfigNew()
             YGConfigSetExperimentalFeatureEnabled(config, .webFlexBasis, true)
             YGConfigSetPointScaleFactor(config, YGFloat(YGScaleFactor()))
+            
             return config!
         }()
     }
@@ -58,7 +59,7 @@ func YGMeasureView(_ node: YGNodeRef!, _ width: YGFloat, _ widthMode: YGMeasureM
     let constrainedWidth: CGFloat = (widthMode == YGMeasureMode.undefined) ? .greatestFiniteMagnitude : CGFloat(width)
     let constrainedHeight: CGFloat = (heightMode == YGMeasureMode.undefined) ? .greatestFiniteMagnitude : CGFloat(height)
 
-    let view = Unmanaged<UIView>.fromOpaque(YGNodeGetContext(node)).takeUnretainedValue()
+    let view = Unmanaged<UIView>.fromOpaque(node.context!).takeUnretainedValue()
     let yoga = view.yoga
     if yoga.isBaseView {
         return .zero
@@ -79,13 +80,13 @@ func YGMeasureView(_ node: YGNodeRef!, _ width: YGFloat, _ widthMode: YGMeasureM
 
 func YGNodeHasExactSameChildren(_ node: YGNodeRef, _ subviews: [UIView]) -> Bool {
     let count = subviews.count
-    guard YGNodeGetChildCount(node) == count else {
+    guard node.childCount == count else {
         return false
     }
 
     for i in 0 ..< count {
         let yoga = subviews[i].yoga
-        if YGNodeGetChild(node, UInt32(i))?.hashValue != yoga.node.hashValue {
+        if node.getChild(i)?.hashValue != yoga.node.hashValue {
             return false
         }
     }
@@ -98,13 +99,13 @@ func YGAttachNodesFromViewHierachy(_ view: UIView) {
     let node = yoga.node
 
     if yoga.isLeaf {
-        YGNodeRemoveAllChildren(node)
-        YGNodeSetMeasureFunc(node, YGMeasureView)
+        node.removeAllChildren()
+        node.setMeasureFunc(YGMeasureView)
 
         return
     }
 
-    YGNodeSetMeasureFunc(node, nil)
+    node.setMeasureFunc(nil)
 
     let subviewsToInclude = view.subviews.filter {
                                                     let yoga = $0.yoga
@@ -112,10 +113,10 @@ func YGAttachNodesFromViewHierachy(_ view: UIView) {
                                                  }
 
     if !YGNodeHasExactSameChildren(node, subviewsToInclude) {
-        YGNodeRemoveAllChildren(node)
+        node.removeAllChildren()
 
         for i in 0 ..< subviewsToInclude.count {
-            YGNodeInsertChild(node, subviewsToInclude[i].yoga.node, UInt32(i))
+            node.insertChild(subviewsToInclude[i].yoga.node, at: i)
         }
     }
 
@@ -135,8 +136,8 @@ func YGApplyLayoutToViewHierarchy(_ view: UIView, _ preserveOrigin: Bool) {
     yoga.isApplingLayout = true
 
     let node = yoga.node
-    let topLeft = CGPoint(x: CGFloat(YGNodeLayoutGetLeft(node)), y: CGFloat(YGNodeLayoutGetTop(node)))
-    let size = CGSize(width: CGFloat(max(YGNodeLayoutGetWidth(node), 0)), height: CGFloat(max(YGNodeLayoutGetHeight(node), 0)))
+    let topLeft = CGPoint(x: CGFloat(node.left), y: CGFloat(node.top))
+    let size = CGSize(width: CGFloat(node.width), height: CGFloat(node.height))
     var origin = CGPoint.zero
 
     #if os(macOS)
@@ -156,7 +157,7 @@ func YGApplyLayoutToViewHierarchy(_ view: UIView, _ preserveOrigin: Bool) {
 
     #if os(macOS)
     if let superview = view.superview, !superview.isFlipped, superview.isYogaEnabled, superview.yoga.isEnabled {
-        let height = CGFloat(max(YGNodeLayoutGetHeight(superview.yoga.node), 0))
+        let height = CGFloat(superview.yoga.node.height)
         frame.origin.y = height - frame.maxY
     }
 

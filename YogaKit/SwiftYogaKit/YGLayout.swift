@@ -37,7 +37,7 @@ final public class YGLayout {
 
     public var isDirty: Bool {
         get {
-            return YGNodeIsDirty(node)
+            return node.isDirty
         }
     }
 
@@ -62,13 +62,13 @@ final public class YGLayout {
 
     public var numberOfChildren: UInt {
         get {
-            return UInt(YGNodeGetChildCount(node))
+            return node.childCount
         }
     }
 
     public var resolvedDirection: YGDirection {
         get {
-            return YGNodeLayoutGetDirection(node)
+            return node.direction
         }
     }
 
@@ -92,7 +92,7 @@ final public class YGLayout {
         self.view = view
         isBaseView = view.isMember(of: UIView.self) || view.isMember(of: UIControl.self)
         node = YGNodeNewWithConfig(YGGlobalConfig())
-        YGNodeSetContext(node, Unmanaged.passUnretained(self.view).toOpaque())
+        node.context = UnsafeRawPointer(Unmanaged<UIView>.passUnretained(self.view).toOpaque())
     }
 
     public func markDirty() {
@@ -100,11 +100,11 @@ final public class YGLayout {
             return
         }
 
-        if !YGNodeHasMeasureFunc(node) {
-            YGNodeSetMeasureFunc(node, YGMeasureView)
+        if !node.hasMeasureFunc {
+            node.setMeasureFunc(YGMeasureView)
         }
 
-        YGNodeMarkDirty(node)
+        node.markDirty()
     }
 
     public func applyLayout() {
@@ -141,8 +141,7 @@ final public class YGLayout {
         YGAttachNodesFromViewHierachy(view)
         YGNodeCalculateLayout(node, YGFloat(size.width), YGFloat(size.height), YGNodeStyleGetDirection(node))
 
-        return CGSize(width: CGFloat(max(YGNodeLayoutGetWidth(node), 0)),
-                      height: CGFloat(max(YGNodeLayoutGetHeight(node), 0)))
+        return CGSize(width: CGFloat(node.width), height: CGFloat(node.height))
     }
 
     public func configureLayout(block: YGLayoutConfigurationBlock) {

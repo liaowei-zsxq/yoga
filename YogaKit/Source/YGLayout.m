@@ -227,7 +227,7 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
         _view = view;
         _node = YGNodeNewWithConfig(YGGlobalConfig());
         YGNodeSetContext(_node, (__bridge void*)view);
-        _isEnabled = NO;
+       
         _isIncludedInLayout = YES;
         _isBaseView = [view isMemberOfClass:UIView.class] || [view isMemberOfClass:UIControl.class];
     }
@@ -244,7 +244,7 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
 }
 
 - (void)markDirty {
-    if (!self.isEnabled || self.isDirty || !self.isLeaf) {
+    if (!self.isIncludedInLayout || self.isDirty || !self.isLeaf) {
         return;
     }
 
@@ -266,10 +266,14 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
 - (BOOL)isLeaf {
     NSAssert([NSThread isMainThread], @"This method must be called on the main thread.");
 
-    if (self.isEnabled) {
+    if (self.isIncludedInLayout) {
         for (UIView* subview in self.view.subviews) {
+            if (!subview.isYogaEnabled) {
+                continue;
+            }
+            
             YGLayout* const yoga = subview.yoga;
-            if (yoga.isEnabled && yoga.isIncludedInLayout) {
+            if (yoga.isIncludedInLayout) {
                 return NO;
             }
         }
@@ -295,7 +299,7 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
 - (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin
                dimensionFlexibility:
 (YGDimensionFlexibility)dimensionFlexibility {
-    if (self.isApplingLayout || !self.isEnabled) {
+    if (self.isApplingLayout || !self.isIncludedInLayout) {
         return;
     }
 
@@ -321,7 +325,7 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
 
 - (CGSize)calculateLayoutWithSize:(CGSize)size {
     NSAssert([NSThread isMainThread], @"Yoga calculation must be done on main.");
-    NSAssert(self.isEnabled, @"Yoga is not enabled for this view.");
+    NSAssert(self.isIncludedInLayout, @"Yoga is not enabled for this view.");
 
     YGAttachNodesFromViewHierachy(self.view);
 
@@ -429,8 +433,12 @@ static void YGAttachNodesFromViewHierachy(UIView* const view) {
 
         NSMutableArray<UIView*>* subviewsToInclude = [[NSMutableArray alloc] initWithCapacity:view.subviews.count];
         for (UIView* subview in view.subviews) {
+            if (!subview.isYogaEnabled) {
+                continue;
+            }
+            
             YGLayout *yoga = subview.yoga;
-            if (yoga.isEnabled && yoga.isIncludedInLayout) {
+            if (yoga.isIncludedInLayout) {
                 [subviewsToInclude addObject:subview];
             }
         }
@@ -452,7 +460,7 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
     NSCAssert([NSThread isMainThread], @"Framesetting should only be done on the main thread.");
 
     const YGLayout* yoga = view.yoga;
-    if (yoga.isApplingLayout || !yoga.isEnabled) {
+    if (yoga.isApplingLayout || !yoga.isIncludedInLayout) {
         return;
     }
 
@@ -485,7 +493,7 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
     };
 
 #if TARGET_OS_OSX
-    if (!view.superview.isFlipped && view.superview.isYogaEnabled && view.superview.yoga.isEnabled) {
+    if (!view.superview.isFlipped && view.superview.isYogaEnabled && view.superview.yoga.isIncludedInLayout) {
         CGFloat height = (CGFloat)MAX(YGNodeLayoutGetHeight(view.superview.yoga.node), 0);
         frame.origin.y = height - CGRectGetMaxY(frame);
     }
@@ -511,7 +519,7 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
             }
 
             YGLayout *yoga = subview.yoga;
-            if (yoga.isEnabled && yoga.isIncludedInLayout) {
+            if (yoga.isIncludedInLayout) {
                 YGApplyLayoutToViewHierarchy(subview, NO);
             }
         }

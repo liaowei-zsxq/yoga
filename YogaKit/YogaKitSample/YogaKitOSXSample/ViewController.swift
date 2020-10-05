@@ -18,7 +18,6 @@ class ViewController: NSViewController {
         root.wantsLayer = true
         root.layer?.backgroundColor = .white
         root.yoga.configureLayout { (layout) in
-            layout.isEnabled = true
             layout.alignItems = .center
             layout.justifyContent = .center
         }
@@ -27,7 +26,6 @@ class ViewController: NSViewController {
         child1.wantsLayer = true
         child1.layer?.backgroundColor = NSColor.blue.cgColor
         child1.yoga.configureLayout { (layout) in
-            layout.isEnabled = true
             layout.width = 100
             layout.height = 10
             layout.marginBottom = 25
@@ -38,7 +36,6 @@ class ViewController: NSViewController {
         child2.wantsLayer = true
         child2.layer?.backgroundColor = NSColor.green.cgColor
         child2.yoga.configureLayout { (layout) in
-            layout.isEnabled = true
             layout.alignSelf = .flexEnd
             layout.width = 200
             layout.height = 200
@@ -49,7 +46,6 @@ class ViewController: NSViewController {
         child3.wantsLayer = true
         child3.layer?.backgroundColor = NSColor.yellow.cgColor
         child3.yoga.configureLayout { (layout) in
-            layout.isEnabled = true
             layout.alignSelf = .flexStart
             layout.width = 100
             layout.height = 100

@@ -108,9 +108,14 @@ func YGAttachNodesFromViewHierachy(_ view: UIView) {
     node.setMeasureFunc(nil)
 
     let subviewsToInclude = view.subviews.filter {
-                                                    let yoga = $0.yoga
-                                                    return yoga.isEnabled && yoga.isIncludedInLayout
-                                                 }
+        guard $0.isYogaEnabled else {
+            return false
+        }
+
+        let yoga = $0.yoga
+        
+        return yoga.isIncludedInLayout
+    }
 
     if !YGNodeHasExactSameChildren(node, subviewsToInclude) {
         node.removeAllChildren()
@@ -129,7 +134,7 @@ func YGApplyLayoutToViewHierarchy(_ view: UIView, _ preserveOrigin: Bool) {
     assert(Thread.isMainThread, "Framesetting should only be done on the main thread.")
 
     let yoga = view.yoga
-    guard !yoga.isApplingLayout, yoga.isEnabled else {
+    guard !yoga.isApplingLayout, yoga.isIncludedInLayout else {
         return
     }
 
@@ -156,7 +161,7 @@ func YGApplyLayoutToViewHierarchy(_ view: UIView, _ preserveOrigin: Bool) {
     var frame = CGRect(origin: origin, size: size).offsetBy(dx: topLeft.x, dy: topLeft.y)
 
     #if os(macOS)
-    if let superview = view.superview, !superview.isFlipped, superview.isYogaEnabled, superview.yoga.isEnabled {
+    if let superview = view.superview, !superview.isFlipped, superview.isYogaEnabled, superview.yoga.isIncludedInLayout {
         let height = CGFloat(superview.yoga.node.height)
         frame.origin.y = height - frame.maxY
     }
@@ -181,7 +186,7 @@ func YGApplyLayoutToViewHierarchy(_ view: UIView, _ preserveOrigin: Bool) {
             }
 
             let yoga = subview.yoga
-            if yoga.isEnabled, yoga.isIncludedInLayout {
+            if yoga.isIncludedInLayout {
                 YGApplyLayoutToViewHierarchy(subview, false)
             }
         }

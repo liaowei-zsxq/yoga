@@ -18,7 +18,7 @@ class TWTimelineViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .lightGray
-        view.yoga.enable()
+        view.yoga.includInLayout(true)
 
         tableView = UITableView(frame: view.bounds, style: .plain)
         tableView.separatorStyle = .none
@@ -26,7 +26,7 @@ class TWTimelineViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
-        tableView.yoga.enable()
+        tableView.yoga
             .width(100%)
             .height(100%)
 
@@ -85,7 +85,7 @@ class TWTimelineCell: UITableViewCell {
         backgroundView = UIView()
         backgroundView?.backgroundColor = .white
 
-        contentView.yoga.enable()
+        contentView.yoga
             .flexDirection(.column)
             .paddingLeft(74)
             .paddingRight(15)
@@ -96,7 +96,7 @@ class TWTimelineCell: UITableViewCell {
         headimgView.contentMode = .scaleAspectFill
         headimgView.layer.cornerRadius = 49 * 0.5
         contentView.addSubview(headimgView)
-        headimgView.yoga.enable()
+        headimgView.yoga
             .position(.absolute)
             .top(10)
             .left(15)
@@ -108,7 +108,7 @@ class TWTimelineCell: UITableViewCell {
         nameView.textColor = .orange
         nameView.text = "Emil Sjölander"
         contentView.addSubview(nameView)
-        nameView.yoga.enable()
+        nameView.yoga
             .marginTop(10)
             .height(20)
 
@@ -117,7 +117,7 @@ class TWTimelineCell: UITableViewCell {
         dateView.textColor = .lightGray
         dateView.text = "POSTED ON DEC 7, 2016"
         contentView.addSubview(dateView)
-        dateView.yoga.enable()
+        dateView.yoga
             .marginTop(2)
 
         postView = UILabel()
@@ -137,7 +137,7 @@ class TWTimelineCell: UITableViewCell {
                         We chose to implement Yoga in C to better optimize its performance, and we saw a 33 percent improvement to layout times on Android compared with the previous Java implementation. C also gives us the ability to easily integrate Yoga into more platforms and frameworks. To date, Yoga has bindings for Java (Android), Objective-C (UIKit), and C# (.NET), and is being used in projects such as React Native, Components for Android, and Oculus. We are also in the process of migrating some views in Instagram to Yoga via the UIKit bindings, and we’re integrating Yoga into ComponentKit as well.
                         """
         contentView.addSubview(postView)
-        postView.yoga.enable()
+        postView.yoga
             .marginTop(5)
 
         tagsView = UILabel()
@@ -145,12 +145,12 @@ class TWTimelineCell: UITableViewCell {
         tagsView.textColor = .blue
         tagsView.text = "#yoga #iOS #twiiter #flexbox #YogaKit #facebook #Github"
         contentView.addSubview(tagsView)
-        tagsView.yoga.enable()
+        tagsView.yoga
             .marginTop(5)
 
         bottomView = UIView()
         contentView.addSubview(bottomView)
-        bottomView.yoga.enable()
+        bottomView.yoga
             .flexDirection(.row)
             .justifyContent(.spaceBetween)
             .marginVertical(10)
@@ -159,7 +159,7 @@ class TWTimelineCell: UITableViewCell {
         for i in 0 ..< 3 {
             let v = UIImageView(image: UIImage(named: names[i]))
             bottomView.addSubview(v)
-            v.yoga.enable()
+            v.yoga
                 .width(19)
                 .height(19)
         }

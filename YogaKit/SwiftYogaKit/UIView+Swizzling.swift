@@ -129,7 +129,7 @@ extension UIView {
         }
 
         let yoga = self.yoga
-        if yoga.isEnabled {
+        if yoga.isIncludedInLayout {
             yoga.applyLayout(preservingOrigin: true)
         }
     }

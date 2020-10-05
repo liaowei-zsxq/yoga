@@ -126,7 +126,7 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
 - (void)_yoga_applyLayout {
     if (self.isYogaEnabled) {
         YGLayout *yoga = self.yoga;
-        if (yoga.isEnabled) {
+        if (yoga.isIncludedInLayout) {
             [yoga applyLayoutPreservingOrigin:YES];
         }
     }

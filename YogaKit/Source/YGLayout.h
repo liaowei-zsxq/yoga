@@ -59,12 +59,6 @@ typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
 @property(nonatomic, setter=setIncludedInLayout:) BOOL isIncludedInLayout;
 
 /**
- The property that decides during layout/sizing whether or not styling
- properties should be applied. Defaults to NO.
- */
-@property(nonatomic, setter=setEnabled:) BOOL isEnabled;
-
-/**
  Get the resolved direction of this node. This won't be YGDirectionInherit
  */
 @property(nonatomic, readonly) YGDirection resolvedDirection;

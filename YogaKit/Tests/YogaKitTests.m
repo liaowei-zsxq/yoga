@@ -26,11 +26,10 @@
   UIView* view = [[UIView alloc] initWithFrame:CGRectZero];
   [view.yoga configureLayoutWithBlock:^(YGLayout* layout) {
     XCTAssertNotNil(layout);
-    layout.isEnabled = YES;
     layout.width = YGPointValue(25);
   }];
 
-  XCTAssertTrue(view.yoga.isEnabled);
+  XCTAssertTrue(view.yoga.isIncludedInLayout);
   XCTAssertEqual(view.yoga.width.value, 25);
 }
 
@@ -72,25 +71,26 @@
 
 - (void)testIsEnabled {
   UIView* view = [[UIView alloc] initWithFrame:CGRectZero];
-  XCTAssertFalse(view.yoga.isEnabled);
+  XCTAssertTrue(view.yoga.isIncludedInLayout);
 
-  view.yoga.isEnabled = YES;
-  XCTAssertTrue(view.yoga.isEnabled);
+  view.yoga.isIncludedInLayout = NO;
+  XCTAssertFalse(view.yoga.isIncludedInLayout);
 
-  view.yoga.isEnabled = NO;
-  XCTAssertFalse(view.yoga.isEnabled);
+  view.yoga.isIncludedInLayout = YES;
+  XCTAssertTrue(view.yoga.isIncludedInLayout);
 }
 
 - (void)testSizeThatFitsAsserts {
   UIView* view = [[UIView alloc] initWithFrame:CGRectZero];
-  dispatch_sync(dispatch_queue_create("com.facebook.Yoga.testing", DISPATCH_QUEUE_SERIAL), ^(void) {
+  dispatch_group_t group = dispatch_group_create();
+  dispatch_group_async(group, dispatch_queue_create("com.facebook.Yoga.testing", DISPATCH_QUEUE_CONCURRENT), ^(void) {
     XCTAssertThrows(view.yoga.intrinsicSize);
   });
+  dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
 }
 
 - (void)testSizeThatFitsSmoke {
   UIView* container = [[UIView alloc] initWithFrame:CGRectZero];
-  container.yoga.isEnabled = YES;
   container.yoga.flexDirection = YGFlexDirectionRow;
   container.yoga.alignItems = YGAlignFlexStart;
 
@@ -98,12 +98,10 @@
   longTextLabel.text = @"This is a very very very very very very very very long piece of text.";
   longTextLabel.lineBreakMode = NSLineBreakByTruncatingTail;
   longTextLabel.numberOfLines = 1;
-  longTextLabel.yoga.isEnabled = YES;
   longTextLabel.yoga.flexShrink = 1;
   [container addSubview:longTextLabel];
 
   UIView* textBadgeView = [[UIView alloc] initWithFrame:CGRectZero];
-  textBadgeView.yoga.isEnabled = YES;
   textBadgeView.yoga.margin = YGPointValue(0);
   textBadgeView.yoga.width = YGPointValue(10);
   textBadgeView.yoga.height = YGPointValue(10);
@@ -123,7 +121,7 @@
 
 - (void)testSizeThatFitsEmptyView {
   UIView* view = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 200, 200)];
-  view.yoga.isEnabled = YES;
+  view.yoga.isIncludedInLayout = YES;
 
   const CGSize viewSize = view.yoga.intrinsicSize;
   XCTAssertEqual(viewSize.height, 0);
@@ -132,16 +130,16 @@
 
 - (void)testPreservingOrigin {
   UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 75)];
-  container.yoga.isEnabled = YES;
+  container.yoga.isIncludedInLayout = YES;
 
   UIView* view = [[UIView alloc] initWithFrame:CGRectZero];
-  view.yoga.isEnabled = YES;
+  view.yoga.isIncludedInLayout = YES;
   view.yoga.flexBasis = YGPointValue(0);
   view.yoga.flexGrow = 1;
   [container addSubview:view];
 
   UIView* view2 = [[UIView alloc] initWithFrame:CGRectZero];
-  view2.yoga.isEnabled = YES;
+  view2.yoga.isIncludedInLayout = YES;
   view2.yoga.marginTop = YGPointValue(25);
   view2.yoga.flexBasis = YGPointValue(0);
   view2.yoga.flexGrow = 1;
@@ -156,10 +154,10 @@
 
 - (void)testContainerWithFlexibleWidthGetsCorrectlySized {
   UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
-  container.yoga.isEnabled = YES;
+  container.yoga.isIncludedInLayout = YES;
 
   UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-  view.yoga.isEnabled = YES;
+  view.yoga.isIncludedInLayout = YES;
   view.yoga.width = YGPointValue(100);
   view.yoga.height = YGPointValue(100);
   [container addSubview:view];
@@ -173,10 +171,10 @@
 
 - (void)testContainerWithFlexibleHeightGetsCorrectlySized {
   UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
-  container.yoga.isEnabled = YES;
+  container.yoga.isIncludedInLayout = YES;
 
   UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-  view.yoga.isEnabled = YES;
+  view.yoga.isIncludedInLayout = YES;
   view.yoga.width = YGPointValue(100);
   view.yoga.height = YGPointValue(100);
   [container addSubview:view];
@@ -190,10 +188,10 @@
 
 - (void)testContainerWithFlexibleWidthAndHeightGetsCorrectlySized {
   UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
-  container.yoga.isEnabled = YES;
+  container.yoga.isIncludedInLayout = YES;
 
   UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-  view.yoga.isEnabled = YES;
+  view.yoga.isIncludedInLayout = YES;
   view.yoga.width = YGPointValue(100);
   view.yoga.height = YGPointValue(100);
   [container addSubview:view];
@@ -208,10 +206,10 @@
 
 - (void)testMarkingDirtyOnlyWorksOnLeafNodes {
   UIView* container = [[UIView alloc] initWithFrame:CGRectZero];
-  container.yoga.isEnabled = YES;
+  container.yoga.isIncludedInLayout = YES;
 
   UIView* subview = [[UIView alloc] initWithFrame:CGRectZero];
-  subview.yoga.isEnabled = YES;
+  subview.yoga.isIncludedInLayout = YES;
   [container addSubview:subview];
 
   XCTAssertFalse(container.yoga.isDirty);
@@ -225,14 +223,14 @@
 
 - (void)testThatMarkingLeafsAsDirtyWillTriggerASizeRecalculation {
   UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 500, 50)];
-  container.yoga.isEnabled = YES;
+  container.yoga.isIncludedInLayout = YES;
   container.yoga.flexDirection = YGFlexDirectionRow;
   container.yoga.alignItems = YGAlignFlexStart;
 
   UILabel* view = [[UILabel alloc] initWithFrame:CGRectZero];
   view.text = @"This is a short text.";
   view.numberOfLines = 1;
-  view.yoga.isEnabled = YES;
+  view.yoga.isIncludedInLayout = YES;
   [container addSubview:view];
 
   [container.yoga applyLayoutPreservingOrigin:YES];
@@ -251,21 +249,21 @@
   const CGSize containerSize = CGSizeMake(330, 50);
 
   UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, containerSize.width, containerSize.height)];
-  container.yoga.isEnabled = YES;
+  container.yoga.isIncludedInLayout = YES;
   container.yoga.flexDirection = YGFlexDirectionRow;
 
   UIView* subview1 = [[UIView alloc] initWithFrame:CGRectZero];
-  subview1.yoga.isEnabled = YES;
+  subview1.yoga.isIncludedInLayout = YES;
   subview1.yoga.flexGrow = 1;
   [container addSubview:subview1];
 
   UIView* subview2 = [[UIView alloc] initWithFrame:CGRectZero];
-  subview2.yoga.isEnabled = YES;
+  subview2.yoga.isIncludedInLayout = YES;
   subview2.yoga.flexGrow = 1;
   [container addSubview:subview2];
 
   UIView* subview3 = [[UIView alloc] initWithFrame:CGRectZero];
-  subview3.yoga.isEnabled = YES;
+  subview3.yoga.isIncludedInLayout = YES;
   subview3.yoga.flexGrow = 1;
   [container addSubview:subview3];
 
@@ -290,21 +288,21 @@
   const CGSize containerSize = CGSizeMake(300, 50);
 
   UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, containerSize.width, containerSize.height)];
-  container.yoga.isEnabled = YES;
+  container.yoga.isIncludedInLayout = YES;
   container.yoga.flexDirection = YGFlexDirectionRow;
 
   UIView* subview1 = [[UIView alloc] initWithFrame:CGRectZero];
-  subview1.yoga.isEnabled = YES;
+  subview1.yoga.isIncludedInLayout = YES;
   subview1.yoga.flexGrow = 1;
   [container addSubview:subview1];
 
   UIView* subview2 = [[UIView alloc] initWithFrame:CGRectZero];
-  subview2.yoga.isEnabled = YES;
+  subview2.yoga.isIncludedInLayout = YES;
   subview2.yoga.flexGrow = 1;
   [container addSubview:subview2];
 
   UIView* subview3 = [[UIView alloc] initWithFrame:CGRectZero];
-  subview3.yoga.isEnabled = YES;
+  subview3.yoga.isIncludedInLayout = YES;
   subview3.yoga.flexGrow = 1;
   [container addSubview:subview3];
 
@@ -329,21 +327,21 @@
   const CGSize containerSize = CGSizeMake(300, 50);
 
   UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, containerSize.width, containerSize.height)];
-  container.yoga.isEnabled = YES;
+  container.yoga.isIncludedInLayout = YES;
   container.yoga.flexDirection = YGFlexDirectionRow;
 
   UIView* subview1 = [[UIView alloc] initWithFrame:CGRectZero];
-  subview1.yoga.isEnabled = YES;
+  subview1.yoga.isIncludedInLayout = YES;
   subview1.yoga.flexGrow = 1;
   [container addSubview:subview1];
 
   UIView* subview2 = [[UIView alloc] initWithFrame:CGRectZero];
-  subview2.yoga.isEnabled = YES;
+  subview2.yoga.isIncludedInLayout = YES;
   subview2.yoga.flexGrow = 1;
   [container addSubview:subview2];
 
   UIView* subview3 = [[UIView alloc] initWithFrame:CGRectZero];
-  subview3.yoga.isEnabled = YES;
+  subview3.yoga.isIncludedInLayout = YES;
   subview3.yoga.flexGrow = 1;
   [container addSubview:subview3];
 
@@ -366,21 +364,18 @@
 
 - (void)testThatNumberOfChildrenIsCorrectWhenWeIgnoreSubviews {
   UIView* container = [[UIView alloc] initWithFrame:CGRectZero];
-  container.yoga.isEnabled = YES;
+  container.yoga.isIncludedInLayout = YES;
   container.yoga.flexDirection = YGFlexDirectionRow;
 
   UIView* subview1 = [[UIView alloc] initWithFrame:CGRectZero];
-  subview1.yoga.isEnabled = YES;
   subview1.yoga.isIncludedInLayout = NO;
   [container addSubview:subview1];
 
   UIView* subview2 = [[UIView alloc] initWithFrame:CGRectZero];
-  subview2.yoga.isEnabled = YES;
   subview2.yoga.isIncludedInLayout = NO;
   [container addSubview:subview2];
 
   UIView* subview3 = [[UIView alloc] initWithFrame:CGRectZero];
-  subview3.yoga.isEnabled = YES;
   subview3.yoga.isIncludedInLayout = YES;
   [container addSubview:subview3];
 
@@ -394,21 +389,21 @@
 
 - (void)testThatViewNotIncludedInFirstLayoutPassAreIncludedInSecond {
   UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 50)];
-  container.yoga.isEnabled = YES;
+  container.yoga.isIncludedInLayout = YES;
   container.yoga.flexDirection = YGFlexDirectionRow;
 
   UIView* subview1 = [[UIView alloc] initWithFrame:CGRectZero];
-  subview1.yoga.isEnabled = YES;
+  subview1.yoga.isIncludedInLayout = YES;
   subview1.yoga.flexGrow = 1;
   [container addSubview:subview1];
 
   UIView* subview2 = [[UIView alloc] initWithFrame:CGRectZero];
-  subview2.yoga.isEnabled = YES;
+  subview2.yoga.isIncludedInLayout = YES;
   subview2.yoga.flexGrow = 1;
   [container addSubview:subview2];
 
   UIView* subview3 = [[UIView alloc] initWithFrame:CGRectZero];
-  subview3.yoga.isEnabled = YES;
+  subview3.yoga.isIncludedInLayout = YES;
   subview3.yoga.flexGrow = 1;
   subview3.yoga.isIncludedInLayout = NO;
   [container addSubview:subview3];
@@ -437,30 +432,30 @@
   }
   XCTAssertTrue(view.yoga.isLeaf);
 
-  view.yoga.isEnabled = YES;
+  view.yoga.isIncludedInLayout = YES;
   view.yoga.width = YGPointValue(50);
   XCTAssertTrue(view.yoga.isLeaf);
 
   UIView* const subview = view.subviews[0];
-  subview.yoga.isEnabled = YES;
+  subview.yoga.isIncludedInLayout = YES;
   subview.yoga.width = YGPointValue(50);
   XCTAssertFalse(view.yoga.isLeaf);
 }
 
 - (void)testThatWeCorrectlyAttachNestedViews {
   UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 50)];
-  container.yoga.isEnabled = YES;
+  container.yoga.isIncludedInLayout = YES;
   container.yoga.flexDirection = YGFlexDirectionColumn;
 
   UIView* subview1 = [[UIView alloc] initWithFrame:CGRectZero];
-  subview1.yoga.isEnabled = YES;
+  subview1.yoga.isIncludedInLayout = YES;
   subview1.yoga.width = YGPointValue(100);
   subview1.yoga.flexGrow = 1;
   subview1.yoga.flexDirection = YGFlexDirectionColumn;
   [container addSubview:subview1];
 
   UIView* subview2 = [[UIView alloc] initWithFrame:CGRectZero];
-  subview2.yoga.isEnabled = YES;
+  subview2.yoga.isIncludedInLayout = YES;
   subview2.yoga.width = YGPointValue(150);
   subview2.yoga.flexGrow = 1;
   subview2.yoga.flexDirection = YGFlexDirectionColumn;
@@ -468,7 +463,7 @@
 
   for (UIView* view in @[ subview1, subview2 ]) {
     UIView* someView = [[UIView alloc] initWithFrame:CGRectZero];
-    someView.yoga.isEnabled = YES;
+    someView.yoga.isIncludedInLayout = YES;
     someView.yoga.flexGrow = 1;
     [view addSubview:someView];
   }
@@ -477,7 +472,7 @@
   // Add the same amount of new views, reapply layout.
   for (UIView* view in @[ subview1, subview2 ]) {
     UIView* someView = [[UIView alloc] initWithFrame:CGRectZero];
-    someView.yoga.isEnabled = YES;
+    someView.yoga.isIncludedInLayout = YES;
     someView.yoga.flexGrow = 1;
     [view addSubview:someView];
   }
@@ -506,14 +501,14 @@
 
 - (void)testThatANonLeafNodeCanBecomeALeafNode {
   UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 50)];
-  container.yoga.isEnabled = YES;
+  container.yoga.isIncludedInLayout = YES;
 
   UIView* subview1 = [[UIView alloc] initWithFrame:CGRectZero];
-  subview1.yoga.isEnabled = YES;
+  subview1.yoga.isIncludedInLayout = YES;
   [container addSubview:subview1];
 
   UIView* subview2 = [[UIView alloc] initWithFrame:CGRectZero];
-  subview2.yoga.isEnabled = YES;
+  subview2.yoga.isIncludedInLayout = YES;
   [subview1 addSubview:subview2];
 
   [container.yoga applyLayoutPreservingOrigin:YES];
@@ -739,7 +734,7 @@
 - (void)testOverflowPropertiesWork {
   UIView* container = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 30, 30)];
   [container.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
-    layout.isEnabled = YES;
+    layout.isIncludedInLayout = YES;
     layout.flexDirection = YGFlexDirectionRow;
     layout.alignItems = YGAlignCenter;
   }];
@@ -747,7 +742,7 @@
   UIView* view = [[UIView alloc] initWithFrame:CGRectZero];
   [container addSubview:view];
   [view.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
-    layout.isEnabled = YES;
+    layout.isIncludedInLayout = YES;
     layout.width = YGPointValue(22);
     layout.height = YGPointValue(22);
   }];
@@ -756,7 +751,7 @@
   label.text = @"longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong";
   [container addSubview:label];
   [label.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
-    layout.isEnabled = YES;
+    layout.isIncludedInLayout = YES;
   }];
 
   [container.yoga applyLayoutPreservingOrigin:YES];
@@ -782,21 +777,21 @@
 - (void)testIsIncludedInLayoutWork {
   UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
   [view.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
-    layout.isEnabled = YES;
+    layout.isIncludedInLayout = YES;
     layout.flexDirection = YGFlexDirectionColumn;
   }];
 
   UIControl* container = [[UIControl alloc] initWithFrame:CGRectZero];
   [view addSubview:container];
   [container.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
-    layout.isEnabled = YES;
+    layout.isIncludedInLayout = YES;
     layout.flexDirection = YGFlexDirectionRow;
   }];
 
   UILabel* label = [[UILabel alloc] init];
   label.text = @"abcdefgABCDEFG";
   [container addSubview:label];
-  label.yoga.isEnabled = YES;
+  label.yoga.isIncludedInLayout = YES;
   [label.yoga markDirty];
 
   [view.yoga applyLayoutPreservingOrigin:YES];
@@ -813,14 +808,14 @@
 
   UIView* view = [[UIView alloc] initWithFrame:CGRectZero];
   [view.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
-    layout.isEnabled = YES;
+    layout.isIncludedInLayout = YES;
     layout.flexDirection = YGFlexDirectionColumn;
   }];
 
   UIView* subView1 = [[UIView alloc] initWithFrame:CGRectZero];
   [view addSubview:subView1];
   [subView1.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
-    layout.isEnabled = YES;
+    layout.isIncludedInLayout = YES;
     layout.width = YGPointValue(320);
     layout.height = YGPointValue(320 + onePixel);
   }];
@@ -828,7 +823,7 @@
   UIView* subView2 = [[UIView alloc] initWithFrame:CGRectZero];
   [view addSubview:subView2];
   [subView2.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
-    layout.isEnabled = YES;
+    layout.isIncludedInLayout = YES;
     layout.marginTop = YGPointValue(20);
     layout.width = YGPointValue(320);
     layout.height = YGPointValue(onePixel);
@@ -850,25 +845,25 @@
 - (void)testBaseViewLeafNodeWork {
   UIView *container = [[UIView alloc] initWithFrame:CGRectZero];
   [container.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
-    layout.isEnabled = YES;
+    layout.isIncludedInLayout = YES;
     layout.width = YGPointValue(300);
     layout.height = YGPointValue(180);
   }];
 
   UIView *subview1 = [[UIView alloc] initWithFrame:CGRectZero];
   [container addSubview:subview1];
-  subview1.yoga.isEnabled = YES;
+  subview1.yoga.isIncludedInLayout = YES;
 
   UIView *subview2 = [[UIView alloc] initWithFrame:CGRectZero];
   [subview1 addSubview:subview2];
   [subview2.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
-    layout.isEnabled = YES;
+    layout.isIncludedInLayout = YES;
   }];
 
   UIView *subview3 = [[UIView alloc] initWithFrame:CGRectZero];
   [subview2 addSubview:subview3];
   [subview3.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
-    layout.isEnabled = YES;
+    layout.isIncludedInLayout = YES;
     layout.width = YGPointValue(80);
     layout.height = YGPointValue(60);
   }];

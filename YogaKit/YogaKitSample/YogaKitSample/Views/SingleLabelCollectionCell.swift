@@ -15,7 +15,6 @@ final class SingleLabelCollectionCell: UICollectionViewCell {
         super.init(frame: frame)
 
         contentView.yoga
-            .enable()
             .flexDirection(.column)
             .justifyContent(.flexEnd)
 
@@ -27,7 +26,6 @@ final class SingleLabelCollectionCell: UICollectionViewCell {
         let border = UIView(frame: .zero)
         border.backgroundColor = .lightGray
         border.yoga
-            .enable()
             .height(0.5)
             .marginHorizontal(25)
         contentView.addSubview(border)

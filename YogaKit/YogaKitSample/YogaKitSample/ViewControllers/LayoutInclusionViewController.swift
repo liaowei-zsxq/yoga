@@ -16,14 +16,14 @@ final class LayoutInclusionViewController: UIViewController {
     override func viewDidLoad() {
         let root = self.view!
         root.backgroundColor = .white
-        root.yoga.enable()
+        root.yoga
             .flexDirection(.column)
             .justifyContent(.spaceAround)
 
         contentView.backgroundColor = .clear
         contentView.layer.borderColor = UIColor.lightGray.cgColor
         contentView.layer.borderWidth = 1.0
-        contentView.yoga.enable()
+        contentView.yoga
             .height(300)
             .width(100%)
             .flexDirection(.row)
@@ -33,20 +33,20 @@ final class LayoutInclusionViewController: UIViewController {
 
         let redView = UIView(frame: .zero)
         redView.backgroundColor = .red
-        redView.yoga.enable()
+        redView.yoga
             .flexGrow(1)
             .flexShrink(1)
         contentView.addSubview(redView)
 
         disappearingView.backgroundColor = .blue
-        disappearingView.yoga.enable()
+        disappearingView.yoga
             .flexGrow(1)
         contentView.addSubview(disappearingView)
 
         button.setTitle("Add Blue View", for: .selected)
         button.setTitle("Remove Blue View", for: .normal)
         button.addTarget(self, action: #selector(buttonWasTapped), for: UIControl.Event.touchUpInside)
-        button.yoga.enable()
+        button.yoga
             .height(300)
             .width(300)
             .alignSelf(.center)

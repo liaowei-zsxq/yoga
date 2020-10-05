@@ -1088,12 +1088,6 @@ public extension YGLayout {
         return self
     }
 
-    @inlinable @discardableResult func enable(_ value: Bool = true) -> YGLayout {
-        isEnabled = value
-
-        return self
-    }
-
     @inlinable @discardableResult func includInLayout(_ value: Bool = true) -> YGLayout {
         isIncludedInLayout = value
 

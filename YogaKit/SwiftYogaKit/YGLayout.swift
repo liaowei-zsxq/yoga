@@ -31,8 +31,6 @@ public struct YGDimensionFlexibility: OptionSet {
 
 final public class YGLayout {
 
-    public var isEnabled = false
-
     public var isIncludedInLayout = true
 
     public var isDirty: Bool {
@@ -45,13 +43,17 @@ final public class YGLayout {
         get {
             assert(Thread.isMainThread, "This method must be called on the main thread.")
 
-            guard isEnabled else {
+            guard isIncludedInLayout else {
                 return true
             }
 
             for subview in view.subviews {
+                if !subview.isYogaEnabled {
+                    continue
+                }
+
                 let yoga = subview.yoga
-                if yoga.isEnabled, yoga.isIncludedInLayout {
+                if yoga.isIncludedInLayout {
                     return false
                 }
             }
@@ -96,7 +98,7 @@ final public class YGLayout {
     }
 
     public func markDirty() {
-        guard isEnabled, !isDirty, isLeaf else {
+        guard isIncludedInLayout, !isDirty, isLeaf else {
             return
         }
 
@@ -116,7 +118,7 @@ final public class YGLayout {
     }
 
     public func applyLayout(preservingOrigin preserveOrigin: Bool, dimensionFlexibility: YGDimensionFlexibility) {
-        guard !isApplingLayout, isEnabled else {
+        guard !isApplingLayout, isIncludedInLayout else {
             return
         }
 
@@ -136,7 +138,7 @@ final public class YGLayout {
 
     public func calculateLayout(size: CGSize) -> CGSize {
         assert(Thread.isMainThread, "Yoga calculation must be done on main.")
-        assert(isEnabled, "Yoga is not enabled for this view.")
+        assert(isIncludedInLayout, "Yoga is not enabled for this view.")
 
         YGAttachNodesFromViewHierachy(view)
         YGNodeCalculateLayout(node, YGFloat(size.width), YGFloat(size.height), YGNodeStyleGetDirection(node))

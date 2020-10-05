@@ -11,108 +11,108 @@ postfix operator %
 
 extension Int {
 
-    public static postfix func %(value: Int) -> YGValue {
+    @inlinable public static postfix func %(value: Int) -> YGValue {
         return YGValue(value: YGFloat(value), unit: .percent)
     }
 }
 
 extension Float {
 
-    public static postfix func %(value: Float) -> YGValue {
+    @inlinable public static postfix func %(value: Float) -> YGValue {
         return YGValue(value: YGFloat(value), unit: .percent)
     }
 }
 
 extension CGFloat {
 
-    public static postfix func %(value: CGFloat) -> YGValue {
+    @inlinable public static postfix func %(value: CGFloat) -> YGValue {
         return YGValue(value: YGFloat(value), unit: .percent)
     }
 }
 
 extension YGValue: ExpressibleByIntegerLiteral, ExpressibleByFloatLiteral {
 
-    public init(integerLiteral value: Int) {
+    @inlinable public init(integerLiteral value: Int) {
         self = YGValue(value: YGFloat(value), unit: .point)
     }
 
-    public init(floatLiteral value: Float) {
+    @inlinable public init(floatLiteral value: Float) {
         self = YGValue(value: YGFloat(value), unit: .point)
     }
 
-    public init(_ value: Int) {
+    @inlinable public init(_ value: Int) {
         self = YGValue(value: YGFloat(value), unit: .point)
     }
 
-    public init(_ value: Float) {
+    @inlinable public init(_ value: Float) {
         self = YGValue(value: YGFloat(value), unit: .point)
     }
 
-    public init(_ value: Double) {
+    @inlinable public init(_ value: Double) {
         self = YGValue(value: YGFloat(value), unit: .point)
     }
 
-    public init(_ value: CGFloat) {
+    @inlinable public init(_ value: CGFloat) {
         self = YGValue(value: YGFloat(value), unit: .point)
     }
 }
 
 extension YGValue {
 
-    public static var zero: YGValue {
+    @inlinable public static var zero: YGValue {
         get {
             return YGValue(value: 0, unit: .point)
         }
     }
 
-    public static var auto: YGValue {
+    @inlinable public static var auto: YGValue {
         get {
             return YGValue(value: YGUndefined, unit: .auto)
         }
     }
 
-    public static var undefined: YGValue {
+    @inlinable public static var undefined: YGValue {
         get {
             return YGValue(value: YGUndefined, unit: .undefined)
         }
     }
 
-    public static func point(_ value: CGFloat) -> YGValue {
+    @inlinable public static func point(_ value: CGFloat) -> YGValue {
         return YGValue(value: YGFloat(value), unit: .point)
     }
 
-    public static func point(_ value: Double) -> YGValue {
+    @inlinable public static func point(_ value: Double) -> YGValue {
         return YGValue(value: YGFloat(value), unit: .point)
     }
 
-    public static func point(_ value: Float) -> YGValue {
+    @inlinable public static func point(_ value: Float) -> YGValue {
         return YGValue(value: YGFloat(value), unit: .point)
     }
 
-    public static func point(_ value: Int) -> YGValue {
+    @inlinable public static func point(_ value: Int) -> YGValue {
         return YGValue(value: YGFloat(value), unit: .point)
     }
 
-    public static func percent(_ value: CGFloat) -> YGValue {
+    @inlinable public static func percent(_ value: CGFloat) -> YGValue {
         return YGValue(value: YGFloat(value), unit: .percent)
     }
 
-    public static func percent(_ value: Double) -> YGValue {
+    @inlinable public static func percent(_ value: Double) -> YGValue {
         return YGValue(value: YGFloat(value), unit: .percent)
     }
 
-    public static func percent(_ value: Float) -> YGValue {
+    @inlinable public static func percent(_ value: Float) -> YGValue {
         return YGValue(value: YGFloat(value), unit: .percent)
     }
 
-    public static func percent(_ value: Int) -> YGValue {
+    @inlinable public static func percent(_ value: Int) -> YGValue {
         return YGValue(value: YGFloat(value), unit: .percent)
     }
 }
 
 extension YGSize {
 
-    public static var zero: YGSize {
+    @inlinable public static var zero: YGSize {
         get {
             return YGSize(width: 0, height: 0)
         }
@@ -121,7 +121,7 @@ extension YGSize {
 
 extension YGNodeRef {
 
-    var context: UnsafeRawPointer? {
+    @inlinable var context: UnsafeRawPointer? {
         get {
             return YGNodeGetContext(self)
         }
@@ -131,69 +131,69 @@ extension YGNodeRef {
         }
     }
 
-    var childCount: UInt {
+    @inlinable var childCount: UInt {
         get {
             return UInt(YGNodeGetChildCount(self))
         }
     }
 
-    func getChild(_ index: Int) -> YGNodeRef? {
+    @inlinable func getChild(_ index: Int) -> YGNodeRef? {
         return YGNodeGetChild(self, UInt32(index))
     }
 
-    func removeAllChildren() {
+    @inlinable func removeAllChildren() {
         YGNodeRemoveAllChildren(self)
     }
 
-    var hasMeasureFunc: Bool {
+    @inlinable var hasMeasureFunc: Bool {
         get {
             return YGNodeHasMeasureFunc(self)
         }
     }
 
-    func setMeasureFunc(_ fn: YGMeasureFunc?) {
+    @inlinable func setMeasureFunc(_ fn: YGMeasureFunc?) {
         YGNodeSetMeasureFunc(self, fn)
     }
 
-    func insertChild(_ node: YGNodeRef, at index: Int) {
+    @inlinable func insertChild(_ node: YGNodeRef, at index: Int) {
         YGNodeInsertChild(self, node, UInt32(index))
     }
 
-    var isDirty: Bool {
+    @inlinable var isDirty: Bool {
         get {
             return YGNodeIsDirty(self)
         }
     }
 
-    func markDirty() {
+    @inlinable func markDirty() {
         YGNodeMarkDirty(self)
     }
 
-    var direction: YGDirection {
+    @inlinable var direction: YGDirection {
         get {
             return YGNodeLayoutGetDirection(self)
         }
     }
 
-    var top: YGFloat {
+    @inlinable var top: YGFloat {
         get {
             return YGNodeLayoutGetTop(self)
         }
     }
 
-    var left: YGFloat {
+    @inlinable var left: YGFloat {
         get {
             return YGNodeLayoutGetLeft(self)
         }
     }
 
-    var width: YGFloat {
+    @inlinable var width: YGFloat {
         get {
             return max(YGNodeLayoutGetWidth(self), 0)
         }
     }
 
-    var height: YGFloat {
+    @inlinable var height: YGFloat {
         get {
             return max(YGNodeLayoutGetHeight(self), 0)
         }

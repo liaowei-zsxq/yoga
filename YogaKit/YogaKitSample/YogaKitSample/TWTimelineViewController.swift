@@ -18,10 +18,7 @@ class TWTimelineViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .lightGray
-
-        view.yoga.configureLayout { (layout) in
-            layout.isEnabled = true
-        }
+        view.yoga.enable()
 
         tableView = UITableView(frame: view.bounds, style: .plain)
         tableView.separatorStyle = .none
@@ -29,11 +26,9 @@ class TWTimelineViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
-        tableView.yoga.configureLayout { (layout) in
-            layout.isEnabled = true
-            layout.width = 100%
-            layout.height = 100%
-        }
+        tableView.yoga.enable()
+            .width(100%)
+            .height(100%)
 
         registerCell(TWTimelineCell.self)
 
@@ -90,48 +85,40 @@ class TWTimelineCell: UITableViewCell {
         backgroundView = UIView()
         backgroundView?.backgroundColor = .white
 
-        contentView.yoga.configureLayout { (layout) in
-            layout.isEnabled = true
-            layout.flexDirection = .column
-            layout.paddingLeft = 74
-            layout.paddingRight = 15
-            layout.position = .relative
-        }
+        contentView.yoga.enable()
+            .flexDirection(.column)
+            .paddingLeft(74)
+            .paddingRight(15)
+            .position(.relative)
 
         headimgView = UIImageView(image: UIImage(named: "Yoga"))
         headimgView.clipsToBounds = true
         headimgView.contentMode = .scaleAspectFill
         headimgView.layer.cornerRadius = 49 * 0.5
         contentView.addSubview(headimgView)
-        headimgView.yoga.configureLayout { (layout) in
-            layout.isEnabled = true
-            layout.position = .absolute
-            layout.top = 10
-            layout.left = 15
-            layout.width = 49
-            layout.height = 49
-        }
+        headimgView.yoga.enable()
+            .position(.absolute)
+            .top(10)
+            .left(15)
+            .width(49)
+            .height(49)
 
         nameView = UILabel()
         nameView.font = .systemFont(ofSize: 15)
         nameView.textColor = .orange
         nameView.text = "Emil Sjölander"
         contentView.addSubview(nameView)
-        nameView.yoga.configureLayout { (layout) in
-            layout.isEnabled = true
-            layout.marginTop = 10
-            layout.height = 20
-        }
+        nameView.yoga.enable()
+            .marginTop(10)
+            .height(20)
 
         dateView = UILabel()
         dateView.font = .systemFont(ofSize: 12)
         dateView.textColor = .lightGray
         dateView.text = "POSTED ON DEC 7, 2016"
         contentView.addSubview(dateView)
-        dateView.yoga.configureLayout { (layout) in
-            layout.isEnabled = true
-            layout.marginTop = 2
-        }
+        dateView.yoga.enable()
+            .marginTop(2)
 
         postView = UILabel()
         postView.numberOfLines = 0
@@ -150,40 +137,31 @@ class TWTimelineCell: UITableViewCell {
                         We chose to implement Yoga in C to better optimize its performance, and we saw a 33 percent improvement to layout times on Android compared with the previous Java implementation. C also gives us the ability to easily integrate Yoga into more platforms and frameworks. To date, Yoga has bindings for Java (Android), Objective-C (UIKit), and C# (.NET), and is being used in projects such as React Native, Components for Android, and Oculus. We are also in the process of migrating some views in Instagram to Yoga via the UIKit bindings, and we’re integrating Yoga into ComponentKit as well.
                         """
         contentView.addSubview(postView)
-        postView.yoga.configureLayout { (layout) in
-            layout.isEnabled = true
-            layout.marginTop = 5
-        }
+        postView.yoga.enable()
+            .marginTop(5)
 
         tagsView = UILabel()
         tagsView.numberOfLines = 0
         tagsView.textColor = .blue
         tagsView.text = "#yoga #iOS #twiiter #flexbox #YogaKit #facebook #Github"
         contentView.addSubview(tagsView)
-        tagsView.yoga.configureLayout { (layout) in
-            layout.isEnabled = true
-            layout.marginTop = 5
-        }
+        tagsView.yoga.enable()
+            .marginTop(5)
 
         bottomView = UIView()
         contentView.addSubview(bottomView)
-        bottomView.yoga.configureLayout { (layout) in
-            layout.isEnabled = true
-            layout.flexDirection = .row
-            layout.justifyContent = .spaceBetween
-            layout.marginTop = 10
-            layout.marginBottom = 10
-        }
+        bottomView.yoga.enable()
+            .flexDirection(.row)
+            .justifyContent(.spaceBetween)
+            .marginVertical(10)
 
         let names = ["comment", "retweet", "like"]
         for i in 0 ..< 3 {
             let v = UIImageView(image: UIImage(named: names[i]))
             bottomView.addSubview(v)
-            v.yoga.configureLayout { (layout) in
-                layout.isEnabled = true
-                layout.width = 19
-                layout.height = 19
-            }
+            v.yoga.enable()
+                .width(19)
+                .height(19)
         }
     }
 

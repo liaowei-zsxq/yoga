@@ -13,40 +13,32 @@ final class BasicViewController: UIViewController {
 
         let root = self.view!
         root.backgroundColor = .white
-        root.yoga.configureLayout { (layout) in
-            layout.isEnabled = true
-            layout.alignItems = .center
-            layout.justifyContent = .center
-        }
+        root.yoga.enable()
+            .alignItems(.center)
+            .justifyContent(.center)
 
         let child1 = UIView()
         child1.backgroundColor = .blue
-        child1.yoga.configureLayout { (layout) in
-            layout.isEnabled = true
-            layout.width = 100
-            layout.height = 10
-            layout.marginBottom = 25
-        }
+        child1.yoga.enable()
+            .width(100)
+            .height(10)
+            .marginBottom(25)
         root.addSubview(child1)
 
         let child2 = UIView()
         child2.backgroundColor = .green
-        child2.yoga.configureLayout { (layout) in
-            layout.isEnabled = true
-            layout.alignSelf = .flexEnd
-            layout.width = 200
-            layout.height = 200
-        }
+        child2.yoga.enable()
+            .alignSelf(.flexEnd)
+            .width(200)
+            .height(200)
         root.addSubview(child2)
 
         let child3 = UIView()
         child3.backgroundColor = .yellow
-        child3.yoga.configureLayout { (layout) in
-            layout.isEnabled = true
-            layout.alignSelf = .flexStart
-            layout.width = 100
-            layout.height = 100
-        }
+        child3.yoga.enable()
+            .alignSelf(.flexStart)
+            .width(100)
+            .height(100)
         root.addSubview(child3)
     }
 }

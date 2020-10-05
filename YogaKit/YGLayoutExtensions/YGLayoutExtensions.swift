@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@_exported import Yoga
+import Yoga
 
 postfix operator %
 
@@ -115,87 +115,6 @@ extension YGSize {
     @inlinable public static var zero: YGSize {
         get {
             return YGSize(width: 0, height: 0)
-        }
-    }
-}
-
-extension YGNodeRef {
-
-    @inlinable var context: UnsafeRawPointer? {
-        get {
-            return YGNodeGetContext(self)
-        }
-
-        set {
-            YGNodeSetContext(self, newValue)
-        }
-    }
-
-    @inlinable var childCount: UInt {
-        get {
-            return UInt(YGNodeGetChildCount(self))
-        }
-    }
-
-    @inlinable func getChild(_ index: Int) -> YGNodeRef? {
-        return YGNodeGetChild(self, UInt32(index))
-    }
-
-    @inlinable func removeAllChildren() {
-        YGNodeRemoveAllChildren(self)
-    }
-
-    @inlinable var hasMeasureFunc: Bool {
-        get {
-            return YGNodeHasMeasureFunc(self)
-        }
-    }
-
-    @inlinable func setMeasureFunc(_ fn: YGMeasureFunc?) {
-        YGNodeSetMeasureFunc(self, fn)
-    }
-
-    @inlinable func insertChild(_ node: YGNodeRef, at index: Int) {
-        YGNodeInsertChild(self, node, UInt32(index))
-    }
-
-    @inlinable var isDirty: Bool {
-        get {
-            return YGNodeIsDirty(self)
-        }
-    }
-
-    @inlinable func markDirty() {
-        YGNodeMarkDirty(self)
-    }
-
-    @inlinable var direction: YGDirection {
-        get {
-            return YGNodeLayoutGetDirection(self)
-        }
-    }
-
-    @inlinable var top: YGFloat {
-        get {
-            return YGNodeLayoutGetTop(self)
-        }
-    }
-
-    @inlinable var left: YGFloat {
-        get {
-            return YGNodeLayoutGetLeft(self)
-        }
-    }
-
-    @inlinable var width: YGFloat {
-        get {
-            return max(YGNodeLayoutGetWidth(self), 0)
-        }
-    }
-
-    @inlinable var height: YGFloat {
-        get {
-            return max(YGNodeLayoutGetHeight(self), 0)
         }
     }
 }

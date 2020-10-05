@@ -62,7 +62,7 @@ func YGMeasureView(_ node: YGNodeRef!, _ width: YGFloat, _ widthMode: YGMeasureM
     let view = Unmanaged<UIView>.fromOpaque(node.context!).takeUnretainedValue()
     let yoga = view.yoga
     if yoga.isBaseView {
-        return .zero
+        return YGSizeZero
     }
 
     #if os(macOS)

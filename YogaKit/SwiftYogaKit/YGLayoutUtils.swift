@@ -61,7 +61,8 @@ func YGMeasureView(_ node: YGNodeRef!, _ width: YGFloat, _ widthMode: YGMeasureM
 
     let view = Unmanaged<UIView>.fromOpaque(node.context!).takeUnretainedValue()
     let yoga = view.yoga
-    if yoga.isBaseView {
+    
+    guard !yoga.isBaseView else {
         return YGSizeZero
     }
 
@@ -78,7 +79,7 @@ func YGMeasureView(_ node: YGNodeRef!, _ width: YGFloat, _ widthMode: YGMeasureM
     return YGSize(width: w, height: h)
 }
 
-func YGNodeHasExactSameChildren(_ node: YGNodeRef, _ subviews: [UIView]) -> Bool {
+@inline(__always) func YGNodeHasExactSameChildren(_ node: YGNodeRef, _ subviews: [UIView]) -> Bool {
     let count = subviews.count
     guard node.childCount == count else {
         return false
@@ -86,7 +87,7 @@ func YGNodeHasExactSameChildren(_ node: YGNodeRef, _ subviews: [UIView]) -> Bool
 
     for i in 0 ..< count {
         let yoga = subviews[i].yoga
-        if node.getChild(i)?.hashValue != yoga.node.hashValue {
+        guard node.getChild(i)?.hashValue == yoga.node.hashValue else {
             return false
         }
     }
@@ -98,7 +99,7 @@ func YGAttachNodesFromViewHierachy(_ view: UIView) {
     let yoga = view.yoga
     let node = yoga.node
 
-    if yoga.isLeaf {
+    guard !yoga.isLeaf else {
         node.removeAllChildren()
         node.setMeasureFunc(YGMeasureView)
 
@@ -181,7 +182,7 @@ func YGApplyLayoutToViewHierarchy(_ view: UIView, _ preserveOrigin: Bool) {
     // no need layout subviews if width or height is zero.
     if size.width > 0, size.height > 0, !yoga.isLeaf {
         for subview in view.subviews {
-            if !subview.isYogaEnabled {
+            guard subview.isYogaEnabled {
                 continue
             }
 

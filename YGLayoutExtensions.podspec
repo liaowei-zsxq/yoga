@@ -27,7 +27,7 @@ podspec = Pod::Spec.new do |spec|
   # https://twitter.com/krzyzanowskim/status/1151549874653081601?s=21
   spec.pod_target_xcconfig = {"LD_VERIFY_BITCODE": "NO"}
   spec.source_files = 'YogaKit/YGLayoutExtensions/*.swift'
-  spec.swift_version = '5.0'
+  spec.swift_version = '5.1'
   spec.static_framework = true
 end
 

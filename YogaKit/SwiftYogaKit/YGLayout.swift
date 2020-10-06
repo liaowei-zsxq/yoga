@@ -146,7 +146,7 @@ final public class YGLayout {
         return CGSize(width: CGFloat(node.width), height: CGFloat(node.height))
     }
 
-    public func configureLayout(block: YGLayoutConfigurationBlock) {
+    @inlinable public func configureLayout(block: YGLayoutConfigurationBlock) {
         block(self)
     }
 }

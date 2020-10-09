@@ -162,8 +162,11 @@ func YGApplyLayoutToViewHierarchy(_ view: UIView, _ preserveOrigin: Bool) {
     var frame = CGRect(origin: origin, size: size).offsetBy(dx: topLeft.x, dy: topLeft.y)
 
     #if os(macOS)
-    if let superview = view.superview, !superview.isFlipped, superview.isYogaEnabled, superview.yoga.isIncludedInLayout {
-        let height = CGFloat(superview.yoga.node.height)
+    if let superview = view.superview, !superview.isFlipped {
+        let height = superview.isYogaEnabled && superview.yoga.isIncludedInLayout
+                        ? CGFloat(superview.yoga.node.height)
+                        : superview.bounds.height
+
         frame.origin.y = height - frame.maxY
     }
 
@@ -182,7 +185,7 @@ func YGApplyLayoutToViewHierarchy(_ view: UIView, _ preserveOrigin: Bool) {
     // no need layout subviews if width or height is zero.
     if size.width > 0, size.height > 0, !yoga.isLeaf {
         for subview in view.subviews {
-            guard subview.isYogaEnabled {
+            guard subview.isYogaEnabled else {
                 continue
             }
 

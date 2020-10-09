@@ -493,8 +493,12 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
     };
 
 #if TARGET_OS_OSX
-    if (!view.superview.isFlipped && view.superview.isYogaEnabled && view.superview.yoga.isIncludedInLayout) {
-        CGFloat height = (CGFloat)MAX(YGNodeLayoutGetHeight(view.superview.yoga.node), 0);
+    UIView *superview = view.superview;
+    if (superview && !superview.isFlipped) {
+        CGFloat height = superview.isYogaEnabled && superview.yoga.isIncludedInLayout
+                            ? (CGFloat)MAX(YGNodeLayoutGetHeight(superview.yoga.node), 0)
+                            : CGRectGetHeight(superview.bounds);
+
         frame.origin.y = height - CGRectGetMaxY(frame);
     }
 

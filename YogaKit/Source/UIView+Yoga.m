@@ -27,12 +27,6 @@ static const void* kYGYogaAssociatedKey = &kYGYogaAssociatedKey;
     return objc_getAssociatedObject(self, kYGYogaAssociatedKey) != nil;
 }
 
-- (void)configureLayoutWithBlock:(NS_NOESCAPE YGLayoutConfigurationBlock)block {
-    if (block) {
-        [self.yoga configureLayoutWithBlock:block];
-    }
-}
-
 @end
 
 NS_INLINE BOOL CGRectIsStandlized(CGRect rect) {

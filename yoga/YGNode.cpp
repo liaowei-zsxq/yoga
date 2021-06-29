@@ -474,7 +474,7 @@ YGFloat YGNode::getLeadingBorder(const YGFlexDirection axis) const {
             style_.border(), YGEdgeStart, leading[axis], CompactValue::ofZero())
       : computeEdgeValueForColumn(
             style_.border(), leading[axis], CompactValue::ofZero());
-  return fmaxf(leadingBorder.value, 0.0f);
+  return fmax(leadingBorder.value, 0.0f);
 }
 
 YGFloat YGNode::getTrailingBorder(const YGFlexDirection axis) const {
@@ -483,7 +483,7 @@ YGFloat YGNode::getTrailingBorder(const YGFlexDirection axis) const {
             style_.border(), YGEdgeEnd, trailing[axis], CompactValue::ofZero())
       : computeEdgeValueForColumn(
             style_.border(), trailing[axis], CompactValue::ofZero());
-  return fmaxf(trailingBorder.value, 0.0f);
+  return fmax(trailingBorder.value, 0.0f);
 }
 
 YGFloatOptional YGNode::getLeadingPadding(

@@ -20,9 +20,9 @@
 #ifdef _MSC_VER
 #include <float.h>
 
-/* define fmaxf if < VC12 */
+/* define fmax if < VC12 */
 #if _MSC_VER < 1800
-__forceinline const YGFloat fmaxf(const YGFloat a, const YGFloat b) {
+__forceinline const YGFloat fmax(const YGFloat a, const YGFloat b) {
   return (a > b) ? a : b;
 }
 #endif
@@ -3636,12 +3636,12 @@ YOGA_EXPORT YGFloat YGRoundValueToPixelGrid(
     //   - x =  2.2: floor( 2.2) =  2, ceil( 2.2) =  3
     //   - x = -2.2: floor(-2.2) = -3, ceil(-2.2) = -2
     //
-    // Regarding `fmodf`. For fractional negative numbers, `fmodf` returns a
-    // negative number. For example, `fmodf(-2.2) = -0.2`. However, we want
+    // Regarding `fmod`. For fractional negative numbers, `fmod` returns a
+    // negative number. For example, `fmod(-2.2) = -0.2`. However, we want
     // `fractial` to be the number such that subtracting it from `value` will
     // give us `floor(value)`. In the case of negative numbers, adding 1 to
-    // `fmodf(value)` gives us this. Let's continue the example from above:
-    //   - fractial = fmodf(-2.2) = -0.2
+    // `fmod(value)` gives us this. Let's continue the example from above:
+    //   - fractial = fmod(-2.2) = -0.2
     //   - Add 1 to the fraction: fractial2 = fractial + 1 = -0.2 + 1 = 0.8
     //   - Finding the `floor`: -2.2 - fractial2 = -2.2 - 0.8 = -3
     ++fractial;

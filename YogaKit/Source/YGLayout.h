@@ -82,7 +82,7 @@ typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
 
 /**
  Returns the size of the view if no constraints were given. This could
- equivalent to calling [self sizeThatFits:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
+ equivalent to calling [self sizeThatFits:CGSizeMake(YGFLOAT_MAX, YGFLOAT_MAX)];
  */
 @property(nonatomic, readonly) CGSize intrinsicSize;
 

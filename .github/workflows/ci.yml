@@ -64,3 +64,27 @@ jobs:
         run: xcodebuild -project 'YogaKit.xcodeproj' -scheme 'YogaKit' -configuration Debug -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 11' clean test
       - name: Test on iPhone 11 Pro Max
         run: xcodebuild -project 'YogaKit.xcodeproj' -scheme 'YogaKit' -configuration Debug -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max' clean test
+  testing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install gtest
+        run: git submodule init && git submodule update
+      - name: set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Install buck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build
+          pushd $HOME
+          git clone --depth 1 https://github.com/facebook/buck.git
+          cd buck
+          ant
+          popd
+          echo "$HOME/buck/bin" >> $GITHUB_PATH
+          export PATH=$PATH:$HOME/buck/bin/
+          buck --version
+      - name: Testing
+        run: buck test //:yoga

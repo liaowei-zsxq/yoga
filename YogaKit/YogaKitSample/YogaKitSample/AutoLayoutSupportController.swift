@@ -15,41 +15,17 @@ extension UILayoutPriority {
 
 class AutoLayoutSupportController: UIViewController {
 
-    lazy var scrollView = UIScrollView(frame: view.bounds)
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .gray
 
-        view.addSubview(scrollView)
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            scrollView.rightAnchor.constraint(equalTo: view.rightAnchor)
-        ])
-
         let root = UIView()
-        scrollView.addSubview(root)
+        view.addSubview(root)
         root.translatesAutoresizingMaskIntoConstraints = false
-
-        let leftConstraint = root.leftAnchor.constraint(greaterThanOrEqualTo: scrollView.leftAnchor, constant: 16)
-        leftConstraint.priority = .defaultHigh
-
-        let rightConstraint = root.rightAnchor.constraint(lessThanOrEqualTo: scrollView.rightAnchor, constant: -16)
-        rightConstraint.priority = .defaultHigh
-
-        let widthConstraint = root.widthAnchor.constraint(equalToConstant: 414)
-        widthConstraint.priority = .defaultMedium
-
         NSLayoutConstraint.activate([
-            root.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            root.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            root.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            root.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
-            leftConstraint, rightConstraint, widthConstraint
+            root.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            root.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
 
         root.backgroundColor = .white

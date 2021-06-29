@@ -135,6 +135,10 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
         YGLayout *yoga = self.yoga;
         if (yoga.isIncludedInLayout) {
             CGFloat maxWidth = self._yoga_maxLayoutWidth;
+            if (maxWidth == 0) {
+                maxWidth = YGUndefined;
+            }
+            
             size = [yoga calculateLayoutWithSize:CGSizeMake(maxWidth, YGUndefined)];
         }
     }

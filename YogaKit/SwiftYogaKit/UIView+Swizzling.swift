@@ -149,7 +149,11 @@ extension UIView {
 
         let yoga = self.yoga
         if yoga.isIncludedInLayout {
-            let maxWidth = self._swift_yoga_maxLayoutWidth
+            var maxWidth = self._swift_yoga_maxLayoutWidth
+            if maxWidth == 0 {
+                maxWidth = .nan
+            }
+
             size = yoga.calculateLayout(size: CGSize(width: maxWidth, height: CGFloat.nan))
         }
 

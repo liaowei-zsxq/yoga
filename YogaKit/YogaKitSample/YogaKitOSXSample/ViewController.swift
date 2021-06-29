@@ -15,12 +15,20 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let root = self.view
+        let root = NSView()
+        view.addSubview(root)
+        root.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            root.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            root.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+
         root.wantsLayer = true
         root.layer?.backgroundColor = .white
         root.yoga.configureLayout { (layout) in
             layout.alignItems = .center
             layout.justifyContent = .center
+            layout.padding(16)
         }
 
         let child1 = NSView()

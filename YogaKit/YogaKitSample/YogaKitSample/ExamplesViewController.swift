@@ -7,6 +7,35 @@
 
 import UIKit
 import IGListKit
+import YGLayoutExtensions
+
+private class ListFlowLayout: UICollectionViewFlowLayout, ListCollectionViewLayoutCompatible {
+    var oldWidth: CGFloat = 0
+
+    func didModifySection(_ modifiedSection: Int) {
+    }
+
+    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+        if oldWidth == newBounds.width {
+            return false
+        }
+
+        oldWidth = newBounds.width
+
+        return true
+    }
+
+    override func invalidationContext(forBoundsChange newBounds: CGRect) -> UICollectionViewLayoutInvalidationContext {
+        let context = super.invalidationContext(forBoundsChange: newBounds)
+        guard context.isKind(of: UICollectionViewFlowLayoutInvalidationContext.self) else {
+            return context
+        }
+
+        (context as! UICollectionViewFlowLayoutInvalidationContext).invalidateFlowLayoutDelegateMetrics = true
+
+        return context
+    }
+}
 
 private final class ExampleModel {
     let title: String
@@ -35,7 +64,7 @@ final class ExamplesViewController: UIViewController, ListAdapterDataSource, Lis
     private lazy var adapter: ListAdapter = {
         return ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 0)
     }()
-    private let collectionView = ListCollectionView(frame: .zero)
+    private let collectionView = ListCollectionView(frame: .zero, listCollectionViewLayout: ListFlowLayout())
 
     // Update this to array to create more examples.
     private let models: [ExampleModel] = [
@@ -49,16 +78,16 @@ final class ExamplesViewController: UIViewController, ListAdapterDataSource, Lis
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.yoga.flexDirection(.column)
+
         title = "Examples"
         collectionView.backgroundColor = .clear
         view.addSubview(collectionView)
+        collectionView.yoga.height(100%)
+
         adapter.collectionView = collectionView
         adapter.dataSource = self
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        collectionView.frame = view.bounds
     }
 
     // MARK: IGListAdapterDataSource

@@ -108,15 +108,7 @@ func YGAttachNodesFromViewHierachy(_ view: UIView) {
 
     node.setMeasureFunc(nil)
 
-    let subviewsToInclude = view.subviews.filter {
-        guard $0.isYogaEnabled else {
-            return false
-        }
-
-        let yoga = $0.yoga
-        
-        return yoga.isIncludedInLayout
-    }
+    let subviewsToInclude = view.subviews.filter { $0.isYogaEnabled && $0.yoga.isIncludedInLayout }
 
     if !YGNodeHasExactSameChildren(node, subviewsToInclude) {
         node.removeAllChildren()
@@ -126,9 +118,7 @@ func YGAttachNodesFromViewHierachy(_ view: UIView) {
         }
     }
 
-    subviewsToInclude.forEach { (subview) in
-        YGAttachNodesFromViewHierachy(subview)
-    }
+    subviewsToInclude.forEach { YGAttachNodesFromViewHierachy($0) }
 }
 
 func YGApplyLayoutToViewHierarchy(_ view: UIView, _ preserveOrigin: Bool) {
@@ -141,6 +131,20 @@ func YGApplyLayoutToViewHierarchy(_ view: UIView, _ preserveOrigin: Bool) {
 
     yoga.isApplingLayout = true
 
+    // layout leaf node first
+    if !yoga.isLeaf {
+        for subview in view.subviews {
+            guard subview.isYogaEnabled else {
+                continue
+            }
+
+            let yoga = subview.yoga
+            if yoga.isIncludedInLayout {
+                YGApplyLayoutToViewHierarchy(subview, false)
+            }
+        }
+    }
+    
     let node = yoga.node
     let topLeft = CGPoint(x: CGFloat(node.left), y: CGFloat(node.top))
     let size = CGSize(width: CGFloat(node.width), height: CGFloat(node.height))
@@ -181,19 +185,6 @@ func YGApplyLayoutToViewHierarchy(_ view: UIView, _ preserveOrigin: Bool) {
         view.center = CGPoint(x: frame.midX, y: frame.midY)
     }
     #endif
-
-    if !yoga.isLeaf {
-        for subview in view.subviews {
-            guard subview.isYogaEnabled else {
-                continue
-            }
-
-            let yoga = subview.yoga
-            if yoga.isIncludedInLayout {
-                YGApplyLayoutToViewHierarchy(subview, false)
-            }
-        }
-    }
 
     yoga.isApplingLayout = false
 }

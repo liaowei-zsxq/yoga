@@ -466,6 +466,20 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
 
     yoga.isApplingLayout = YES;
 
+    // layout leaf node first
+    if (!yoga.isLeaf) {
+        for (UIView *subview in view.subviews) {
+            if (!subview.isYogaEnabled) {
+                continue;
+            }
+
+            YGLayout *yoga = subview.yoga;
+            if (yoga.isIncludedInLayout) {
+                YGApplyLayoutToViewHierarchy(subview, NO);
+            }
+        }
+    }
+
     YGNodeRef node = yoga.node;
 
     const CGPoint topLeft = (CGPoint) { .x = YGNodeLayoutGetLeft(node), .y = YGNodeLayoutGetTop(node) };
@@ -514,19 +528,6 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
         view.center = (CGPoint) { .x = CGRectGetMidX(frame), .y = CGRectGetMidY(frame) };
     }
 #endif
-
-    if (!yoga.isLeaf) {
-        for (UIView *subview in view.subviews) {
-            if (!subview.isYogaEnabled) {
-                continue;
-            }
-
-            YGLayout *yoga = subview.yoga;
-            if (yoga.isIncludedInLayout) {
-                YGApplyLayoutToViewHierarchy(subview, NO);
-            }
-        }
-    }
 
     yoga.isApplingLayout = NO;
 }

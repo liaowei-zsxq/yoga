@@ -313,7 +313,7 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
         size.height = YGUndefined;
     }
 
-    [self calculateLayoutWithSize:size];
+    (void)[self calculateLayoutWithSize:size];
     YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
 }
 
@@ -333,8 +333,8 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
     YGNodeCalculateLayout(node, size.width, size.height, YGNodeStyleGetDirection(node));
 
     return (CGSize){
-        .width = MAX(YGNodeLayoutGetWidth(node), 0),
-        .height = MAX(YGNodeLayoutGetHeight(node), 0)
+        .width = fmax(YGNodeLayoutGetWidth(node), 0),
+        .height = fmax(YGNodeLayoutGetHeight(node), 0)
     };
 }
 
@@ -369,8 +369,8 @@ static YGSize YGMeasureView(YGNodeRef node, YGFloat width, YGMeasureMode widthMo
 #if TARGET_OS_OSX
     CGSize fittingSize = view.fittingSize;
     sizeThatFits = (CGSize){
-        .width = MIN(constrainedWidth, fittingSize.width),
-        .height = MIN(constrainedHeight, fittingSize.height)
+        .width = fmin(constrainedWidth, fittingSize.width),
+        .height = fmin(constrainedHeight, fittingSize.height)
     };
 #else
     sizeThatFits = [view sizeThatFits:(CGSize){
@@ -394,14 +394,14 @@ NS_INLINE CGFloat YGSanitizeMeasurement(
             result = constrainedSize;
             break;
         case YGMeasureModeAtMost:
-            result = MIN(constrainedSize, measuredSize);
+            result = fmin(constrainedSize, measuredSize);
             break;
         default:
             result = measuredSize;
             break;
     }
 
-    return MAX(result, 0);
+    return fmax(result, 0);
 }
 
 static BOOL YGNodeHasExactSameChildren(
@@ -471,8 +471,8 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
     const CGPoint topLeft = (CGPoint) { .x = YGNodeLayoutGetLeft(node), .y = YGNodeLayoutGetTop(node) };
 
     const CGSize size = {
-        .width = MAX((CGFloat)YGNodeLayoutGetWidth(node), 0),
-        .height = MAX((CGFloat)YGNodeLayoutGetHeight(node), 0)
+        .width = fmax((CGFloat)YGNodeLayoutGetWidth(node), 0),
+        .height = fmax((CGFloat)YGNodeLayoutGetHeight(node), 0)
     };
 
 #if TARGET_OS_OSX
@@ -497,7 +497,7 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
     if (superview && !superview.isFlipped && superview.isYogaEnabled) {
         YGLayout *yoga = superview.yoga;
         if (yoga.isIncludedInLayout) {
-            CGFloat height = (CGFloat)MAX(YGNodeLayoutGetHeight(yoga.node), 0);
+            CGFloat height = (CGFloat)fmax(YGNodeLayoutGetHeight(yoga.node), 0);
             frame.origin.y = height - CGRectGetMaxY(frame);
         }
     }
@@ -515,8 +515,7 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
     }
 #endif
 
-    // no need layout subviews if width or height is zero.
-    if (size.width > 0 && size.height > 0 && !yoga.isLeaf) {
+    if (!yoga.isLeaf) {
         for (UIView *subview in view.subviews) {
             if (!subview.isYogaEnabled) {
                 continue;

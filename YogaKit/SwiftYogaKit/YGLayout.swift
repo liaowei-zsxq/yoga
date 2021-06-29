@@ -76,7 +76,7 @@ final public class YGLayout {
 
     public var intrinsicSize: CGSize {
         get {
-            return calculateLayout(size: CGSize(width: YGUndefined, height: YGUndefined))
+            return calculateLayout(size: CGSize(width: CGFloat(YGUndefined), height: CGFloat(YGUndefined)))
         }
     }
 

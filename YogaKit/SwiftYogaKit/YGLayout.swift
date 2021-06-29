@@ -76,7 +76,7 @@ final public class YGLayout {
 
     public var intrinsicSize: CGSize {
         get {
-            return calculateLayout(size: CGSize(width: CGFloat.nan, height: CGFloat.nan))
+            return calculateLayout(size: CGSize(width: YGUndefined, height: YGUndefined))
         }
     }
 
@@ -125,11 +125,11 @@ final public class YGLayout {
         var size = view.bounds.size
 
         if dimensionFlexibility.contains(.width) {
-            size.width = CGFloat.nan
+            size.width = CGFloat(YGUndefined)
         }
 
         if dimensionFlexibility.contains(.height) {
-            size.height = CGFloat.nan
+            size.height = CGFloat(YGUndefined)
         }
 
         _ = calculateLayout(size: size)

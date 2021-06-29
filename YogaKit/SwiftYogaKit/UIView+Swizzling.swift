@@ -15,6 +15,7 @@ import UIKit
 #endif
 
 import ObjectiveC.runtime
+import Yoga
 
 private func YogaSwizzleInstanceMethod(_ cls: AnyClass, _ originalSelector: Selector, _ swizzledSelector: Selector) {
     guard let originalMethod = class_getInstanceMethod(cls, originalSelector),
@@ -100,7 +101,7 @@ extension UIView {
     var _swift_yoga_maxLayoutWidth: CGFloat {
         get {
             guard let value = objc_getAssociatedObject(self, &kYGYogaMaxLayoutWidthAssociatedKey) as? NSNumber else {
-                return .nan
+                return CGFloat(YGUndefined)
             }
 
             return CGFloat(value.doubleValue)
@@ -109,7 +110,7 @@ extension UIView {
         set {
             var value = newValue
             if value < 0 {
-                value = .nan
+                value = CGFloat(YGUndefined)
             }
 
             objc_setAssociatedObject(self, &kYGYogaMaxLayoutWidthAssociatedKey, NSNumber(value: Double(value)), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
@@ -151,10 +152,10 @@ extension UIView {
         if yoga.isIncludedInLayout {
             var maxWidth = self._swift_yoga_maxLayoutWidth
             if maxWidth == 0 {
-                maxWidth = .nan
+                maxWidth = CGFloat(YGUndefined)
             }
 
-            size = yoga.calculateLayout(size: CGSize(width: maxWidth, height: CGFloat.nan))
+            size = yoga.calculateLayout(size: CGSize(width: maxWidth, height: CGFloat(YGUndefined)))
         }
 
         self._swift_yoga_maxLayoutWidth = size.width

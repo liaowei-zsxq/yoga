@@ -75,11 +75,28 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
         YogaSwizzleInstanceMethod(self, @selector(initWithFrame:), @selector(_yoga_initWithFrame:));
         YogaSwizzleInstanceMethod(self, @selector(setFrame:), @selector(_yoga_setFrame:));
         YogaSwizzleInstanceMethod(self, @selector(setBounds:), @selector(_yoga_setBounds:));
+        YogaSwizzleInstanceMethod(self, @selector(intrinsicContentSize), @selector(_yoga_intrinsicContentSize));
 #if TARGET_OS_OSX
         YogaSwizzleInstanceMethod(self, @selector(setFrameSize:), @selector(_yoga_setFrameSize:));
         YogaSwizzleInstanceMethod(self, @selector(setBoundsSize:), @selector(_yoga_setBoundsSize:));
 #endif
     });
+}
+
+- (CGFloat)_yoga_maxLayoutWidth {
+    NSNumber *maxWidth = objc_getAssociatedObject(self, @selector(_yoga_maxLayoutWidth));
+
+    return maxWidth ? (CGFloat)maxWidth.doubleValue : YGUndefined;
+}
+
+- (void)set_yoga_maxLayoutWidth:(CGFloat)newValue {
+    CGFloat value = newValue;
+    if (value < 0) {
+        value = YGUndefined;
+    }
+
+    objc_setAssociatedObject(self, @selector(_yoga_maxLayoutWidth),
+                             [NSNumber numberWithDouble:value], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (instancetype)_yoga_initWithFrame:(CGRect)frame {
@@ -92,28 +109,54 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
 }
 
 - (void)_yoga_setFrame:(CGRect)frame {
-    [self _yoga_setFrame:StandlizedRect(frame)];
-
+    CGRect rect = StandlizedRect(frame);
+    [self _yoga_setFrame:rect];
     [self _yoga_applyLayout];
+    
+#if TARGET_OS_OSX
+    CGFloat width = CGRectGetWidth(rect);
+    [self _yoga_updateConstraintsIfNeeded:width];
+#endif
 }
 
 - (void)_yoga_setBounds:(CGRect)bounds {
-    [self _yoga_setBounds:StandlizedRect(bounds)];
-
+    CGRect rect = StandlizedRect(bounds);
+    [self _yoga_setBounds:rect];
     [self _yoga_applyLayout];
+
+    CGFloat width = CGRectGetWidth(rect);
+    [self _yoga_updateConstraintsIfNeeded:width];
+}
+
+- (CGSize)_yoga_intrinsicContentSize {
+    CGSize size = [self _yoga_intrinsicContentSize];
+
+    if (self.isYogaEnabled) {
+        YGLayout *yoga = self.yoga;
+        if (yoga.isIncludedInLayout) {
+            CGFloat maxWidth = self._yoga_maxLayoutWidth;
+            size = [yoga calculateLayoutWithSize:CGSizeMake(maxWidth, YGUndefined)];
+        }
+    }
+
+    self._yoga_maxLayoutWidth = size.width;
+
+    return size;
 }
 
 #if TARGET_OS_OSX
 - (void)_yoga_setFrameSize:(NSSize)newSize {
-    [self _yoga_setFrameSize:StandlizedSize(newSize)];
-
+    NSSize size = StandlizedSize(newSize);
+    [self _yoga_setFrameSize:size];
     [self _yoga_applyLayout];
+    [self _yoga_updateConstraintsIfNeeded:size.width];
 }
 
 - (void)_yoga_setBoundsSize:(NSSize)newSize {
-    [self _yoga_setBoundsSize:StandlizedSize(newSize)];
-
+    NSSize size = StandlizedSize(newSize);
+    [self _yoga_setBoundsSize:size];
     [self _yoga_applyLayout];
+    [self _yoga_updateConstraintsIfNeeded:size.width];
 }
 #endif
 
@@ -126,8 +169,22 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
     }
 }
 
-@end
+- (void)_yoga_updateConstraintsIfNeeded:(CGFloat)width {
+    if (self.translatesAutoresizingMaskIntoConstraints) {
+        return;
+    }
 
+    CGFloat maxWidth = self._yoga_maxLayoutWidth;
+    if (isnan(maxWidth) || maxWidth > width) {
+        self._yoga_maxLayoutWidth = width;
+        __weak typeof(self) wself = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [wself invalidateIntrinsicContentSize];
+        });
+    }
+}
+
+@end
 
 static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizzledSelector) {
     if (!cls || !originalSelector || !swizzledSelector) {

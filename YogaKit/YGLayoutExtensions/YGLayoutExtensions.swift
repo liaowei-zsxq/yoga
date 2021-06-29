@@ -23,6 +23,13 @@ extension Float {
     }
 }
 
+extension Double {
+
+    @inlinable public static postfix func %(value: Double) -> YGValue {
+        return YGValue(value: YGFloat(value), unit: .percent)
+    }
+}
+
 extension CGFloat {
 
     @inlinable public static postfix func %(value: CGFloat) -> YGValue {

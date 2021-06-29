@@ -38,9 +38,12 @@ final class ExamplesViewController: UIViewController, ListAdapterDataSource, Lis
     private let collectionView = ListCollectionView(frame: .zero)
 
     // Update this to array to create more examples.
-    private let models: [ExampleModel] = [ExampleModel(title: "Basic Layout", controllerClass: BasicViewController.self),
-                                          ExampleModel(title: "Exclude Views in Layout", controllerClass: LayoutInclusionViewController.self),
-                                          ExampleModel(title: "Twitter timeline Layout", controllerClass: TWTimelineViewController.self)]
+    private let models: [ExampleModel] = [
+        ExampleModel(title: "Basic Layout", controllerClass: BasicViewController.self),
+        ExampleModel(title: "Exclude Views in Layout", controllerClass: LayoutInclusionViewController.self),
+        ExampleModel(title: "Twitter timeline Layout", controllerClass: TWTimelineViewController.self),
+        ExampleModel(title: "AutoLayout Support", controllerClass: AutoLayoutSupportController.self)
+    ]
 
     // MARK: UIViewController
 

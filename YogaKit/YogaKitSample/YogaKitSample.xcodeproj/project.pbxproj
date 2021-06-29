@@ -10,6 +10,7 @@
 		13687D531DF8748400E7C260 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13687D521DF8748400E7C260 /* Assets.xcassets */; };
 		13687D851DF87D1E00E7C260 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13687D841DF87D1E00E7C260 /* UIKit.framework */; };
 		13687D871DF87D2400E7C260 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13687D861DF87D2400E7C260 /* Foundation.framework */; };
+		150EEF25268A7D9200149C30 /* AutoLayoutSupportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150EEF24268A7D9200149C30 /* AutoLayoutSupportController.swift */; };
 		1511C15D251F607600A2C621 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511C15C251F607600A2C621 /* AppDelegate.swift */; };
 		1511C15F251F607600A2C621 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511C15E251F607600A2C621 /* ViewController.swift */; };
 		1511C161251F607700A2C621 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1511C160251F607700A2C621 /* Assets.xcassets */; };
@@ -64,6 +65,7 @@
 		13687D571DF8748400E7C260 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13687D841DF87D1E00E7C260 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		13687D861DF87D2400E7C260 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		150EEF24268A7D9200149C30 /* AutoLayoutSupportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutSupportController.swift; sourceTree = "<group>"; };
 		1511C15A251F607600A2C621 /* YogaKitOSXSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YogaKitOSXSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1511C15C251F607600A2C621 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1511C15E251F607600A2C621 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				40BD9F4A1E47850C002790A9 /* BasicViewController.swift */,
 				40BD9F511E479173002790A9 /* LayoutInclusionViewController.swift */,
 				15F7301E24E7C097000108AD /* TWTimelineViewController.swift */,
+				150EEF24268A7D9200149C30 /* AutoLayoutSupportController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 				40BD9F4B1E47850C002790A9 /* BasicViewController.swift in Sources */,
 				40BD9F461E477A09002790A9 /* AppDelegate.swift in Sources */,
 				15F7301F24E7C097000108AD /* TWTimelineViewController.swift in Sources */,
+				150EEF25268A7D9200149C30 /* AutoLayoutSupportController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

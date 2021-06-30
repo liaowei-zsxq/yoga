@@ -179,7 +179,7 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
     }
 
     CGFloat maxWidth = self._yoga_maxLayoutWidth;
-    if (isnan(maxWidth) || maxWidth > width) {
+    if (isnan(maxWidth) || maxWidth != width) {
         self._yoga_maxLayoutWidth = width;
         __weak typeof(self) wself = self;
         dispatch_async(dispatch_get_main_queue(), ^{

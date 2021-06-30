@@ -196,7 +196,7 @@ extension UIView {
         }
 
         let maxWidth = self._swift_yoga_maxLayoutWidth
-        if maxWidth.isNaN || maxWidth > width {
+        if maxWidth.isNaN || maxWidth != width {
             self._swift_yoga_maxLayoutWidth = width
             DispatchQueue.main.async { [weak self] in
                 self?.invalidateIntrinsicContentSize()

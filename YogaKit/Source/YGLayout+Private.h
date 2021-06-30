@@ -8,10 +8,24 @@
 #import <yoga/Yoga.h>
 #import "YGLayout.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface YGLayout ()
 
 @property(nonatomic, readonly) YGNodeRef node;
 
-- (instancetype)initWithView:(UIView*)view;
+@property(nullable, nonatomic, readonly) UIView *rootYogaView;
+
+- (instancetype)initWithView:(UIView *)view;
 
 @end
+
+@interface UIView (YogaKitAutoApplyLayout)
+
+@property(nonatomic) CGFloat _yoga_maxLayoutWidth;
+
+- (BOOL)_yoga_isAutoLayoutEnabled;
+
+@end
+
+NS_ASSUME_NONNULL_END

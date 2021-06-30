@@ -198,13 +198,16 @@ extension UIView {
         let maxWidth = self._swift_yoga_maxLayoutWidth
         if maxWidth.isNaN || maxWidth != width {
             self._swift_yoga_maxLayoutWidth = width
-            DispatchQueue.main.async { [weak self] in
-                self?.invalidateIntrinsicContentSize()
-            }
+            invalidateIntrinsicContentSize()
+            #if os(macOS)
+            superview?.layoutSubtreeIfNeeded()
+            #else
+            superview?.layoutIfNeeded()
+            #endif
         }
     }
 
-    private var _swift_yoga_isAutoLayoutEnabled: Bool {
+    var _swift_yoga_isAutoLayoutEnabled: Bool {
         if translatesAutoresizingMaskIntoConstraints {
             return false
         }

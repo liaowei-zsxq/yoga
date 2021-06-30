@@ -239,12 +239,27 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
     YGNodeFree(self.node);
 }
 
+- (UIView *)rootYogaView {
+    UIView *node = self.view;
+
+    while (node) {
+        UIView *parent = node.superview;
+        if (!parent || !parent.isYogaEnabled || !parent.yoga.isIncludedInLayout) {
+            break;
+        }
+
+        node = parent;
+    }
+
+    return node;
+}
+
 - (BOOL)isDirty {
     return YGNodeIsDirty(self.node);
 }
 
 - (void)markDirty {
-    if (!self.isIncludedInLayout || self.isDirty || !self.isLeaf) {
+    if (!self.isIncludedInLayout || !self.isLeaf) {
         return;
     }
 
@@ -257,6 +272,21 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
     }
 
     YGNodeMarkDirty(node);
+
+    const UIView *view = self.rootYogaView;
+    if (!view) {
+        return;
+    }
+
+    if (view._yoga_isAutoLayoutEnabled) {
+        view._yoga_maxLayoutWidth = YGUndefined;
+        [view invalidateIntrinsicContentSize];
+#if TARGET_OS_OSX
+        [view.superview layoutSubtreeIfNeeded];
+#else
+        [view.superview layoutIfNeeded];
+#endif
+    }
 }
 
 - (NSUInteger)numberOfChildren {

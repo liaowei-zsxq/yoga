@@ -86,6 +86,20 @@ final public class YGLayout {
     private(set) var node: YGNodeRef
     private var view: UIView
 
+    var rootYogaView: UIView? {
+        var node: UIView? = self.view
+
+        while node != nil {
+            guard let parent = node?.superview, parent.isYogaEnabled, parent.yoga.isIncludedInLayout else {
+                break
+            }
+
+            node = parent
+        }
+
+        return node
+    }
+
     deinit {
         YGNodeFree(node)
     }
@@ -98,7 +112,7 @@ final public class YGLayout {
     }
 
     public func markDirty() {
-        guard isIncludedInLayout, !isDirty, isLeaf else {
+        guard isIncludedInLayout, isLeaf else {
             return
         }
 
@@ -107,6 +121,20 @@ final public class YGLayout {
         }
 
         node.markDirty()
+
+        guard let view = self.rootYogaView else {
+            return
+        }
+
+        if view._swift_yoga_isAutoLayoutEnabled {
+            view._swift_yoga_maxLayoutWidth = CGFloat(YGUndefined)
+            view.invalidateIntrinsicContentSize()
+            #if os(macOS)
+            view.superview?.layoutSubtreeIfNeeded()
+            #else
+            view.superview?.layoutIfNeeded()
+            #endif
+        }
     }
 
     public func applyLayout() {

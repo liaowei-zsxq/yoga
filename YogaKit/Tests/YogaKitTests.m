@@ -886,5 +886,50 @@
   XCTAssertEqual(container.frame.size.height, 180);
 }
 
-@end
+- (void)testAutoLayoutSupport {
+  UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1000, 1000)];
 
+  UIView *container = [[UIView alloc] initWithFrame:CGRectZero];
+  [view addSubview:container];
+  container.translatesAutoresizingMaskIntoConstraints = NO;
+  [NSLayoutConstraint activateConstraints:@[
+      [container.topAnchor constraintEqualToAnchor:view.topAnchor constant:24],
+      [container.leftAnchor constraintEqualToAnchor:view.leftAnchor constant:24]
+  ]];
+
+  [container.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+      layout.flexDirection = YGFlexDirectionColumn;
+  }];
+
+  UIView *subview1 = [[UIView alloc] initWithFrame:CGRectZero];
+  [container addSubview:subview1];
+  [subview1.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+      layout.height = YGPointValue(80);
+      layout.width = YGPointValue(60);
+      layout.marginBottom = YGPointValue(16);
+  }];
+
+  UIView *subview2 = [[UIView alloc] initWithFrame:CGRectZero];
+  [container addSubview:subview2];
+  [subview2.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+      layout.height = YGPointValue(180);
+      layout.width = YGPointValue(200);
+  }];
+
+  UIView *subview3 = [[UIView alloc] initWithFrame:CGRectZero];
+  [container addSubview:subview3];
+  [subview3.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+      layout.height = YGPointValue(100);
+      layout.width = YGPointValue(80);
+      layout.marginTop = YGPointValue(24);
+  }];
+
+  [view layoutIfNeeded];
+
+  XCTAssertEqual(container.frame.origin.x, 24);
+  XCTAssertEqual(container.frame.origin.y, 24);
+  XCTAssertEqual(container.frame.size.width, 200);
+  XCTAssertEqual(container.frame.size.height, 80 + 16 + 180 + 24 + 100);
+}
+
+@end

@@ -13,7 +13,6 @@ import YGLayoutExtensions
 class TWTimelineViewController: UIViewController {
 
     private var tableView: UITableView!
-    private var timelineCell: TWTimelineCell!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,18 +21,17 @@ class TWTimelineViewController: UIViewController {
         view.yoga.includInLayout(true)
 
         tableView = UITableView(frame: view.bounds, style: .plain)
-        tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         view.addSubview(tableView)
         tableView.yoga
             .width(100%)
             .height(100%)
 
         registerCell(TWTimelineCell.self)
-
-        timelineCell = TWTimelineCell(style: .default, reuseIdentifier: NSStringFromClass(TWTimelineCell.self))
     }
 
     func registerCell(_ cellClass: AnyClass?) {
@@ -65,10 +63,8 @@ extension TWTimelineViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let size = timelineCell.contentView.yoga.calculateLayout(size: CGSize(width: tableView.bounds.width, height: CGFloat.nan))
-
-        return size.height
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
@@ -168,5 +164,14 @@ class TWTimelineCell: UITableViewCell {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
+        var w: CGFloat = 0
+        if #available(iOS 11.0, *) {
+            w = size.width - self.safeAreaInsets.left - self.safeAreaInsets.right
+        }
+
+        return contentView.yoga.calculateLayout(size: CGSize(width: w, height: .nan))
     }
 }

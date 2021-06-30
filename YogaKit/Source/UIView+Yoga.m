@@ -174,7 +174,7 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
 }
 
 - (void)_yoga_updateConstraintsIfNeeded:(CGFloat)width {
-    if (self.translatesAutoresizingMaskIntoConstraints) {
+    if (self._yoga_isAutoLayoutEnabled) {
         return;
     }
 
@@ -186,6 +186,24 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
             [wself invalidateIntrinsicContentSize];
         });
     }
+}
+
+- (BOOL)_yoga_isAutoLayoutEnabled {
+    if (self.translatesAutoresizingMaskIntoConstraints) {
+        return NO;
+    }
+
+    for (NSLayoutConstraint *constraint in self.constraints) {
+        if (@available(macOS 10.0, iOS 8.0, tvOS 8.0, *)) {
+            if (constraint.isActive) {
+                return YES;
+            }
+        } else {
+            return YES;
+        }
+    }
+
+    return NO;
 }
 
 @end

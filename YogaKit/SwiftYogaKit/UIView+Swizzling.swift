@@ -191,7 +191,7 @@ extension UIView {
     }
 
     func _swift_yoga_updateConstraintsIfNeeded(_ width: CGFloat) {
-        guard !translatesAutoresizingMaskIntoConstraints else {
+        guard _swift_yoga_isAutoLayoutEnabled else {
             return
         }
 
@@ -202,5 +202,23 @@ extension UIView {
                 self?.invalidateIntrinsicContentSize()
             }
         }
+    }
+
+    private var _swift_yoga_isAutoLayoutEnabled: Bool {
+        if translatesAutoresizingMaskIntoConstraints {
+            return false
+        }
+        
+        for constraint in constraints {
+            if #available(macOS 10.10, iOS 8.0, tvOS 8.0, *) {
+                if constraint.isActive {
+                    return true
+                }
+            } else {
+                return true
+            }
+        }
+
+        return false
     }
 }

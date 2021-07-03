@@ -20,15 +20,14 @@ extension UIView {
 
     public var yoga: YGLayout {
         get {
-            var yoga = objc_getAssociatedObject(self, &kYGYogaAssociatedKey) as? YGLayout
-            if let yoga = yoga {
+            guard let yoga = objc_getAssociatedObject(self, &kYGYogaAssociatedKey) as? YGLayout else {
+                let yoga = YGLayout(view: self)
+                objc_setAssociatedObject(self, &kYGYogaAssociatedKey, yoga, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+
                 return yoga
             }
 
-            yoga = YGLayout(view: self)
-            objc_setAssociatedObject(self, &kYGYogaAssociatedKey, yoga, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-
-            return yoga!
+            return yoga
         }
     }
 

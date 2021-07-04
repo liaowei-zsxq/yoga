@@ -376,9 +376,9 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
 
 #pragma mark - Private
 
-static YGSize YGMeasureView(YGNodeRef node, YGFloat width, YGMeasureMode widthMode, YGFloat height, YGMeasureMode heightMode) {
-    const CGFloat constrainedWidth = (widthMode == YGMeasureModeUndefined) ? YGFLOAT_MAX : width;
-    const CGFloat constrainedHeight = (heightMode == YGMeasureModeUndefined) ? YGFLOAT_MAX : height;
+static YGSize YGMeasureView(YGNodeRef node, double width, YGMeasureMode widthMode, double height, YGMeasureMode heightMode) {
+    const CGFloat constrainedWidth = (widthMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : width;
+    const CGFloat constrainedHeight = (heightMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : height;
 
     UIView* view = (__bridge UIView*)YGNodeGetContext(node);
 
@@ -391,7 +391,7 @@ static YGSize YGMeasureView(YGNodeRef node, YGFloat width, YGMeasureMode widthMo
 
     YGLayout *yoga = view.yoga;
     if (yoga.isBaseView) {
-        return YGSizeZero;
+        return (YGSize){ .width = 0, .height = 0 };
     }
 
     CGSize sizeThatFits = CGSizeZero;
@@ -409,8 +409,8 @@ static YGSize YGMeasureView(YGNodeRef node, YGFloat width, YGMeasureMode widthMo
     }];
 #endif
 
-    return (YGSize){ .width = (YGFloat)YGSanitizeMeasurement(constrainedWidth, sizeThatFits.width, widthMode),
-                     .height = (YGFloat)YGSanitizeMeasurement(constrainedHeight, sizeThatFits.height, heightMode)
+    return (YGSize){ .width = YGSanitizeMeasurement(constrainedWidth, sizeThatFits.width, widthMode),
+                     .height = YGSanitizeMeasurement(constrainedHeight, sizeThatFits.height, heightMode)
     };
 }
 

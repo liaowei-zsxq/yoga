@@ -26,11 +26,11 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void (^YGLayoutConfigurationBlock)(YGLayout* layout);
 
 NS_INLINE YGValue YGPointValue(CGFloat value) NS_SWIFT_UNAVAILABLE("Use the swift Int and FloatingPoint extensions instead") {
-    return (YGValue){.value = (YGFloat)value, .unit = YGUnitPoint};
+    return (YGValue){.value = value, .unit = YGUnitPoint};
 }
 
 NS_INLINE YGValue YGPercentValue(CGFloat value) NS_SWIFT_UNAVAILABLE("Use the swift Int and FloatingPoint extensions instead") {
-    return (YGValue){.value = (YGFloat)value, .unit = YGUnitPercent};
+    return (YGValue){.value = value, .unit = YGUnitPercent};
 }
 
 typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
@@ -44,13 +44,13 @@ typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
  Make default init unavailable, as it will not initialise YGNode which is
  required for the setters and getters of YGLayout's properties to work properly.
 */
-- (instancetype)init YG_UNAVAILABLE("you are not meant to initialise YGLayout");
+- (instancetype)init NS_UNAVAILABLE;
 
 /**
  Make default init unavailable, as it will not initialise YGNode which is
  required for the setters and getters of YGLayout's properties to work properly.
  */
-+ (instancetype)new YG_UNAVAILABLE("you are not meant to initialise YGLayout");
++ (instancetype)new NS_UNAVAILABLE;
 
 /**
   The property that decides if we should include this view when calculating
@@ -82,7 +82,7 @@ typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
 
 /**
  Returns the size of the view if no constraints were given. This could
- equivalent to calling [self sizeThatFits:CGSizeMake(YGFLOAT_MAX, YGFLOAT_MAX)];
+ equivalent to calling [self sizeThatFits:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
  */
 @property(nonatomic, readonly) CGSize intrinsicSize;
 

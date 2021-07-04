@@ -180,7 +180,7 @@ ACCESSOR_TEST(
     CompactValue::ofUndefined(),
     CompactValue::ofAuto(),
     CompactValue::of<YGUnitPoint>(7777.77f),
-    CompactValue::of<YGUnitPercent>(-100.0f))
+    CompactValue::of<YGUnitPercent>(-100.0))
 
 INDEX_ACCESSOR_TEST(
     position,
@@ -189,7 +189,7 @@ INDEX_ACCESSOR_TEST(
     CompactValue::ofAuto(),
     CompactValue::ofUndefined(),
     CompactValue::of<YGUnitPoint>(7777.77f),
-    CompactValue::of<YGUnitPercent>(-100.0f))
+    CompactValue::of<YGUnitPercent>(-100.0))
 
 INDEX_ACCESSOR_TEST(
     margin,
@@ -198,7 +198,7 @@ INDEX_ACCESSOR_TEST(
     CompactValue::ofAuto(),
     CompactValue::ofUndefined(),
     CompactValue::of<YGUnitPoint>(7777.77f),
-    CompactValue::of<YGUnitPercent>(-100.0f))
+    CompactValue::of<YGUnitPercent>(-100.0))
 
 INDEX_ACCESSOR_TEST(
     padding,
@@ -206,7 +206,7 @@ INDEX_ACCESSOR_TEST(
     YGEdgeAll,
     CompactValue::of<YGUnitPoint>(7777.77f),
     CompactValue::ofUndefined(),
-    CompactValue::of<YGUnitPercent>(-100.0f))
+    CompactValue::of<YGUnitPercent>(-100.0))
 
 INDEX_ACCESSOR_TEST(
     border,
@@ -222,7 +222,7 @@ INDEX_ACCESSOR_TEST(
     CompactValue::ofUndefined(),
     CompactValue::ofAuto(),
     CompactValue::of<YGUnitPoint>(7777.77f),
-    CompactValue::of<YGUnitPercent>(-100.0f))
+    CompactValue::of<YGUnitPercent>(-100.0))
 
 INDEX_ACCESSOR_TEST(
     minDimensions,
@@ -231,7 +231,7 @@ INDEX_ACCESSOR_TEST(
     CompactValue::ofAuto(),
     CompactValue::ofUndefined(),
     CompactValue::of<YGUnitPoint>(7777.77f),
-    CompactValue::of<YGUnitPercent>(-100.0f))
+    CompactValue::of<YGUnitPercent>(-100.0))
 
 INDEX_ACCESSOR_TEST(
     maxDimensions,
@@ -240,14 +240,14 @@ INDEX_ACCESSOR_TEST(
     CompactValue::ofAuto(),
     CompactValue::ofUndefined(),
     CompactValue::of<YGUnitPoint>(7777.77f),
-    CompactValue::of<YGUnitPercent>(-100.0f))
+    CompactValue::of<YGUnitPercent>(-100.0))
 
 ACCESSOR_TEST(
     aspectRatio,
     YGFloatOptional{},
     YGFloatOptional{-123.45f},
     YGFloatOptional{9876.5f},
-    YGFloatOptional{0.0f},
+    YGFloatOptional{0.0},
     YGFloatOptional{});
 
 } // namespace yoga

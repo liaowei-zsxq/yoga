@@ -14,7 +14,7 @@ import UIKit
 
 import Yoga
 
-func YGScaleFactor() -> CGFloat {
+func YGScaleFactor() -> Double {
     struct once {
         #if os(macOS)
         static let scaleFactor = NSScreen.main?.backingScaleFactor ?? 1
@@ -23,7 +23,7 @@ func YGScaleFactor() -> CGFloat {
         #endif
     }
 
-    return once.scaleFactor
+    return Double(once.scaleFactor)
 }
 
 func YGGlobalConfig() -> YGConfigRef {
@@ -31,7 +31,7 @@ func YGGlobalConfig() -> YGConfigRef {
         static let config: YGConfigRef = {
             let config = YGConfigNew()
             YGConfigSetExperimentalFeatureEnabled(config, .webFlexBasis, true)
-            YGConfigSetPointScaleFactor(config, YGFloat(YGScaleFactor()))
+            YGConfigSetPointScaleFactor(config, YGScaleFactor())
             
             return config!
         }()
@@ -55,7 +55,7 @@ func YGGlobalConfig() -> YGConfigRef {
     return max(result, 0)
 }
 
-func YGMeasureView(_ node: YGNodeRef!, _ width: YGFloat, _ widthMode: YGMeasureMode, _ height: YGFloat, _ heightMode: YGMeasureMode) -> YGSize {
+func YGMeasureView(_ node: YGNodeRef!, _ width: Double, _ widthMode: YGMeasureMode, _ height: Double, _ heightMode: YGMeasureMode) -> YGSize {
     let constrainedWidth: CGFloat = (widthMode == YGMeasureMode.undefined) ? .greatestFiniteMagnitude : CGFloat(width)
     let constrainedHeight: CGFloat = (heightMode == YGMeasureMode.undefined) ? .greatestFiniteMagnitude : CGFloat(height)
 
@@ -63,7 +63,7 @@ func YGMeasureView(_ node: YGNodeRef!, _ width: YGFloat, _ widthMode: YGMeasureM
     let yoga = view.yoga
     
     guard !yoga.isBaseView else {
-        return YGSizeZero
+        return YGSize(width: 0, height: 0)
     }
 
     #if os(macOS)
@@ -73,10 +73,10 @@ func YGMeasureView(_ node: YGNodeRef!, _ width: YGFloat, _ widthMode: YGMeasureM
     let sizeThatFits = view.sizeThatFits(CGSize(width: constrainedWidth, height: constrainedHeight))
     #endif
 
-    let w = YGFloat(YGSanitizeMeasurement(constrainedWidth, sizeThatFits.width, widthMode))
-    let h = YGFloat(YGSanitizeMeasurement(constrainedHeight, sizeThatFits.height, heightMode))
+    let w = YGSanitizeMeasurement(constrainedWidth, sizeThatFits.width, widthMode)
+    let h = YGSanitizeMeasurement(constrainedHeight, sizeThatFits.height, heightMode)
 
-    return YGSize(width: w, height: h)
+    return YGSize(width: Double(w), height: Double(h))
 }
 
 @inline(__always) func YGNodeHasExactSameChildren(_ node: YGNodeRef, _ subviews: [UIView]) -> Bool {

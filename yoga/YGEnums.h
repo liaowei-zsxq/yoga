@@ -7,10 +7,9 @@
 
 #pragma once
 
-#include <yoga/YGMacros.h>
+#include "YGMacros.h"
 
 #ifdef __cplusplus
-YG_EXTERN_CXX_BEGIN
 namespace facebook {
 namespace yoga {
 namespace enums {
@@ -28,7 +27,6 @@ constexpr int n() {
 } // namespace enums
 } // namespace yoga
 } // namespace facebook
-YG_EXTERN_C_END
 #endif
 
 #define YG_ENUM_DECL(NAME, ...)                               \
@@ -39,7 +37,6 @@ YG_EXTERN_C_END
 #define YG_ENUM_SEQ_DECL(NAME, ...)  \
   YG_ENUM_DECL(NAME, __VA_ARGS__)    \
   YG_EXTERN_C_END                    \
-  YG_EXTERN_CXX_BEGIN                \
   namespace facebook {               \
   namespace yoga {                   \
   namespace enums {                  \
@@ -50,7 +47,6 @@ YG_EXTERN_C_END
   }                                  \
   }                                  \
   }                                  \
-  YG_EXTERN_C_END                    \
   YG_EXTERN_C_BEGIN
 #else
 #define YG_ENUM_SEQ_DECL YG_ENUM_DECL

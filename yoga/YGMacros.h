@@ -7,41 +7,10 @@
 
 #pragma once
 
-#if !defined(YG_UNAVAILABLE)
-# define YG_UNAVAILABLE(_msg) __attribute__((unavailable(_msg)))
-#endif
-
-#if defined(__LP64__) && __LP64__
-# define YGFLOAT_TYPE double
-# define YGFLOAT_IS_DOUBLE 1
-# define YGFLOAT_MIN DBL_MIN
-# define YGFLOAT_MAX DBL_MAX
-#else
-# define YGFLOAT_TYPE float
-# define YGFLOAT_IS_DOUBLE 0
-# define YGFLOAT_MIN FLT_MIN
-# define YGFLOAT_MAX FLT_MAX
-#endif
-
-typedef YGFLOAT_TYPE YGFloat;
-#define YGFLOAT_DEFINED 1
-
-#if !defined(YG_INLINE)
-# if defined(__GNUC__)
-#  define YG_INLINE static __inline__ __attribute__((always_inline))
-# elif defined(__MWERKS__) || defined(__cplusplus)
-#  define YG_INLINE YG_INLINE
-# elif defined(_MSC_VER)
-#  define YG_INLINE static __inline
-# endif
-#endif
-
 #ifdef __cplusplus
-#define YG_EXTERN_CXX_BEGIN extern "C++" {
 #define YG_EXTERN_C_BEGIN extern "C" {
 #define YG_EXTERN_C_END }
 #else
-#define YG_EXTERN_CXX_BEGIN
 #define YG_EXTERN_C_BEGIN
 #define YG_EXTERN_C_END
 #endif

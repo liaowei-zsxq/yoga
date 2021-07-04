@@ -44,9 +44,9 @@ TEST(YogaTest, rounding_value) {
 
 static YGSize measureText(
     YGNodeRef node,
-    YGFloat width,
+    float width,
     YGMeasureMode widthMode,
-    YGFloat height,
+    float height,
     YGMeasureMode heightMode) {
   return (YGSize){.width = 10, .height = 10};
 }

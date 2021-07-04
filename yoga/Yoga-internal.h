@@ -19,8 +19,8 @@ YG_EXTERN_C_BEGIN
 
 void YGNodeCalculateLayoutWithContext(
     YGNodeRef node,
-    YGFloat availableWidth,
-    YGFloat availableHeight,
+    float availableWidth,
+    float availableHeight,
     YGDirection ownerDirection,
     void* layoutContext);
 
@@ -29,7 +29,11 @@ YG_EXTERN_C_END
 namespace facebook {
 namespace yoga {
 
-inline bool isUndefined(YGFloat value) {
+inline bool isUndefined(float value) {
+  return std::isnan(value);
+}
+
+inline bool isUndefined(double value) {
   return std::isnan(value);
 }
 
@@ -45,13 +49,13 @@ extern const YGValue YGValueAuto;
 extern const YGValue YGValueZero;
 
 struct YGCachedMeasurement {
-  YGFloat availableWidth;
-  YGFloat availableHeight;
+  float availableWidth;
+  float availableHeight;
   YGMeasureMode widthMeasureMode;
   YGMeasureMode heightMeasureMode;
 
-  YGFloat computedWidth;
-  YGFloat computedHeight;
+  float computedWidth;
+  float computedHeight;
 
   YGCachedMeasurement()
       : availableWidth(-1),
@@ -139,8 +143,8 @@ public:
 } // namespace yoga
 } // namespace facebook
 
-static const YGFloat kDefaultFlexGrow = 0.0f;
-static const YGFloat kDefaultFlexShrink = 0.0f;
-static const YGFloat kWebDefaultFlexShrink = 1.0f;
+static const float kDefaultFlexGrow = 0.0f;
+static const float kDefaultFlexShrink = 0.0f;
+static const float kWebDefaultFlexShrink = 1.0f;
 
-extern bool YGFloatsEqual(const YGFloat a, const YGFloat b);
+extern bool YGFloatsEqual(const float a, const float b);

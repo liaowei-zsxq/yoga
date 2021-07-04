@@ -13,11 +13,11 @@
 
 using facebook::yoga::detail::CompactValue;
 
-const auto tooSmall = nextafter(CompactValue::LOWER_BOUND, -INFINITY);
+const auto tooSmall = nextafterf(CompactValue::LOWER_BOUND, -INFINITY);
 const auto tooLargePoints =
-    nextafter(CompactValue::UPPER_BOUND_POINT, INFINITY);
+    nextafterf(CompactValue::UPPER_BOUND_POINT, INFINITY);
 const auto tooLargePercent =
-    nextafter(CompactValue::UPPER_BOUND_PERCENT, INFINITY);
+    nextafterf(CompactValue::UPPER_BOUND_PERCENT, INFINITY);
 
 TEST(YogaTest, compact_value_can_represent_undefined) {
   auto c = CompactValue{YGValue{12.5f, YGUnitUndefined}};
@@ -335,28 +335,28 @@ TEST(YogaTest, can_be_assigned_from_YGValue) {
 TEST(YogaTest, compact_value_bound_representations) {
   ASSERT_EQ(
       CompactValue::of<YGUnitPoint>(CompactValue::LOWER_BOUND).repr(),
-      uint64_t{0});
+      uint32_t{0});
   ASSERT_EQ(
       CompactValue::of<YGUnitPoint>(CompactValue::UPPER_BOUND_POINT).repr(),
-      uint64_t{0x3fffffffffffffff});
+      uint32_t{0x3fffffff});
   ASSERT_EQ(
       CompactValue::of<YGUnitPercent>(CompactValue::LOWER_BOUND).repr(),
-      uint64_t{0x4000000000000000});
+      uint32_t{0x40000000});
   ASSERT_EQ(
       CompactValue::of<YGUnitPercent>(CompactValue::UPPER_BOUND_PERCENT).repr(),
-      uint64_t{0x7f7fffffffffffff});
+      uint32_t{0x7f7fffff});
 
   ASSERT_EQ(
       CompactValue::of<YGUnitPoint>(-CompactValue::LOWER_BOUND).repr(),
-      uint64_t{0x8000000000000000});
+      uint32_t{0x80000000});
   ASSERT_EQ(
       CompactValue::of<YGUnitPoint>(-CompactValue::UPPER_BOUND_POINT).repr(),
-      uint64_t{0xbfffffffffffffff});
+      uint32_t{0xbfffffff});
   ASSERT_EQ(
       CompactValue::of<YGUnitPercent>(-CompactValue::LOWER_BOUND).repr(),
-      uint64_t{0xc000000000000000});
+      uint32_t{0xc0000000});
   ASSERT_EQ(
       CompactValue::of<YGUnitPercent>(-CompactValue::UPPER_BOUND_PERCENT)
           .repr(),
-      uint64_t{0xff7fffffffffffff});
+      uint32_t{0xff7fffff});
 }

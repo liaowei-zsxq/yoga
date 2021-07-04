@@ -182,9 +182,7 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
     if (isnan(maxWidth) || maxWidth != width) {
         self._yoga_maxLayoutWidth = width;
         [self invalidateIntrinsicContentSize];
-#if TARGET_OS_OSX
-        [self.superview layoutSubtreeIfNeeded];
-#else
+#if !TARGET_OS_OSX
         [self.superview layoutIfNeeded];
 #endif
     }

@@ -281,9 +281,7 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
     if (view._yoga_isAutoLayoutEnabled) {
         view._yoga_maxLayoutWidth = YGUndefined;
         [view invalidateIntrinsicContentSize];
-#if TARGET_OS_OSX
-        [view.superview layoutSubtreeIfNeeded];
-#else
+#if !TARGET_OS_OSX
         [view.superview layoutIfNeeded];
 #endif
     }

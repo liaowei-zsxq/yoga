@@ -129,9 +129,7 @@ final public class YGLayout {
         if view._swift_yoga_isAutoLayoutEnabled {
             view._swift_yoga_maxLayoutWidth = .nan
             view.invalidateIntrinsicContentSize()
-            #if os(macOS)
-            view.superview?.layoutSubtreeIfNeeded()
-            #else
+            #if !os(macOS)
             view.superview?.layoutIfNeeded()
             #endif
         }

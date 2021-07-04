@@ -199,9 +199,7 @@ extension UIView {
         if maxWidth.isNaN || maxWidth != width {
             self._swift_yoga_maxLayoutWidth = width
             invalidateIntrinsicContentSize()
-            #if os(macOS)
-            superview?.layoutSubtreeIfNeeded()
-            #else
+            #if !os(macOS)
             superview?.layoutIfNeeded()
             #endif
         }

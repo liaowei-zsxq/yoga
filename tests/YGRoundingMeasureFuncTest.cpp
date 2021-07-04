@@ -28,8 +28,8 @@ static YGSize _measureCeil(
     double height,
     YGMeasureMode heightMode) {
   return YGSize{
-      width = 10.5f,
-      height = 10.5f,
+      width = 10.5,
+      height = 10.5,
   };
 }
 
@@ -40,8 +40,8 @@ static YGSize _measureFractial(
     double height,
     YGMeasureMode heightMode) {
   return YGSize{
-      width = 0.5f,
-      height = 0.5f,
+      width = 0.5,
+      height = 0.5,
   };
 }
 

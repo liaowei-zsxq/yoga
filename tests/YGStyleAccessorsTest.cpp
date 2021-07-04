@@ -179,7 +179,7 @@ ACCESSOR_TEST(
     CompactValue::ofAuto(),
     CompactValue::ofUndefined(),
     CompactValue::ofAuto(),
-    CompactValue::of<YGUnitPoint>(7777.77f),
+    CompactValue::of<YGUnitPoint>(7777.77),
     CompactValue::of<YGUnitPercent>(-100.0))
 
 INDEX_ACCESSOR_TEST(
@@ -188,7 +188,7 @@ INDEX_ACCESSOR_TEST(
     YGEdgeBottom,
     CompactValue::ofAuto(),
     CompactValue::ofUndefined(),
-    CompactValue::of<YGUnitPoint>(7777.77f),
+    CompactValue::of<YGUnitPoint>(7777.77),
     CompactValue::of<YGUnitPercent>(-100.0))
 
 INDEX_ACCESSOR_TEST(
@@ -197,14 +197,14 @@ INDEX_ACCESSOR_TEST(
     YGEdgeTop,
     CompactValue::ofAuto(),
     CompactValue::ofUndefined(),
-    CompactValue::of<YGUnitPoint>(7777.77f),
+    CompactValue::of<YGUnitPoint>(7777.77),
     CompactValue::of<YGUnitPercent>(-100.0))
 
 INDEX_ACCESSOR_TEST(
     padding,
     CompactValue::ofUndefined(),
     YGEdgeAll,
-    CompactValue::of<YGUnitPoint>(7777.77f),
+    CompactValue::of<YGUnitPoint>(7777.77),
     CompactValue::ofUndefined(),
     CompactValue::of<YGUnitPercent>(-100.0))
 
@@ -212,7 +212,7 @@ INDEX_ACCESSOR_TEST(
     border,
     CompactValue::ofUndefined(),
     YGEdgeHorizontal,
-    CompactValue::of<YGUnitPoint>(-7777.77f),
+    CompactValue::of<YGUnitPoint>(-7777.77),
     CompactValue::ofUndefined())
 
 INDEX_ACCESSOR_TEST(
@@ -221,7 +221,7 @@ INDEX_ACCESSOR_TEST(
     YGDimensionWidth,
     CompactValue::ofUndefined(),
     CompactValue::ofAuto(),
-    CompactValue::of<YGUnitPoint>(7777.77f),
+    CompactValue::of<YGUnitPoint>(7777.77),
     CompactValue::of<YGUnitPercent>(-100.0))
 
 INDEX_ACCESSOR_TEST(
@@ -230,7 +230,7 @@ INDEX_ACCESSOR_TEST(
     YGDimensionHeight,
     CompactValue::ofAuto(),
     CompactValue::ofUndefined(),
-    CompactValue::of<YGUnitPoint>(7777.77f),
+    CompactValue::of<YGUnitPoint>(7777.77),
     CompactValue::of<YGUnitPercent>(-100.0))
 
 INDEX_ACCESSOR_TEST(
@@ -239,7 +239,7 @@ INDEX_ACCESSOR_TEST(
     YGDimensionHeight,
     CompactValue::ofAuto(),
     CompactValue::ofUndefined(),
-    CompactValue::of<YGUnitPoint>(7777.77f),
+    CompactValue::of<YGUnitPoint>(7777.77),
     CompactValue::of<YGUnitPercent>(-100.0))
 
 ACCESSOR_TEST(

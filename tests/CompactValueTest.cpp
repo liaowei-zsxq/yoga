@@ -20,7 +20,7 @@ const auto tooLargePercent =
     nextafter(CompactValue::UPPER_BOUND_PERCENT, INFINITY);
 
 TEST(YogaTest, compact_value_can_represent_undefined) {
-  auto c = CompactValue{YGValue{12.5f, YGUnitUndefined}};
+  auto c = CompactValue{YGValue{12.5, YGUnitUndefined}};
   YGValue v = c;
   ASSERT_EQ(v, YGValueUndefined);
   ASSERT_NE(v, YGValueAuto);
@@ -299,23 +299,23 @@ TEST(YogaTest, dedicated_unit_factories) {
   ASSERT_EQ(CompactValue::ofUndefined(), CompactValue(YGValueUndefined));
   ASSERT_EQ(CompactValue::ofAuto(), CompactValue(YGValueAuto));
   ASSERT_EQ(
-      CompactValue::of<YGUnitPoint>(-9876.5f),
-      CompactValue(YGValue{-9876.5f, YGUnitPoint}));
+      CompactValue::of<YGUnitPoint>(-9876.5),
+      CompactValue(YGValue{-9876.5, YGUnitPoint}));
   ASSERT_EQ(
-      CompactValue::of<YGUnitPercent>(123.456f),
-      CompactValue(YGValue{123.456f, YGUnitPercent}));
+      CompactValue::of<YGUnitPercent>(123.456),
+      CompactValue(YGValue{123.456, YGUnitPercent}));
 }
 
 TEST(YogaTest, dedicated_unit_maybe_factories) {
   ASSERT_EQ(
-      CompactValue::ofMaybe<YGUnitPoint>(-9876.5f),
-      CompactValue(YGValue{-9876.5f, YGUnitPoint}));
+      CompactValue::ofMaybe<YGUnitPoint>(-9876.5),
+      CompactValue(YGValue{-9876.5, YGUnitPoint}));
   ASSERT_EQ(
       CompactValue::ofMaybe<YGUnitPoint>(YGUndefined),
       CompactValue(YGValueUndefined));
   ASSERT_EQ(
-      CompactValue::ofMaybe<YGUnitPercent>(123.456f),
-      CompactValue(YGValue{123.456f, YGUnitPercent}));
+      CompactValue::ofMaybe<YGUnitPercent>(123.456),
+      CompactValue(YGValue{123.456, YGUnitPercent}));
   ASSERT_EQ(
       CompactValue::ofMaybe<YGUnitPercent>(YGUndefined),
       CompactValue(YGValueUndefined));

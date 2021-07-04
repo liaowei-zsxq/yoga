@@ -106,7 +106,7 @@ TEST(YGNode, baseline_with_baseline_fn) {
   auto n = YGNode{};
   n.setBaselineFunc([](YGNode*, double w, double h) { return w + h; });
 
-  ASSERT_EQ(n.baseline(1.25f, 2.5f, nullptr), 3.75f);
+  ASSERT_EQ(n.baseline(1.25, 2.5, nullptr), 3.75);
 }
 
 TEST(YGNode, baseline_with_context_baseline_fn) {
@@ -116,7 +116,7 @@ TEST(YGNode, baseline_with_context_baseline_fn) {
   });
 
   auto ctx = -10.0;
-  ASSERT_EQ(n.baseline(1.25f, 2.5f, &ctx), -6.25f);
+  ASSERT_EQ(n.baseline(1.25, 2.5, &ctx), -6.25);
 }
 
 TEST(YGNode, hasBaselineFunc_after_unset) {

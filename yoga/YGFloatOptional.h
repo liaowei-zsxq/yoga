@@ -13,14 +13,14 @@
 
 struct YGFloatOptional {
 private:
-  YGFloat value_ = std::numeric_limits<YGFloat>::quiet_NaN();
+  double value_ = std::numeric_limits<double>::quiet_NaN();
 
 public:
-  explicit constexpr YGFloatOptional(YGFloat value) : value_(value) {}
+  explicit constexpr YGFloatOptional(double value) : value_(value) {}
   constexpr YGFloatOptional() = default;
 
   // returns the wrapped value, or a value x with YGIsUndefined(x) == true
-  constexpr YGFloat unwrap() const { return value_; }
+  constexpr double unwrap() const { return value_; }
 
   bool isUndefined() const { return std::isnan(value_); }
 };
@@ -35,17 +35,17 @@ inline bool operator!=(YGFloatOptional lhs, YGFloatOptional rhs) {
   return !(lhs == rhs);
 }
 
-inline bool operator==(YGFloatOptional lhs, YGFloat rhs) {
+inline bool operator==(YGFloatOptional lhs, double rhs) {
   return lhs == YGFloatOptional{rhs};
 }
-inline bool operator!=(YGFloatOptional lhs, YGFloat rhs) {
+inline bool operator!=(YGFloatOptional lhs, double rhs) {
   return !(lhs == rhs);
 }
 
-inline bool operator==(YGFloat lhs, YGFloatOptional rhs) {
+inline bool operator==(double lhs, YGFloatOptional rhs) {
   return rhs == lhs;
 }
-inline bool operator!=(YGFloat lhs, YGFloatOptional rhs) {
+inline bool operator!=(double lhs, YGFloatOptional rhs) {
   return !(lhs == rhs);
 }
 

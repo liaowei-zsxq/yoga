@@ -125,7 +125,7 @@ public:
     data.repr &= ~PERCENT_BIT;
     data.repr += BIAS;
 
-    return YGValue{(YGFloat)data.value,
+    return YGValue{data.value,
                    payload_.repr & 0x4000000000000000 ? YGUnitPercent : YGUnitPoint};
   }
 

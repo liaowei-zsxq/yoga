@@ -11,9 +11,9 @@
 
 static YGSize _measure(
     YGNodeRef node,
-    YGFloat width,
+    double width,
     YGMeasureMode widthMode,
-    YGFloat height,
+    double height,
     YGMeasureMode heightMode) {
   return YGSize{
       .width = widthMode == YGMeasureModeExactly ? width : 50,

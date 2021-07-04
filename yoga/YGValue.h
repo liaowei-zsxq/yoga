@@ -8,37 +8,35 @@
 #pragma once
 
 #include <math.h>
-#include <yoga/YGEnums.h>
-#include <yoga/YGMacros.h>
+#include "YGEnums.h"
+#include "YGMacros.h"
 
 #if defined(_MSC_VER) && defined(__clang__)
 #define COMPILING_WITH_CLANG_ON_WINDOWS
 #endif
 #if defined(COMPILING_WITH_CLANG_ON_WINDOWS)
-YG_EXTERN_CXX_BEGIN
 #include <limits>
-constexpr YGFloat YGUndefined = std::numeric_limits<YGFloat>::quiet_NaN();
-YG_EXTERN_C_END
+constexpr double YGUndefined = std::numeric_limits<double>::quiet_NaN();
 #else
 YG_EXTERN_C_BEGIN
 
 // Not defined in MSVC++
 #ifndef NAN
 static const uint32_t __nan = 0x7fc00000;
-#define NAN (*(const YGFloat*) __nan)
+#define NAN (*(const double*) __nan)
 #endif
 
-static const YGFloat YGUndefined = NAN;
+#define YGUndefined NAN
 #endif
 
-typedef struct {
-  YGFloat value;
+typedef struct YGValue {
+  double value;
   YGUnit unit;
 } YGValue;
 
-static const YGValue YGValueZero = { 0, YGUnitPoint };
-static const YGValue YGValueUndefined = { YGUndefined, YGUnitUndefined };
-static const YGValue YGValueAuto = { YGUndefined, YGUnitAuto };
+YOGA_EXPORT extern const YGValue YGValueAuto;
+YOGA_EXPORT extern const YGValue YGValueUndefined;
+YOGA_EXPORT extern const YGValue YGValueZero;
 
 #if !defined(COMPILING_WITH_CLANG_ON_WINDOWS)
 YG_EXTERN_C_END
@@ -46,7 +44,6 @@ YG_EXTERN_C_END
 #undef COMPILING_WITH_CLANG_ON_WINDOWS
 
 #ifdef __cplusplus
-YG_EXTERN_CXX_BEGIN
 
 inline bool operator==(const YGValue& lhs, const YGValue& rhs) {
   if (lhs.unit != rhs.unit) {
@@ -78,14 +75,14 @@ namespace yoga {
 namespace literals {
 
 inline YGValue operator"" _pt(long double value) {
-  return YGValue{static_cast<YGFloat>(value), YGUnitPoint};
+  return YGValue{static_cast<double>(value), YGUnitPoint};
 }
 inline YGValue operator"" _pt(unsigned long long value) {
   return operator"" _pt(static_cast<long double>(value));
 }
 
 inline YGValue operator"" _percent(long double value) {
-  return YGValue{static_cast<YGFloat>(value), YGUnitPercent};
+  return YGValue{static_cast<double>(value), YGUnitPercent};
 }
 inline YGValue operator"" _percent(unsigned long long value) {
   return operator"" _percent(static_cast<long double>(value));
@@ -95,5 +92,4 @@ inline YGValue operator"" _percent(unsigned long long value) {
 } // namespace yoga
 } // namespace facebook
 
-YG_EXTERN_C_END
 #endif

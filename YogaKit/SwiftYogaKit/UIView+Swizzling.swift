@@ -101,7 +101,7 @@ extension UIView {
     var _swift_yoga_maxLayoutWidth: CGFloat {
         get {
             guard let value = objc_getAssociatedObject(self, &kYGYogaMaxLayoutWidthAssociatedKey) as? NSNumber else {
-                return CGFloat(YGUndefined)
+                return .nan
             }
 
             return CGFloat(value.doubleValue)
@@ -110,7 +110,7 @@ extension UIView {
         set {
             var value = newValue
             if value < 0 {
-                value = CGFloat(YGUndefined)
+                value = .nan
             }
 
             objc_setAssociatedObject(self, &kYGYogaMaxLayoutWidthAssociatedKey, NSNumber(value: Double(value)), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
@@ -152,10 +152,10 @@ extension UIView {
         if yoga.isIncludedInLayout {
             var maxWidth = self._swift_yoga_maxLayoutWidth
             if maxWidth == 0 {
-                maxWidth = CGFloat(YGUndefined)
+                maxWidth = .nan
             }
 
-            size = yoga.calculateLayout(size: CGSize(width: maxWidth, height: CGFloat(YGUndefined)))
+            size = yoga.calculateLayout(size: CGSize(width: maxWidth, height: .nan))
         }
 
         self._swift_yoga_maxLayoutWidth = size.width

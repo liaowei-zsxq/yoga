@@ -10,9 +10,9 @@
 #include <yoga/Yoga.h>
 
 struct _MeasureConstraint {
-  YGFloat width;
+  double width;
   YGMeasureMode widthMode;
-  YGFloat height;
+  double height;
   YGMeasureMode heightMode;
 };
 
@@ -23,9 +23,9 @@ struct _MeasureConstraintList {
 
 static YGSize _measure(
     YGNodeRef node,
-    YGFloat width,
+    double width,
     YGMeasureMode widthMode,
-    YGFloat height,
+    double height,
     YGMeasureMode heightMode) {
   struct _MeasureConstraintList* constraintList =
       (struct _MeasureConstraintList*) node->getContext();

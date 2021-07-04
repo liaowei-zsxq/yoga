@@ -18,14 +18,14 @@ YGFlexDirection YGFlexDirectionCross(
       : YGFlexDirectionColumn;
 }
 
-YGFloat YGFloatMax(const YGFloat a, const YGFloat b) {
+double YGFloatMax(const double a, const double b) {
   if (!yoga::isUndefined(a) && !yoga::isUndefined(b)) {
     return fmax(a, b);
   }
   return yoga::isUndefined(a) ? b : a;
 }
 
-YGFloat YGFloatMin(const YGFloat a, const YGFloat b) {
+double YGFloatMin(const double a, const double b) {
   if (!yoga::isUndefined(a) && !yoga::isUndefined(b)) {
     return fmin(a, b);
   }
@@ -43,12 +43,12 @@ bool YGValueEqual(const YGValue& a, const YGValue& b) {
     return true;
   }
 
-  return fabs(a.value - b.value) < 0.0001;
+  return fabs(a.value - b.value) < 0.0001f;
 }
 
-bool YGFloatsEqual(const YGFloat a, const YGFloat b) {
+bool YGFloatsEqual(const double a, const double b) {
   if (!yoga::isUndefined(a) && !yoga::isUndefined(b)) {
-    return fabs(a - b) < 0.0001;
+    return fabs(a - b) < 0.0001f;
   }
   return yoga::isUndefined(a) && yoga::isUndefined(b);
 }
@@ -60,7 +60,7 @@ bool YGDoubleEqual(const double a, const double b) {
   return yoga::isUndefined(a) && yoga::isUndefined(b);
 }
 
-YGFloat YGFloatSanitize(const YGFloat val) {
+double YGFloatSanitize(const double val) {
   return yoga::isUndefined(val) ? 0 : val;
 }
 

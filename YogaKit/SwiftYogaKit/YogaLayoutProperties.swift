@@ -116,7 +116,7 @@ public extension YGLayout {
         }
 
         set {
-            YGNodeStyleSetFlex(node, YGFloat(newValue))
+            YGNodeStyleSetFlex(node, Double(newValue))
         }
     }
 
@@ -126,7 +126,7 @@ public extension YGLayout {
         }
 
         set {
-            YGNodeStyleSetFlexGrow(node, YGFloat(newValue))
+            YGNodeStyleSetFlexGrow(node, Double(newValue))
         }
     }
 
@@ -136,7 +136,7 @@ public extension YGLayout {
         }
 
         set {
-            YGNodeStyleSetFlexShrink(node, YGFloat(newValue))
+            YGNodeStyleSetFlexShrink(node, Double(newValue))
         }
     }
 
@@ -591,7 +591,7 @@ public extension YGLayout {
         }
 
         set {
-            YGNodeStyleSetBorder(node, .left, YGFloat(newValue))
+            YGNodeStyleSetBorder(node, .left, Double(newValue))
         }
     }
 
@@ -601,7 +601,7 @@ public extension YGLayout {
         }
 
         set {
-            YGNodeStyleSetBorder(node, .top, YGFloat(newValue))
+            YGNodeStyleSetBorder(node, .top, Double(newValue))
         }
     }
 
@@ -611,7 +611,7 @@ public extension YGLayout {
         }
 
         set {
-            YGNodeStyleSetBorder(node, .right, YGFloat(newValue))
+            YGNodeStyleSetBorder(node, .right, Double(newValue))
         }
     }
 
@@ -621,7 +621,7 @@ public extension YGLayout {
         }
 
         set {
-            YGNodeStyleSetBorder(node, .bottom, YGFloat(newValue))
+            YGNodeStyleSetBorder(node, .bottom, Double(newValue))
         }
     }
 
@@ -631,7 +631,7 @@ public extension YGLayout {
         }
 
         set {
-            YGNodeStyleSetBorder(node, .start, YGFloat(newValue))
+            YGNodeStyleSetBorder(node, .start, Double(newValue))
         }
     }
 
@@ -641,7 +641,7 @@ public extension YGLayout {
         }
 
         set {
-            YGNodeStyleSetBorder(node, .end, YGFloat(newValue))
+            YGNodeStyleSetBorder(node, .end, Double(newValue))
         }
     }
 
@@ -651,7 +651,7 @@ public extension YGLayout {
         }
 
         set {
-            YGNodeStyleSetBorder(node, .all, YGFloat(newValue))
+            YGNodeStyleSetBorder(node, .all, Double(newValue))
         }
     }
 
@@ -768,7 +768,7 @@ public extension YGLayout {
         }
 
         set {
-            YGNodeStyleSetAspectRatio(node, YGFloat(newValue))
+            YGNodeStyleSetAspectRatio(node, Double(newValue))
         }
     }
 }

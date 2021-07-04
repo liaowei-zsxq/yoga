@@ -76,7 +76,7 @@ final public class YGLayout {
 
     public var intrinsicSize: CGSize {
         get {
-            return calculateLayout(size: CGSize(width: CGFloat(YGUndefined), height: CGFloat(YGUndefined)))
+            return calculateLayout(size: CGSize(width: CGFloat.nan, height: CGFloat.nan))
         }
     }
 
@@ -127,7 +127,7 @@ final public class YGLayout {
         }
 
         if view._swift_yoga_isAutoLayoutEnabled {
-            view._swift_yoga_maxLayoutWidth = CGFloat(YGUndefined)
+            view._swift_yoga_maxLayoutWidth = .nan
             view.invalidateIntrinsicContentSize()
             #if os(macOS)
             view.superview?.layoutSubtreeIfNeeded()
@@ -153,11 +153,11 @@ final public class YGLayout {
         var size = view.bounds.size
 
         if dimensionFlexibility.contains(.width) {
-            size.width = CGFloat(YGUndefined)
+            size.width = .nan
         }
 
         if dimensionFlexibility.contains(.height) {
-            size.height = CGFloat(YGUndefined)
+            size.height = .nan
         }
 
         _ = calculateLayout(size: size)
@@ -169,7 +169,7 @@ final public class YGLayout {
         assert(isIncludedInLayout, "Yoga is not enabled for this view.")
 
         YGAttachNodesFromViewHierachy(view)
-        YGNodeCalculateLayout(node, YGFloat(size.width), YGFloat(size.height), YGNodeStyleGetDirection(node))
+        YGNodeCalculateLayout(node, Double(size.width), Double(size.height), YGNodeStyleGetDirection(node))
 
         return CGSize(width: CGFloat(node.width), height: CGFloat(node.height))
     }
@@ -235,27 +235,27 @@ extension YGNodeRef {
         }
     }
 
-    @inlinable var top: YGFloat {
+    @inlinable var top: CGFloat {
         get {
-            return YGNodeLayoutGetTop(self)
+            return CGFloat(YGNodeLayoutGetTop(self))
         }
     }
 
-    @inlinable var left: YGFloat {
+    @inlinable var left: CGFloat {
         get {
-            return YGNodeLayoutGetLeft(self)
+            return CGFloat(YGNodeLayoutGetLeft(self))
         }
     }
 
-    @inlinable var width: YGFloat {
+    @inlinable var width: CGFloat {
         get {
-            return max(YGNodeLayoutGetWidth(self), 0)
+            return CGFloat(max(YGNodeLayoutGetWidth(self), 0))
         }
     }
 
-    @inlinable var height: YGFloat {
+    @inlinable var height: CGFloat {
         get {
-            return max(YGNodeLayoutGetHeight(self), 0)
+            return CGFloat(max(YGNodeLayoutGetHeight(self), 0))
         }
     }
 }

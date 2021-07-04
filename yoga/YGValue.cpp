@@ -6,3 +6,7 @@
  */
 
 #include "YGValue.h"
+
+const YGValue YGValueZero = {0, YGUnitPoint};
+const YGValue YGValueUndefined = {YGUndefined, YGUnitUndefined};
+const YGValue YGValueAuto = {YGUndefined, YGUnitAuto};

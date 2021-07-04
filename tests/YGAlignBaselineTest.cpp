@@ -9,18 +9,18 @@
 #include <yoga/YGNode.h>
 #include <yoga/Yoga.h>
 
-static YGFloat _baselineFunc(
+static double _baselineFunc(
     YGNodeRef node,
-    const YGFloat width,
-    const YGFloat height) {
+    const double width,
+    const double height) {
   return height / 2;
 }
 
 static YGSize _measure1(
     YGNodeRef node,
-    YGFloat width,
+    double width,
     YGMeasureMode widthMode,
-    YGFloat height,
+    double height,
     YGMeasureMode heightMode) {
   return YGSize{
       .width = 42,
@@ -30,9 +30,9 @@ static YGSize _measure1(
 
 static YGSize _measure2(
     YGNodeRef node,
-    YGFloat width,
+    double width,
     YGMeasureMode widthMode,
-    YGFloat height,
+    double height,
     YGMeasureMode heightMode) {
   return YGSize{
       .width = 279,

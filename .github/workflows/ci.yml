@@ -60,6 +60,8 @@ jobs:
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Test Swift Package Manager
+        run: swift build -v
       - name: Test on iPhone 11
         run: xcodebuild -project 'YogaKit.xcodeproj' -scheme 'YogaKit' -configuration Debug -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 11' clean test
       - name: Test on iPhone 11 Pro Max

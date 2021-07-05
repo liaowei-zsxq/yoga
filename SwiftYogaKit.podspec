@@ -22,6 +22,7 @@ podspec = Pod::Spec.new do |spec|
   spec.platforms = { :ios => "9.0", :osx => "10.9", :tvos => "9.0" }
   spec.module_name = 'SwiftYogaKit'
   spec.dependency 'Yoga', '~> 1.14.1'
+  spec.dependency 'YogaKit', '~> 1.18.2'
   # Fixes the bug related the xcode 11 not able to find swift related frameworks.
   # https://github.com/Carthage/Carthage/issues/2825
   # https://twitter.com/krzyzanowskim/status/1151549874653081601?s=21

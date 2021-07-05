@@ -29,18 +29,22 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "SwiftYogaKit",
-            dependencies: ["Yoga"],
+            dependencies: ["YogaKit", "Yoga"],
             path: ".",
             exclude: ["yoga/include/Yoga.modulemap"],
-            sources: ["YogaKit/SwiftYogaKit"]),
+            sources: ["YogaKit/SwiftYogaKit"],
+            cSettings: [
+                .headerSearchPath("yoga")
+            ]),
         .target(
             name: "YogaKit",
             dependencies: ["Yoga"],
             path: ".",
             sources: ["YogaKit/Source"],
-            publicHeadersPath: "YogaKit/Source",
+            publicHeadersPath: "YogaKit/Source/include",
             cSettings: [
-                .headerSearchPath(".")
+                .headerSearchPath("."),
+                .headerSearchPath("yoga")
             ]),
         .target(
             name: "Yoga",

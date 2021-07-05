@@ -11,15 +11,5 @@ import SwiftYogaKit
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    func applicationWillFinishLaunching(_ aNotification: Notification) {
-        NSView.SwiftYogaKitSwizzle()
-    }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
-    }
-
-
 }
 

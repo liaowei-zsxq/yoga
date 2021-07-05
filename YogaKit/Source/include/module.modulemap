@@ -1,0 +1,7 @@
+module YogaKit [system][extern_c] {
+    umbrella header "../YogaKit.h"
+
+    export *
+    module * { export * }
+}
+

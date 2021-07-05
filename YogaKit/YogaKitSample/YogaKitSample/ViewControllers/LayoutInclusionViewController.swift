@@ -7,7 +7,6 @@
 
 import UIKit
 import SwiftYogaKit
-import YGLayoutExtensions
 
 final class LayoutInclusionViewController: UIViewController {
     private let button: UIButton = UIButton(type: .system)

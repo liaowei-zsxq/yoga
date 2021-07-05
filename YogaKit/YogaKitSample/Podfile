@@ -4,7 +4,6 @@ use_frameworks!
 target 'YogaKitSample' do
     platform :ios, '9.0'
     pod 'Yoga', :path => '../../Yoga.podspec'
-    pod 'YGLayoutExtensions', :path => '../../YGLayoutExtensions.podspec'
     pod 'SwiftYogaKit', :path => '../../SwiftYogaKit.podspec'
     pod 'IGListKit', '~> 4.0.0'
 end
@@ -18,6 +17,5 @@ end
 target 'YogaKitOSXSample' do
     platform :osx, '10.10'
     pod 'Yoga', :path => '../../Yoga.podspec'
-    pod 'YGLayoutExtensions', :path => '../../YGLayoutExtensions.podspec'
     pod 'SwiftYogaKit', :path => '../../SwiftYogaKit.podspec'
 end

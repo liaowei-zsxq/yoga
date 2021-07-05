@@ -174,7 +174,7 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
 }
 
 - (void)_yoga_updateConstraintsIfNeeded:(CGFloat)width {
-    if (self._yoga_isAutoLayoutEnabled) {
+    if (!self._yoga_isAutoLayoutEnabled) {
         return;
     }
 
@@ -194,7 +194,7 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
     }
 
     for (NSLayoutConstraint *constraint in self.constraints) {
-        if (@available(macOS 10.0, iOS 8.0, tvOS 8.0, *)) {
+        if (@available(macOS 10.10, iOS 8.0, tvOS 8.0, *)) {
             if (constraint.isActive) {
                 return YES;
             }

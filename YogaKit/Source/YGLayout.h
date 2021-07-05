@@ -89,7 +89,7 @@ typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
   unconstrained dimension.
  */
 - (CGSize)calculateLayoutWithSize:(CGSize)size
-    NS_SWIFT_NAME(calculateLayout(with:));
+    NS_SWIFT_NAME(calculateLayout(size:));
 
 /**
  Returns the number of children that are using Flexbox.

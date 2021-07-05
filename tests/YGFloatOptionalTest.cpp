@@ -14,8 +14,8 @@
 constexpr auto empty = YGFloatOptional{};
 constexpr auto zero = YGFloatOptional{0.0};
 constexpr auto one = YGFloatOptional{1.0};
-constexpr auto positive = YGFloatOptional{1234.5f};
-constexpr auto negative = YGFloatOptional{-9876.5f};
+constexpr auto positive = YGFloatOptional{1234.5};
+constexpr auto negative = YGFloatOptional{-9876.5};
 
 TEST(YGFloatOptional, value) {
   ASSERT_TRUE(YGFloatIsUndefined(empty.unwrap()));
@@ -198,12 +198,12 @@ TEST(YGFloatOptionalTest, YGFloatOptionalMax) {
   ASSERT_EQ(YGFloatOptionalMax(negative, empty), negative);
   ASSERT_EQ(YGFloatOptionalMax(negative, YGFloatOptional{-INFINITY}), negative);
   ASSERT_EQ(
-      YGFloatOptionalMax(YGFloatOptional{1.0}, YGFloatOptional{1.125f}),
-      YGFloatOptional{1.125f});
+      YGFloatOptionalMax(YGFloatOptional{1.0}, YGFloatOptional{1.125}),
+      YGFloatOptional{1.125});
 }
 
 TEST(YGFloatOptionalTest, unwrap) {
   ASSERT_TRUE(YGFloatIsUndefined(empty.unwrap()));
   ASSERT_EQ(zero.unwrap(), 0.0);
-  ASSERT_EQ(YGFloatOptional{123456.78f}.unwrap(), 123456.78f);
+  ASSERT_EQ(YGFloatOptional{123456.78}.unwrap(), 123456.78);
 }

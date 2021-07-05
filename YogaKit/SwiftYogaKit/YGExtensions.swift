@@ -46,22 +46,6 @@ extension YGValue: ExpressibleByIntegerLiteral, ExpressibleByFloatLiteral {
     @inlinable public init(floatLiteral value: Float) {
         self = YGValue(value: Double(value), unit: .point)
     }
-
-    @inlinable public init(_ value: Int) {
-        self = YGValue(value: Double(value), unit: .point)
-    }
-
-    @inlinable public init(_ value: Float) {
-        self = YGValue(value: Double(value), unit: .point)
-    }
-
-    @inlinable public init(_ value: Double) {
-        self = YGValue(value: value, unit: .point)
-    }
-
-    @inlinable public init(_ value: CGFloat) {
-        self = YGValue(value: Double(value), unit: .point)
-    }
 }
 
 extension YGValue {

@@ -1,0 +1,5 @@
+module Yoga [system][extern_c] {
+    header "Yoga-umbrella.h"
+
+    export *
+}

@@ -15,13 +15,11 @@
 #import <UIKit/UIKit.h>
 #endif
 
-#import <yoga/YGEnums.h>
-#import <yoga/YGMacros.h>
-#import <yoga/Yoga.h>
-
-NS_ASSUME_NONNULL_BEGIN
+@import Yoga;
 
 @class YGLayout;
+
+NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^YGLayoutConfigurationBlock)(YGLayout* layout);
 

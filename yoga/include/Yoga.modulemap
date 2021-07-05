@@ -2,5 +2,4 @@ framework module Yoga [system][extern_c] {
     umbrella header "Yoga-umbrella.h"
 
     export *
-    module * { export * }
 }

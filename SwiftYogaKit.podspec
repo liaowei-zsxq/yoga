@@ -19,7 +19,7 @@ podspec = Pod::Spec.new do |spec|
     :tag => "1.18.0",
   }
 
-  spec.platforms = { :ios => "8.0", :osx => "10.9", :tvos => "9.0" }
+  spec.platforms = { :ios => "9.0", :osx => "10.9", :tvos => "9.0" }
   spec.module_name = 'SwiftYogaKit'
   spec.dependency 'Yoga', '~> 1.14.1'
   # Fixes the bug related the xcode 11 not able to find swift related frameworks.
@@ -27,7 +27,7 @@ podspec = Pod::Spec.new do |spec|
   # https://twitter.com/krzyzanowskim/status/1151549874653081601?s=21
   spec.pod_target_xcconfig = {"LD_VERIFY_BITCODE": "NO"}
   spec.source_files = 'YogaKit/SwiftYogaKit/*.swift'
-  spec.swift_version = '5.1'
+  spec.swift_version = '5.0'
   spec.static_framework = true
 end
 

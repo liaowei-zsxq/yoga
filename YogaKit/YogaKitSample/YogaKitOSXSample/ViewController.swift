@@ -8,7 +8,6 @@
 
 import Cocoa
 import SwiftYogaKit
-import YGLayoutExtensions
 
 class ViewController: NSViewController {
 

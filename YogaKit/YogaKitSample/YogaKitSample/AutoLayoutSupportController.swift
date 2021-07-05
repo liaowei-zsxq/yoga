@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import YGLayoutExtensions
 
 extension UILayoutPriority {
     static let defaultMedium = UILayoutPriority(rawValue: 501)

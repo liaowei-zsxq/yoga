@@ -107,7 +107,7 @@ inline YGFloatOptional YGResolveValue(
     case YGUnitPoint:
       return YGFloatOptional{value.value};
     case YGUnitPercent:
-      return YGFloatOptional{value.value * ownerSize * 0.01f};
+      return YGFloatOptional{value.value * ownerSize * 0.01};
     default:
       return YGFloatOptional{};
   }

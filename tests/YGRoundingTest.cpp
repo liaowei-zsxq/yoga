@@ -317,8 +317,8 @@ TEST(YogaTest, rounding_total_fractial) {
   const YGConfigRef config = YGConfigNew();
 
   const YGNodeRef root = YGNodeNewWithConfig(config);
-  YGNodeStyleSetWidth(root, 87.4f);
-  YGNodeStyleSetHeight(root, 113.4f);
+  YGNodeStyleSetWidth(root, 87.4);
+  YGNodeStyleSetHeight(root, 113.4);
 
   const YGNodeRef root_child0 = YGNodeNewWithConfig(config);
   YGNodeStyleSetFlexGrow(root_child0, 0.7);
@@ -332,7 +332,7 @@ TEST(YogaTest, rounding_total_fractial) {
   YGNodeInsertChild(root, root_child1, 1);
 
   const YGNodeRef root_child2 = YGNodeNewWithConfig(config);
-  YGNodeStyleSetFlexGrow(root_child2, 1.1f);
+  YGNodeStyleSetFlexGrow(root_child2, 1.1);
   YGNodeStyleSetHeight(root_child2, 10.7);
   YGNodeInsertChild(root, root_child2, 2);
   YGNodeCalculateLayout(root, YGUndefined, YGUndefined, YGDirectionLTR);
@@ -388,8 +388,8 @@ TEST(YogaTest, rounding_total_fractial_nested) {
   const YGConfigRef config = YGConfigNew();
 
   const YGNodeRef root = YGNodeNewWithConfig(config);
-  YGNodeStyleSetWidth(root, 87.4f);
-  YGNodeStyleSetHeight(root, 113.4f);
+  YGNodeStyleSetWidth(root, 87.4);
+  YGNodeStyleSetHeight(root, 113.4);
 
   const YGNodeRef root_child0 = YGNodeNewWithConfig(config);
   YGNodeStyleSetFlexGrow(root_child0, 0.7);
@@ -401,14 +401,14 @@ TEST(YogaTest, rounding_total_fractial_nested) {
   YGNodeStyleSetFlexGrow(root_child0_child0, 1);
   YGNodeStyleSetFlexBasis(root_child0_child0, 0.3);
   YGNodeStyleSetPosition(root_child0_child0, YGEdgeBottom, 13.3);
-  YGNodeStyleSetHeight(root_child0_child0, 9.9f);
+  YGNodeStyleSetHeight(root_child0_child0, 9.9);
   YGNodeInsertChild(root_child0, root_child0_child0, 0);
 
   const YGNodeRef root_child0_child1 = YGNodeNewWithConfig(config);
   YGNodeStyleSetFlexGrow(root_child0_child1, 4);
   YGNodeStyleSetFlexBasis(root_child0_child1, 0.3);
   YGNodeStyleSetPosition(root_child0_child1, YGEdgeTop, 13.3);
-  YGNodeStyleSetHeight(root_child0_child1, 1.1f);
+  YGNodeStyleSetHeight(root_child0_child1, 1.1);
   YGNodeInsertChild(root_child0, root_child0_child1, 1);
 
   const YGNodeRef root_child1 = YGNodeNewWithConfig(config);
@@ -417,7 +417,7 @@ TEST(YogaTest, rounding_total_fractial_nested) {
   YGNodeInsertChild(root, root_child1, 1);
 
   const YGNodeRef root_child2 = YGNodeNewWithConfig(config);
-  YGNodeStyleSetFlexGrow(root_child2, 1.1f);
+  YGNodeStyleSetFlexGrow(root_child2, 1.1);
   YGNodeStyleSetHeight(root_child2, 10.7);
   YGNodeInsertChild(root, root_child2, 2);
   YGNodeCalculateLayout(root, YGUndefined, YGUndefined, YGDirectionLTR);
@@ -494,7 +494,7 @@ TEST(YogaTest, rounding_fractial_input_1) {
 
   const YGNodeRef root = YGNodeNewWithConfig(config);
   YGNodeStyleSetWidth(root, 100);
-  YGNodeStyleSetHeight(root, 113.4f);
+  YGNodeStyleSetHeight(root, 113.4);
 
   const YGNodeRef root_child0 = YGNodeNewWithConfig(config);
   YGNodeStyleSetFlexGrow(root_child0, 1);
@@ -637,7 +637,7 @@ TEST(YogaTest, rounding_fractial_input_3) {
   const YGNodeRef root = YGNodeNewWithConfig(config);
   YGNodeStyleSetPosition(root, YGEdgeTop, 0.3);
   YGNodeStyleSetWidth(root, 100);
-  YGNodeStyleSetHeight(root, 113.4f);
+  YGNodeStyleSetHeight(root, 113.4);
 
   const YGNodeRef root_child0 = YGNodeNewWithConfig(config);
   YGNodeStyleSetFlexGrow(root_child0, 1);
@@ -709,7 +709,7 @@ TEST(YogaTest, rounding_fractial_input_4) {
   const YGNodeRef root = YGNodeNewWithConfig(config);
   YGNodeStyleSetPosition(root, YGEdgeTop, 0.7);
   YGNodeStyleSetWidth(root, 100);
-  YGNodeStyleSetHeight(root, 113.4f);
+  YGNodeStyleSetHeight(root, 113.4);
 
   const YGNodeRef root_child0 = YGNodeNewWithConfig(config);
   YGNodeStyleSetFlexGrow(root_child0, 1);

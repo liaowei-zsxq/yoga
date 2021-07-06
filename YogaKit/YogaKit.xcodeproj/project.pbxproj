@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1511C08C251ED11900A2C621 /* Yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15865FFE24E58BD800345BD7 /* Yoga.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		1511C08C251ED11900A2C621 /* Yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15865FFE24E58BD800345BD7 /* Yoga.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		1511C0BB251F1BB600A2C621 /* YGLayoutProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511C0BA251F1BB600A2C621 /* YGLayoutProperties.swift */; };
 		153098C22692ED29009B4135 /* YGExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153098C12692ED29009B4135 /* YGExtensions.swift */; };
 		153098CA26930BAF009B4135 /* Yoga-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 153098C826930BAE009B4135 /* Yoga-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -16,14 +16,14 @@
 		153B526C24E6ADFA008156D3 /* YogaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15865F5424E5834E00345BD7 /* YogaKit.framework */; platformFilter = ios; };
 		153B526E24E6AECF008156D3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 153B526D24E6AECF008156D3 /* libc++.tbd */; platformFilter = ios; };
 		154A6EF524E6B1260091264C /* dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154A6EF424E6B1260091264C /* dummy.swift */; };
-		154D2C9A269362600027364F /* YogaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15865F5424E5834E00345BD7 /* YogaKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		154D2C9A269362600027364F /* YogaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15865F5424E5834E00345BD7 /* YogaKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		15865F6624E583F000345BD7 /* YGLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 15865F5F24E583F000345BD7 /* YGLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15865F6724E583F000345BD7 /* UIView+Yoga.h in Headers */ = {isa = PBXBuildFile; fileRef = 15865F6024E583F000345BD7 /* UIView+Yoga.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15865F6824E583F000345BD7 /* YGLayout+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 15865F6124E583F000345BD7 /* YGLayout+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		15865F6924E583F000345BD7 /* YGLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 15865F6224E583F000345BD7 /* YGLayout.m */; };
 		15865F6A24E583F000345BD7 /* UIView+Yoga.m in Sources */ = {isa = PBXBuildFile; fileRef = 15865F6324E583F000345BD7 /* UIView+Yoga.m */; };
 		15865F6C24E583F000345BD7 /* YogaKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 15865F6524E583F000345BD7 /* YogaKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1586600824E58C0F00345BD7 /* Yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15865FFE24E58BD800345BD7 /* Yoga.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		1586600824E58C0F00345BD7 /* Yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15865FFE24E58BD800345BD7 /* Yoga.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		1586602924E58C3700345BD7 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1586600924E58C3600345BD7 /* Utils.cpp */; };
 		1586602A24E58C3700345BD7 /* experiments.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1586600B24E58C3600345BD7 /* experiments.cpp */; };
 		1586602B24E58C3700345BD7 /* experiments-inl.h in Headers */ = {isa = PBXBuildFile; fileRef = 1586600C24E58C3600345BD7 /* experiments-inl.h */; settings = {ATTRIBUTES = (Private, ); }; };

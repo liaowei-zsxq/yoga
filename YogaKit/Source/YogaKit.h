@@ -6,5 +6,10 @@
 //  Copyright © 2020 facebook. All rights reserved.
 //
 
+#ifdef __OBJC__
+#import <CoreGraphics/CoreGraphics.h>
+#import <Foundation/Foundation.h>
+#endif
+
 #import "YGLayout.h"
 #import "UIView+Yoga.h"

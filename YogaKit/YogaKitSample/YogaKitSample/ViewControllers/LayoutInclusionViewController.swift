@@ -6,7 +6,7 @@
  */
 
 import UIKit
-import SwiftYogaKit
+import YogaKit_Swift
 
 final class LayoutInclusionViewController: UIViewController {
     private let button: UIButton = UIButton(type: .system)

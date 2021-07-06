@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SwiftYogaKit
+import YogaKit_Swift
 
 class TWTimelineViewController: UIViewController {
 

@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import SwiftYogaKit
+import YogaKit_Swift
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {

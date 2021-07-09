@@ -835,13 +835,6 @@
   XCTAssertLessThan(fabs(CGRectGetHeight(subView2.frame) - onePixel), FLT_EPSILON);
 }
 
-- (void)testStandlizedRectWork {
-  UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, NAN, 10)];
-  XCTAssertEqual(v.frame.size.width, 0);
-  v.frame = CGRectMake(0, 0, 10, NAN);
-  XCTAssertEqual(v.frame.size.height, 0);
-}
-
 - (void)testBaseViewLeafNodeWork {
   UIView *container = [[UIView alloc] initWithFrame:CGRectZero];
   [container.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {

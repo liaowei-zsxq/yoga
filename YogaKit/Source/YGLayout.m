@@ -158,6 +158,14 @@ static YGConfigRef YGGlobalConfig() {
     return globalConfig;
 }
 
+NS_INLINE CGFloat YGFloatValidate(CGFloat x) {
+    return isnan(x) || isinf(x) ? 0 : x;
+}
+
+NS_INLINE CGFloat YGFloatNonNegative(CGFloat x) {
+    return fmax(YGFloatValidate(x), 0);
+}
+
 @interface YGLayout ()
 
 @property(nonatomic, weak, readonly) UIView* view;
@@ -361,8 +369,8 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
     YGNodeCalculateLayout(node, size.width, size.height, YGNodeStyleGetDirection(node));
 
     return (CGSize){
-        .width = fmax(YGNodeLayoutGetWidth(node), 0),
-        .height = fmax(YGNodeLayoutGetHeight(node), 0)
+        .width = YGFloatNonNegative((CGFloat)YGNodeLayoutGetWidth(node)),
+        .height = YGFloatNonNegative((CGFloat)YGNodeLayoutGetHeight(node))
     };
 }
 
@@ -509,12 +517,17 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
     }
 
     YGNodeRef node = yoga.node;
+    CGFloat left = YGFloatValidate((CGFloat)YGNodeLayoutGetLeft(node));
+    CGFloat top = YGFloatValidate((CGFloat)YGNodeLayoutGetTop(node));
 
-    const CGPoint topLeft = (CGPoint) { .x = YGNodeLayoutGetLeft(node), .y = YGNodeLayoutGetTop(node) };
+    const CGPoint topLeft = (CGPoint) { .x = left, .y = top };
+
+    CGFloat width = YGFloatNonNegative((CGFloat)YGNodeLayoutGetWidth(node));
+    CGFloat height = YGFloatNonNegative((CGFloat)YGNodeLayoutGetHeight(node));
 
     const CGSize size = {
-        .width = fmax((CGFloat)YGNodeLayoutGetWidth(node), 0),
-        .height = fmax((CGFloat)YGNodeLayoutGetHeight(node), 0)
+        .width = width,
+        .height = height
     };
 
 #if TARGET_OS_OSX
@@ -539,7 +552,7 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
     if (superview && !superview.isFlipped && superview.isYogaEnabled) {
         YGLayout *yoga = superview.yoga;
         if (yoga.isIncludedInLayout) {
-            CGFloat height = (CGFloat)fmax(YGNodeLayoutGetHeight(yoga.node), 0);
+            CGFloat height = YGFloatNonNegative((CGFloat)YGNodeLayoutGetHeight(yoga.node));
             frame.origin.y = height - CGRectGetMaxY(frame);
         }
     }

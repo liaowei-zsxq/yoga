@@ -131,19 +131,20 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
 - (CGSize)_yoga_intrinsicContentSize {
     CGSize size = [self _yoga_intrinsicContentSize];
 
-    if (self.isYogaEnabled) {
-        YGLayout *yoga = self.yoga;
-        if (yoga.isIncludedInLayout) {
-            CGFloat maxWidth = self._yoga_maxLayoutWidth;
-            if (maxWidth == 0) {
-                maxWidth = YGUndefined;
-            }
-            
-            size = [yoga calculateLayoutWithSize:CGSizeMake(maxWidth, YGUndefined)];
-        }
+    if (!self.isYogaEnabled) {
+        return size;
     }
 
-    self._yoga_maxLayoutWidth = size.width;
+    YGLayout *yoga = self.yoga;
+    if (yoga.isIncludedInLayout) {
+        CGFloat maxWidth = self._yoga_maxLayoutWidth;
+        if (maxWidth == 0) {
+            maxWidth = YGUndefined;
+        }
+
+        size = [yoga calculateLayoutWithSize:CGSizeMake(maxWidth, YGUndefined)];
+        self._yoga_maxLayoutWidth = size.width;
+    }
 
     return size;
 }
@@ -174,7 +175,7 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
 }
 
 - (void)_yoga_updateConstraintsIfNeeded:(CGFloat)width {
-    if (!self._yoga_isAutoLayoutEnabled) {
+    if (!self.isYogaEnabled || !self._yoga_isAutoLayoutEnabled) {
         return;
     }
 

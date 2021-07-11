@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,9 +12,9 @@
 		153098C22692ED29009B4135 /* YGExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153098C12692ED29009B4135 /* YGExtensions.swift */; };
 		153098CA26930BAF009B4135 /* Yoga-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 153098C826930BAE009B4135 /* Yoga-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		153B526524E6AD8D008156D3 /* YogaKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 153B526324E6AD8D008156D3 /* YogaKitTests.m */; };
-		153B526B24E6ADFA008156D3 /* Yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15865FFE24E58BD800345BD7 /* Yoga.framework */; platformFilter = ios; };
-		153B526C24E6ADFA008156D3 /* YogaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15865F5424E5834E00345BD7 /* YogaKit.framework */; platformFilter = ios; };
-		153B526E24E6AECF008156D3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 153B526D24E6AECF008156D3 /* libc++.tbd */; platformFilter = ios; };
+		153B526B24E6ADFA008156D3 /* Yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15865FFE24E58BD800345BD7 /* Yoga.framework */; };
+		153B526C24E6ADFA008156D3 /* YogaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15865F5424E5834E00345BD7 /* YogaKit.framework */; };
+		153B526E24E6AECF008156D3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 153B526D24E6AECF008156D3 /* libc++.tbd */; };
 		154A6EF524E6B1260091264C /* dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154A6EF424E6B1260091264C /* dummy.swift */; };
 		154D2C9A269362600027364F /* YogaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15865F5424E5834E00345BD7 /* YogaKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		15865F6624E583F000345BD7 /* YGLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 15865F5F24E583F000345BD7 /* YGLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -583,13 +583,11 @@
 		};
 		153B526824E6ADF4008156D3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			platformFilter = ios;
 			target = 15865FFD24E58BD800345BD7 /* Yoga */;
 			targetProxy = 153B526724E6ADF4008156D3 /* PBXContainerItemProxy */;
 		};
 		153B526A24E6ADF4008156D3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			platformFilter = ios;
 			target = 15865F5324E5834E00345BD7 /* YogaKit */;
 			targetProxy = 153B526924E6ADF4008156D3 /* PBXContainerItemProxy */;
 		};
@@ -664,13 +662,12 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.YogaKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -684,12 +681,11 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.YogaKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

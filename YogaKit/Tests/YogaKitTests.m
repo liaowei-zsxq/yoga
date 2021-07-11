@@ -7,9 +7,74 @@
 
 #import <XCTest/XCTest.h>
 
-#import <YogaKit/UIView+Yoga.h>
-#import <YogaKit/YGLayout+Private.h>
-#import <yoga/Yoga.h>
+@import YogaKit;
+
+#if TARGET_OS_OSX
+
+#ifdef UIView
+#undef UIView
+#endif
+
+#ifdef UIControl
+#undef UIControl
+#endif
+
+@interface NSView (Exchange)
+
+- (void)exchangeSubviewAtIndex:(NSInteger)index1
+            withSubviewAtIndex:(NSInteger)index2;
+
+@end
+
+@implementation NSView (Exchange)
+
+- (void)exchangeSubviewAtIndex:(NSInteger)index1
+            withSubviewAtIndex:(NSInteger)index2 {
+  NSInteger count = self.subviews.count;
+  if (index1 >= count || index2 >= count || index1 == index2) {
+    return;;
+  }
+
+  NSInteger subview1Index = MIN(index1, index2);
+  NSInteger subview2Index = MAX(index1, index2);
+  NSView *subview1 = self.subviews[subview1Index];
+  NSView *subview2 = self.subviews[subview2Index];
+  [self addSubview:subview1 positioned:NSWindowAbove relativeTo:self.subviews[subview2Index - 1]];
+  [self addSubview:subview2 positioned:NSWindowBelow relativeTo:self.subviews[subview1Index + 1]];
+}
+
+@end
+
+@interface NSFlippedView : NSView
+
+@end
+
+@implementation NSFlippedView
+
+- (BOOL)isFlipped {
+  return YES;
+}
+
+@end
+
+@interface NSFlippedControl : NSControl
+
+@end
+
+@implementation NSFlippedControl
+
+- (BOOL)isFlipped {
+  return YES;
+}
+
+@end
+
+#define UIView NSFlippedView
+#define UIControl NSFlippedControl
+#define kScaleFactor NSScreen.mainScreen.backingScaleFactor
+#else
+#define kScaleFactor UIScreen.mainScreen.scale
+#endif
 
 @interface YogaKitTests : XCTestCase
 @end
@@ -89,6 +154,7 @@
   dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
 }
 
+#if !TARGET_OS_OSX
 - (void)testSizeThatFitsSmoke {
   UIView* container = [[UIView alloc] initWithFrame:CGRectZero];
   container.yoga.flexDirection = YGFlexDirectionRow;
@@ -118,6 +184,7 @@
   XCTAssertEqual(longTextLabelSize.width + textBadgeView.yoga.intrinsicSize.width,
                  containerSize.width);
 }
+#endif
 
 - (void)testSizeThatFitsEmptyView {
   UIView* view = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 200, 200)];
@@ -221,6 +288,7 @@
   XCTAssertTrue(subview.yoga.isDirty);
 }
 
+#if !TARGET_OS_OSX
 - (void)testThatMarkingLeafsAsDirtyWillTriggerASizeRecalculation {
   UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 500, 50)];
   container.yoga.isIncludedInLayout = YES;
@@ -244,6 +312,7 @@
   [container.yoga applyLayoutPreservingOrigin:YES];
   XCTAssertFalse(CGSizeEqualToSize(view.frame.size, viewSizeAfterFirstPass));
 }
+#endif
 
 - (void)testFrameAndOriginPlacement {
   const CGSize containerSize = CGSizeMake(330, 50);
@@ -731,6 +800,7 @@
   XCTAssertEqual(view.yoga.borderEndWidth, 7);
 }
 
+#if !TARGET_OS_OSX
 - (void)testOverflowPropertiesWork {
   UIView* container = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 30, 30)];
   [container.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
@@ -773,7 +843,9 @@
   XCTAssertEqual(CGRectGetWidth(container.frame), 30);
   XCTAssertEqual(CGRectGetWidth(label.frame), 30);
 }
+#endif
 
+#if !TARGET_OS_OSX
 - (void)testIsIncludedInLayoutWork {
   UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
   [view.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
@@ -802,9 +874,10 @@
   [view.yoga applyLayoutPreservingOrigin:YES];
   XCTAssertEqual(CGRectGetHeight(container.frame), 0);
 }
+#endif
 
 - (void)testOnePixelWork {
-  CGFloat onePixel = 1 / UIScreen.mainScreen.scale;
+  CGFloat onePixel = 1 / kScaleFactor;
 
   UIView* view = [[UIView alloc] initWithFrame:CGRectZero];
   [view.yoga configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
@@ -917,7 +990,11 @@
       layout.marginTop = YGPointValue(24);
   }];
 
+#if TARGET_OS_OSX
+  [view layoutSubtreeIfNeeded];
+#else
   [view layoutIfNeeded];
+#endif
 
   XCTAssertEqual(container.frame.origin.x, 24);
   XCTAssertEqual(container.frame.origin.y, 24);

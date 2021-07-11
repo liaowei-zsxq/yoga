@@ -63,6 +63,16 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
                              [NSNumber numberWithDouble:value], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+#if TARGET_OS_OSX
+- (void)set_yoga_isFittingSize:(BOOL)newValue {
+    objc_setAssociatedObject(self, @selector(_yoga_isFittingSize), [NSNumber numberWithBool:newValue], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)_yoga_isFittingSize {
+    return [objc_getAssociatedObject(self, @selector(_yoga_isFittingSize)) boolValue];
+}
+#endif
+
 - (instancetype)_yoga_initWithFrame:(CGRect)frame {
     id _self = [self _yoga_initWithFrame:frame];
     if (_self) {
@@ -93,6 +103,12 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
 - (CGSize)_yoga_intrinsicContentSize {
     CGSize size = [self _yoga_intrinsicContentSize];
 
+#if TARGET_OS_OSX
+    if (self._yoga_isFittingSize) {
+        return size;
+    }
+#endif
+    
     if (!self.isYogaEnabled) {
         return size;
     }

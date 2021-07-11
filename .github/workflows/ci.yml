@@ -56,16 +56,18 @@ jobs:
       - name: Build
         # TODO: Run the tests here again. They're currently crashing the JVM in GitHub Actions for some reason.
         run: ./gradlew :yoga-layout:assembleDebug
-  ios:
+  apple:
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v2
       - name: Test Swift Package Manager
-        run: swift build -v
+        run: swift build
       - name: Test on iPhone 11
         run: xcodebuild -project 'YogaKit.xcodeproj' -scheme 'YogaKit' -configuration Debug -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 11' clean test
       - name: Test on iPhone 11 Pro Max
         run: xcodebuild -project 'YogaKit.xcodeproj' -scheme 'YogaKit' -configuration Debug -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max' clean test
+      - name: Test on macOS
+        run: xcodebuild -project 'YogaKit.xcodeproj' -scheme 'YogaKit' -configuration Debug -sdk macosx -arch x86_64 -arch arm64 clean test
   testing:
     runs-on: ubuntu-latest
     steps:

@@ -403,7 +403,9 @@ static YGSize YGMeasureView(YGNodeRef node, double width, YGMeasureMode widthMod
     CGSize sizeThatFits = CGSizeZero;
 
 #if TARGET_OS_OSX
+    view._yoga_isFittingSize = YES;
     CGSize fittingSize = view.fittingSize;
+    view._yoga_isFittingSize = NO;
     sizeThatFits = (CGSize){
         .width = fmin(constrainedWidth, fittingSize.width),
         .height = fmin(constrainedHeight, fittingSize.height)

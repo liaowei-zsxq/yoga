@@ -31,6 +31,17 @@ static const void* kYGYogaAssociatedKey = &kYGYogaAssociatedKey;
 
 static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizzledSelector);
 
+static inline CGRect CorrectRectIfNeeded(CGRect rect) {
+    CGPoint origin = rect.origin;
+    CGSize size = rect.size;
+
+#define CorrectValueIfNeeded(x) (isnan(x) ? 0 : x)
+
+    return CGRectMake(CorrectValueIfNeeded(origin.x),
+                      CorrectValueIfNeeded(origin.y),
+                      size.width, size.height);
+}
+
 @implementation UIView (YogaKitAutoApplyLayout)
 
 + (void)load {
@@ -74,6 +85,7 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
 #endif
 
 - (instancetype)_yoga_initWithFrame:(CGRect)frame {
+    frame = CorrectRectIfNeeded(frame);
     id _self = [self _yoga_initWithFrame:frame];
     if (_self) {
         [self _yoga_applyLayout];
@@ -83,6 +95,7 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
 }
 
 - (void)_yoga_setFrame:(CGRect)frame {
+    frame = CorrectRectIfNeeded(frame);
     [self _yoga_setFrame:frame];
     [self _yoga_applyLayout];
     
@@ -93,6 +106,7 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
 }
 
 - (void)_yoga_setBounds:(CGRect)bounds {
+    bounds = CorrectRectIfNeeded(bounds);
     [self _yoga_setBounds:bounds];
     [self _yoga_applyLayout];
 

@@ -12,13 +12,13 @@
 #include <algorithm>
 #include <atomic>
 #include <memory>
+#include <limits>
 #include "Utils.h"
 #include "YGNode.h"
 #include "YGNodePrint.h"
 #include "Yoga-internal.h"
 #include "event/event.h"
 #ifdef _MSC_VER
-#include <float.h>
 
 /* define fmax if < VC12 */
 #if _MSC_VER < 1800
@@ -1851,7 +1851,7 @@ static double YGNodeCalculateAvailableInnerDim(
         YGResolveValue(node->getStyle().maxDimensions()[dimension], ownerDim);
 
     const double maxInnerDim = maxDimensionOptional.isUndefined()
-        ? FLT_MAX
+        ? std::numeric_limits<double>::max()
         : maxDimensionOptional.unwrap() - paddingAndBorder;
     availableInnerDim =
         YGFloatMax(YGFloatMin(availableInnerDim, maxInnerDim), minInnerDim);

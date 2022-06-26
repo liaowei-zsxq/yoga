@@ -576,3 +576,51 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
 }
 
 @end
+
+#pragma mark -
+
+@implementation YGLayout (Point)
+
+NS_INLINE CGFloat YGGetPointValue(YGValue value) {
+    return value.unit == YGUnitPoint ? value.value : YGUndefined;
+}
+
+- (void)setMargins:(UIEdgeInsets)margins {
+    self.marginTop = YGPointValue(margins.top);
+    self.marginLeft = YGPointValue(margins.left);
+    self.marginBottom = YGPointValue(margins.bottom);
+    self.marginRight = YGPointValue(margins.right);
+}
+
+- (UIEdgeInsets)margins {
+    return UIEdgeInsetsMake(YGGetPointValue(self.marginTop),
+                            YGGetPointValue(self.marginLeft),
+                            YGGetPointValue(self.marginBottom),
+                            YGGetPointValue(self.marginRight));
+}
+
+- (void)setPaddings:(UIEdgeInsets)paddings {
+    self.paddingTop = YGPointValue(paddings.top);
+    self.paddingLeft = YGPointValue(paddings.left);
+    self.paddingBottom = YGPointValue(paddings.bottom);
+    self.paddingRight = YGPointValue(paddings.right);
+}
+
+- (UIEdgeInsets)paddings {
+    return UIEdgeInsetsMake(YGGetPointValue(self.paddingTop),
+                            YGGetPointValue(self.paddingLeft),
+                            YGGetPointValue(self.paddingBottom),
+                            YGGetPointValue(self.paddingRight));
+}
+
+- (void)setSize:(CGSize)size {
+    self.width = YGPointValue(size.width);
+    self.height = YGPointValue(size.height);
+}
+
+- (CGSize)size {
+    return CGSizeMake(YGGetPointValue(self.width),
+                      YGGetPointValue(self.height));
+}
+
+@end

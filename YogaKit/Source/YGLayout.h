@@ -11,6 +11,8 @@
 #import <AppKit/AppKit.h>
 #define UIView NSView
 #define UIControl NSControl
+#define UIEdgeInsets NSEdgeInsets
+#define UIEdgeInsetsMake NSEdgeInsetsMake
 #else
 #import <UIKit/UIKit.h>
 #endif
@@ -186,6 +188,18 @@ typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
 
 // Yoga specific properties, not compatible with flexbox specification
 @property(nonatomic) CGFloat aspectRatio;
+
+@end
+
+#pragma mark -
+
+@interface YGLayout (Point)
+
+@property(nonatomic) UIEdgeInsets margins;
+
+@property(nonatomic) UIEdgeInsets paddings;
+
+@property(nonatomic) CGSize size;
 
 @end
 

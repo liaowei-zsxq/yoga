@@ -40,47 +40,47 @@ extension YGValue: ExpressibleByFloatLiteral {
 
 extension YGValue {
 
+    public init(value: Int, unit: YGUnit) {
+        self.init(value: Double(value), unit: unit)
+    }
+
+    public init(value: CGFloat, unit: YGUnit) {
+        self.init(value: Double(value), unit: unit)
+    }
+}
+
+extension YGValue {
+    
     public static var zero = YGValue(value: 0, unit: .point)
 
-    public static var auto = YGValue(value: .nan, unit: .auto)
+    public static var auto = YGValue(value: Double.nan, unit: .auto)
 
-    public static var undefined = YGValue(value: .nan, unit: .undefined)
+    public static var undefined = YGValue(value: Double.nan, unit: .undefined)
 }
 
 extension YGValue {
 
     @inlinable public static func point(_ value: Int) -> YGValue {
-        return YGValue(value: Double(value), unit: .point)
+        return YGValue(value: value, unit: .point)
     }
 
     @inlinable public static func point(_ value: Double) -> YGValue {
         return YGValue(value: value, unit: .point)
     }
 
-    @inlinable public static func point(_ value: Float) -> YGValue {
-        return YGValue(value: Double(value), unit: .point)
-    }
-
     @inlinable public static func point(_ value: CGFloat) -> YGValue {
-        return YGValue(value: Double(value), unit: .point)
+        return YGValue(value: value, unit: .point)
     }
-}
-
-extension YGValue {
 
     @inlinable public static func percent(_ value: Int) -> YGValue {
-        return YGValue(value: Double(value), unit: .percent)
+        return YGValue(value: value, unit: .percent)
     }
-    
+
     @inlinable public static func percent(_ value: Double) -> YGValue {
         return YGValue(value: value, unit: .percent)
     }
 
-    @inlinable public static func percent(_ value: Float) -> YGValue {
-        return YGValue(value: Double(value), unit: .percent)
-    }
-
     @inlinable public static func percent(_ value: CGFloat) -> YGValue {
-        return YGValue(value: Double(value), unit: .percent)
+        return YGValue(value: value, unit: .percent)
     }
 }

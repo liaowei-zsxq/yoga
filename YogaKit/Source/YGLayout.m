@@ -354,7 +354,7 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
 }
 
 - (CGSize)intrinsicSize {
-    const CGSize constrainedSize = { .width = YGUndefined, .height = YGUndefined };
+    const CGSize constrainedSize = { YGUndefined, YGUndefined };
 
     return [self calculateLayoutWithSize:constrainedSize];
 }
@@ -369,8 +369,8 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
     YGNodeCalculateLayout(node, size.width, size.height, YGNodeStyleGetDirection(node));
 
     return (CGSize){
-        .width = YGFloatNonNegative((CGFloat)YGNodeLayoutGetWidth(node)),
-        .height = YGFloatNonNegative((CGFloat)YGNodeLayoutGetHeight(node))
+        YGFloatNonNegative((CGFloat)YGNodeLayoutGetWidth(node)),
+        YGFloatNonNegative((CGFloat)YGNodeLayoutGetHeight(node))
     };
 }
 
@@ -397,7 +397,7 @@ static YGSize YGMeasureView(YGNodeRef node, double width, YGMeasureMode widthMod
 
     YGLayout *yoga = view.yoga;
     if (yoga.isBaseView) {
-        return (YGSize){ .width = 0, .height = 0 };
+        return (YGSize){ 0, 0 };
     }
 
     CGSize sizeThatFits = CGSizeZero;
@@ -407,18 +407,19 @@ static YGSize YGMeasureView(YGNodeRef node, double width, YGMeasureMode widthMod
     CGSize fittingSize = view.fittingSize;
     view._yoga_isFittingSize = NO;
     sizeThatFits = (CGSize){
-        .width = fmin(constrainedWidth, fittingSize.width),
-        .height = fmin(constrainedHeight, fittingSize.height)
+        fmin(constrainedWidth, fittingSize.width),
+        fmin(constrainedHeight, fittingSize.height)
     };
 #else
     sizeThatFits = [view sizeThatFits:(CGSize){
-        .width = constrainedWidth,
-        .height = constrainedHeight
+        constrainedWidth,
+        constrainedHeight
     }];
 #endif
 
-    return (YGSize){ .width = YGSanitizeMeasurement(constrainedWidth, sizeThatFits.width, widthMode),
-                     .height = YGSanitizeMeasurement(constrainedHeight, sizeThatFits.height, heightMode)
+    return (YGSize){
+        YGSanitizeMeasurement(constrainedWidth, sizeThatFits.width, widthMode),
+        YGSanitizeMeasurement(constrainedHeight, sizeThatFits.height, heightMode)
     };
 }
 
@@ -522,15 +523,12 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
     CGFloat left = YGFloatValidate((CGFloat)YGNodeLayoutGetLeft(node));
     CGFloat top = YGFloatValidate((CGFloat)YGNodeLayoutGetTop(node));
 
-    const CGPoint topLeft = (CGPoint) { .x = left, .y = top };
+    const CGPoint topLeft = (CGPoint) { left, top };
 
     CGFloat width = YGFloatNonNegative((CGFloat)YGNodeLayoutGetWidth(node));
     CGFloat height = YGFloatNonNegative((CGFloat)YGNodeLayoutGetHeight(node));
 
-    const CGSize size = {
-        .width = width,
-        .height = height
-    };
+    const CGSize size = { width, height };
 
 #if TARGET_OS_OSX
     const CGPoint origin = preserveOrigin ? view.frame.origin : CGPointZero;
@@ -538,15 +536,15 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
     BOOL transformIsIdentity = CGAffineTransformIsIdentity(view.transform);
     // use bounds/center and not frame if non-identity transform.
     const CGPoint origin = preserveOrigin ? (transformIsIdentity ? view.frame.origin : (CGPoint) {
-        .x = (CGFloat)(view.center.x - CGRectGetWidth(view.bounds) * 0.5),
-        .y = (CGFloat)(view.center.y - CGRectGetHeight(view.bounds) * 0.5)
+        (CGFloat)(view.center.x - CGRectGetWidth(view.bounds) * 0.5),
+        (CGFloat)(view.center.y - CGRectGetHeight(view.bounds) * 0.5)
     })
     : CGPointZero;
 #endif
 
     CGRect frame = (CGRect) {
-        .origin = (CGPoint) { .x = topLeft.x + origin.x, .y = topLeft.y + origin.y },
-        .size = size
+        { topLeft.x + origin.x, topLeft.y + origin.y },
+        size
     };
 
 #if TARGET_OS_OSX
@@ -568,7 +566,7 @@ static void YGApplyLayoutToViewHierarchy(UIView* view, BOOL preserveOrigin) {
         bounds.size = size;
         view.bounds = bounds;
 
-        view.center = (CGPoint) { .x = CGRectGetMidX(frame), .y = CGRectGetMidY(frame) };
+        view.center = (CGPoint) { CGRectGetMidX(frame), CGRectGetMidY(frame) };
     }
 #endif
 

@@ -39,7 +39,8 @@ static inline CGRect CorrectRectIfNeeded(CGRect rect) {
 
     return CGRectMake(CorrectValueIfNeeded(origin.x),
                       CorrectValueIfNeeded(origin.y),
-                      size.width, size.height);
+                      CorrectValueIfNeeded(size.width),
+                      CorrectValueIfNeeded(size.height));
 }
 
 @implementation UIView (YogaKitAutoApplyLayout)

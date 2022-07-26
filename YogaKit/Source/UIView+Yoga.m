@@ -31,16 +31,19 @@ static const void* kYGYogaAssociatedKey = &kYGYogaAssociatedKey;
 
 static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizzledSelector);
 
-static inline CGRect CorrectRectIfNeeded(CGRect rect) {
+NS_INLINE CGRect AutoCorrectRect(CGRect rect) {
+#define AutoCorrectAnchor(x) (isnan(x) ? 0 : x)
+#define AutoCorrectDimension(x) (isnan(x) ? 0 : MAX(x, 0))
+
     CGPoint origin = rect.origin;
     CGSize size = rect.size;
 
-#define CorrectValueIfNeeded(x) (isnan(x) ? 0 : x)
-
-    return CGRectMake(CorrectValueIfNeeded(origin.x),
-                      CorrectValueIfNeeded(origin.y),
-                      CorrectValueIfNeeded(size.width),
-                      CorrectValueIfNeeded(size.height));
+    return CGRectMake(
+        AutoCorrectAnchor(origin.x),
+        AutoCorrectAnchor(origin.y),
+        AutoCorrectDimension(size.width),
+        AutoCorrectDimension(size.height)
+    );
 }
 
 @implementation UIView (YogaKitAutoApplyLayout)
@@ -86,7 +89,7 @@ static inline CGRect CorrectRectIfNeeded(CGRect rect) {
 #endif
 
 - (instancetype)_yoga_initWithFrame:(CGRect)frame {
-    frame = CorrectRectIfNeeded(frame);
+    frame = AutoCorrectRect(frame);
     id _self = [self _yoga_initWithFrame:frame];
     if (_self) {
         [self _yoga_applyLayout];
@@ -96,7 +99,7 @@ static inline CGRect CorrectRectIfNeeded(CGRect rect) {
 }
 
 - (void)_yoga_setFrame:(CGRect)frame {
-    frame = CorrectRectIfNeeded(frame);
+    frame = AutoCorrectRect(frame);
     [self _yoga_setFrame:frame];
     [self _yoga_applyLayout];
     
@@ -107,7 +110,7 @@ static inline CGRect CorrectRectIfNeeded(CGRect rect) {
 }
 
 - (void)_yoga_setBounds:(CGRect)bounds {
-    bounds = CorrectRectIfNeeded(bounds);
+    bounds = AutoCorrectRect(bounds);
     [self _yoga_setBounds:bounds];
     [self _yoga_applyLayout];
 

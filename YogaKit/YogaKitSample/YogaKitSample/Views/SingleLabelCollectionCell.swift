@@ -6,7 +6,7 @@
  */
 
 import UIKit
-import YogaKit_Swift
+import YogaKitSwift
 
 final class SingleLabelCollectionCell: UICollectionViewCell {
     let label: UILabel = UILabel(frame: .zero)

@@ -6,7 +6,7 @@
  */
 
 import UIKit
-import YogaKit_Swift
+import YogaKitSwift
 
 final class BasicViewController: UIViewController {
     override func viewDidLoad() {

@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import YogaKit_Swift
+import YogaKitSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

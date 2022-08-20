@@ -6,6 +6,7 @@
  */
 
 #import <objc/runtime.h>
+#import <objc/message.h>
 #import "UIView+Yoga.h"
 #import "YGLayout+Private.h"
 
@@ -209,19 +210,26 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
     }
 
     Method originalMethod = class_getInstanceMethod(cls, originalSelector);
-    Method swizzledMethod = class_getInstanceMethod(cls, swizzledSelector);
-    if (!originalMethod || !swizzledMethod) {
+    IMP swizzledIMP = class_getMethodImplementation(cls, swizzledSelector);
+    if (!originalMethod || !swizzledIMP) {
         return;
     }
 
-    IMP swizzledIMP = method_getImplementation(swizzledMethod);
-    if (class_addMethod(cls, originalSelector, swizzledIMP, method_getTypeEncoding(swizzledMethod))) {
-        class_replaceMethod(cls,
-                            swizzledSelector,
-                            method_getImplementation(originalMethod),
-                            method_getTypeEncoding(originalMethod));
-    } else {
-        method_exchangeImplementations(originalMethod, swizzledMethod);
-    }
+    typedef void (*objc_msgSendSuper_t)(struct objc_super *, SEL, ...);
+    typedef void (*objc_msgSend_t)(id, SEL, ...);
+
+    const char *types = method_getTypeEncoding(originalMethod);
+
+    IMP originalIMP = class_replaceMethod(cls, originalSelector, swizzledIMP, types);
+
+    class_replaceMethod(cls, swizzledSelector, imp_implementationWithBlock(^(__unsafe_unretained id self, va_list args) {
+        if (!originalIMP) {
+            struct objc_super super = { self, class_getSuperclass(cls) };
+
+            return ((objc_msgSendSuper_t)objc_msgSendSuper)(&super, originalSelector, args);
+        }
+
+        return ((objc_msgSend_t)originalIMP)(self, originalSelector, args);
+    }), types);
 }
 

@@ -7,7 +7,7 @@
 
 import UIKit
 import IGListKit
-import YogaKit_Swift
+import YogaKitSwift
 
 private class ListFlowLayout: UICollectionViewFlowLayout, ListCollectionViewLayoutCompatible {
     var oldWidth: CGFloat = 0

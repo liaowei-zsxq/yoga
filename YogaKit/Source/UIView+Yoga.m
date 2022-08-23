@@ -215,15 +215,17 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
         return;
     }
 
+    const char *types = method_getTypeEncoding(originalMethod);
+
+#if defined(__arm64__)
+    typedef void (*objc_msgSendSuper_t)(struct objc_super *, SEL, ...);
+    typedef void (*objc_msgSend_t)(id, SEL, ...);
+
     // already swizzled
     if (imp_getBlock(swizzledIMP)) {
         return;
     }
 
-    typedef void (*objc_msgSendSuper_t)(struct objc_super *, SEL, ...);
-    typedef void (*objc_msgSend_t)(id, SEL, ...);
-
-    const char *types = method_getTypeEncoding(originalMethod);
     IMP originalIMP = class_replaceMethod(cls, originalSelector, swizzledIMP, types);
 
     class_replaceMethod(cls, swizzledSelector, imp_implementationWithBlock(^(__unsafe_unretained id self, va_list args) {
@@ -235,5 +237,11 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
 
         return ((objc_msgSend_t)originalIMP)(self, originalSelector, args);
     }), types);
+#else
+    if (class_addMethod(cls, originalSelector, swizzledIMP, types)) {
+        class_replaceMethod(cls, swizzledSelector, method_getImplementation(originalMethod), types);
+    } else {
+        method_exchangeImplementations(originalMethod, class_getInstanceMethod(cls, swizzledSelector));
+    }
+#endif
 }
-

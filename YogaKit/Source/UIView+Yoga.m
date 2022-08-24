@@ -211,7 +211,7 @@ static void YogaSwizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizz
 
     Method originalMethod = class_getInstanceMethod(cls, originalSelector);
     IMP swizzledIMP = class_getMethodImplementation(cls, swizzledSelector);
-    if (!originalMethod || !swizzledIMP) {
+    if (!originalMethod || swizzledIMP == _objc_msgForward) {
         return;
     }
 

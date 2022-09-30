@@ -619,6 +619,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "-Wl,-weak-lswiftCoreGraphics";
 				PRODUCT_BUNDLE_IDENTIFIER = me.lvv.SwiftYogaKit;
 				PRODUCT_NAME = YogaKitSwift;
 				SKIP_INSTALL = YES;
@@ -643,6 +644,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "-Wl,-weak-lswiftCoreGraphics";
 				PRODUCT_BUNDLE_IDENTIFIER = me.lvv.SwiftYogaKit;
 				PRODUCT_NAME = YogaKitSwift;
 				SKIP_INSTALL = YES;

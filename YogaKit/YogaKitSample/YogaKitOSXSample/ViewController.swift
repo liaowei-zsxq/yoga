@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import YogaKit_Swift
+import YogaKitSwift
 
 class ViewController: NSViewController {
 

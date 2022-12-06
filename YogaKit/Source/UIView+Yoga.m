@@ -89,6 +89,28 @@ NS_INLINE CGRect AutoCorrectRect(CGRect rect) {
 }
 #endif
 
+- (CGSize)_yoga_boundsSize {
+    NSValue *value = objc_getAssociatedObject(self, @selector(_yoga_boundsSize));
+
+    return value ?
+#if TARGET_OS_OSX
+        value.sizeValue
+#else
+        value.CGSizeValue
+#endif
+        : CGSizeZero;
+}
+
+- (void)set_yoga_boundsSize:(CGSize)newValue {
+    objc_setAssociatedObject(self, @selector(_yoga_boundsSize),
+#if TARGET_OS_OSX
+                             [NSValue valueWithSize:newValue]
+#else
+                             [NSValue valueWithCGSize:newValue]
+#endif
+                             , OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 - (instancetype)_yoga_initWithFrame:(CGRect)frame {
     frame = AutoCorrectRect(frame);
     id _self = [self _yoga_initWithFrame:frame];
@@ -102,6 +124,13 @@ NS_INLINE CGRect AutoCorrectRect(CGRect rect) {
 - (void)_yoga_setFrame:(CGRect)frame {
     frame = AutoCorrectRect(frame);
     [self _yoga_setFrame:frame];
+
+    if (CGSizeEqualToSize(self._yoga_boundsSize, self.bounds.size)) {
+        return;
+    }
+
+    self._yoga_boundsSize = self.bounds.size;
+
     [self _yoga_applyLayout];
     
 #if TARGET_OS_OSX
@@ -113,8 +142,14 @@ NS_INLINE CGRect AutoCorrectRect(CGRect rect) {
 - (void)_yoga_setBounds:(CGRect)bounds {
     bounds = AutoCorrectRect(bounds);
     [self _yoga_setBounds:bounds];
-    [self _yoga_applyLayout];
 
+    if (CGSizeEqualToSize(self._yoga_boundsSize, bounds.size)) {
+        return;
+    }
+
+    self._yoga_boundsSize = bounds.size;
+
+    [self _yoga_applyLayout];
     CGFloat width = CGRectGetWidth(bounds);
     [self _yoga_updateConstraintsIfNeeded:width];
 }
@@ -149,12 +184,26 @@ NS_INLINE CGRect AutoCorrectRect(CGRect rect) {
 #if TARGET_OS_OSX
 - (void)_yoga_setFrameSize:(NSSize)newSize {
     [self _yoga_setFrameSize:newSize];
+
+    if (CGSizeEqualToSize(self._yoga_boundsSize, self.bounds.size)) {
+        return;
+    }
+
+    self._yoga_boundsSize = self.bounds.size;
+    
     [self _yoga_applyLayout];
     [self _yoga_updateConstraintsIfNeeded:newSize.width];
 }
 
 - (void)_yoga_setBoundsSize:(NSSize)newSize {
     [self _yoga_setBoundsSize:newSize];
+
+    if (CGSizeEqualToSize(self._yoga_boundsSize, newSize)) {
+        return;
+    }
+
+    self._yoga_boundsSize = newSize;
+
     [self _yoga_applyLayout];
     [self _yoga_updateConstraintsIfNeeded:newSize.width];
 }

@@ -9,31 +9,8 @@ import UIKit
 import IGListKit
 import YogaKitSwift
 
-private class ListFlowLayout: UICollectionViewFlowLayout, ListCollectionViewLayoutCompatible {
-    var oldWidth: CGFloat = 0
-
+extension ListFlowLayout: ListCollectionViewLayoutCompatible {
     func didModifySection(_ modifiedSection: Int) {
-    }
-
-    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-        if oldWidth == newBounds.width {
-            return false
-        }
-
-        oldWidth = newBounds.width
-
-        return true
-    }
-
-    override func invalidationContext(forBoundsChange newBounds: CGRect) -> UICollectionViewLayoutInvalidationContext {
-        let context = super.invalidationContext(forBoundsChange: newBounds)
-        guard context.isKind(of: UICollectionViewFlowLayoutInvalidationContext.self) else {
-            return context
-        }
-
-        (context as! UICollectionViewFlowLayoutInvalidationContext).invalidateFlowLayoutDelegateMetrics = true
-
-        return context
     }
 }
 

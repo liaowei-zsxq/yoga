@@ -16,6 +16,7 @@
 		1511C161251F607700A2C621 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1511C160251F607700A2C621 /* Assets.xcassets */; };
 		1511C164251F607700A2C621 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1511C162251F607700A2C621 /* Main.storyboard */; };
 		1511C17B251F60DA00A2C621 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 15865F4524E5747800345BD7 /* libc++.tbd */; };
+		155F498F294C3FE800E9AC11 /* ListFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155F498E294C3FE800E9AC11 /* ListFlowLayout.swift */; };
 		15A7CB5995C9DAB1C8803834 /* Pods_YogaKitSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C80A931E90C7F3088CB86822 /* Pods_YogaKitSample.framework */; };
 		15E1C33C24E568410086A4E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E1C33B24E568410086A4E6 /* AppDelegate.m */; };
 		15E1C33F24E568410086A4E6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E1C33E24E568410086A4E6 /* ViewController.m */; };
@@ -73,6 +74,7 @@
 		1511C163251F607700A2C621 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1511C165251F607700A2C621 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1511C166251F607700A2C621 /* YogaKitOSXSample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YogaKitOSXSample.entitlements; sourceTree = "<group>"; };
+		155F498E294C3FE800E9AC11 /* ListFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFlowLayout.swift; sourceTree = "<group>"; };
 		15865F4524E5747800345BD7 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
 		15865F4924E577BE00345BD7 /* YogaKitSample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YogaKitSample.entitlements; sourceTree = "<group>"; };
 		15E1C33824E568410086A4E6 /* YogaKitTVSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YogaKitTVSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +168,7 @@
 				15865F4924E577BE00345BD7 /* YogaKitSample.entitlements */,
 				40BD9F4E1E47902F002790A9 /* Views */,
 				40BD9F481E4784B3002790A9 /* ViewControllers */,
+				155F498E294C3FE800E9AC11 /* ListFlowLayout.swift */,
 				638A94471E1F06D100A726AD /* ExamplesViewController.swift */,
 				13687D521DF8748400E7C260 /* Assets.xcassets */,
 				13687D571DF8748400E7C260 /* Info.plist */,
@@ -483,6 +486,7 @@
 				40BD9F501E479079002790A9 /* SingleLabelCollectionCell.swift in Sources */,
 				40BD9F521E479173002790A9 /* LayoutInclusionViewController.swift in Sources */,
 				638A94481E1F06D100A726AD /* ExamplesViewController.swift in Sources */,
+				155F498F294C3FE800E9AC11 /* ListFlowLayout.swift in Sources */,
 				40BD9F4B1E47850C002790A9 /* BasicViewController.swift in Sources */,
 				40BD9F461E477A09002790A9 /* AppDelegate.swift in Sources */,
 				15F7301F24E7C097000108AD /* TWTimelineViewController.swift in Sources */,

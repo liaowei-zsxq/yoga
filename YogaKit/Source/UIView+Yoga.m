@@ -52,7 +52,6 @@ NS_INLINE CGRect AutoCorrectRect(CGRect rect) {
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        YogaSwizzleInstanceMethod(self, @selector(initWithFrame:), @selector(_yoga_initWithFrame:));
         YogaSwizzleInstanceMethod(self, @selector(setFrame:), @selector(_yoga_setFrame:));
         YogaSwizzleInstanceMethod(self, @selector(setBounds:), @selector(_yoga_setBounds:));
         YogaSwizzleInstanceMethod(self, @selector(intrinsicContentSize), @selector(_yoga_intrinsicContentSize));
@@ -123,16 +122,6 @@ NS_INLINE CGRect AutoCorrectRect(CGRect rect) {
     }
 
     return YES;
-}
-
-- (instancetype)_yoga_initWithFrame:(CGRect)frame {
-    frame = AutoCorrectRect(frame);
-    id _self = [self _yoga_initWithFrame:frame];
-    if (_self) {
-        [self _yoga_applyLayout];
-    }
-
-    return _self;
 }
 
 - (void)_yoga_setFrame:(CGRect)frame {

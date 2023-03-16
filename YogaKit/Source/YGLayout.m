@@ -622,3 +622,16 @@ NS_INLINE CGFloat YGGetPointValue(YGValue value) {
 }
 
 @end
+
+@implementation YGLayout (Display)
+
+- (void)setIsHidden:(BOOL)isHidden {
+    self.isIncludedInLayout = !isHidden;
+    self.view.hidden = isHidden;
+}
+
+- (BOOL)isHidden {
+    return !self.isIncludedInLayout && self.view.isHidden;
+}
+
+@end

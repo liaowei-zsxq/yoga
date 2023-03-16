@@ -203,4 +203,10 @@ typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
 
 @end
 
+@interface YGLayout (Display)
+
+@property(nonatomic) BOOL isHidden;
+
+@end
+
 NS_ASSUME_NONNULL_END

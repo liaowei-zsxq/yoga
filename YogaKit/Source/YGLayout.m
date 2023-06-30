@@ -137,9 +137,14 @@ static CGFloat YGScaleFactor() {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^() {
 #if TARGET_OS_OSX
-        scale = [NSScreen mainScreen].backingScaleFactor;
+        NSImage *image = [[NSImage alloc] initWithSize:NSMakeSize(1, 1)];
+        [image lockFocus];
+        scale = CGContextGetCTM(NSGraphicsContext.currentContext.graphicsPort).a;
+        [image unlockFocus];
 #else
-        scale = [UIScreen mainScreen].scale;
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(1, 1), YES, 0);
+        scale = CGContextGetCTM(UIGraphicsGetCurrentContext()).a;
+        UIGraphicsEndImageContext();
 #endif
     });
 

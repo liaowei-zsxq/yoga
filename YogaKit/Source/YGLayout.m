@@ -132,21 +132,26 @@
                                YGEdgeVertical)                                                \
         YG_VALUE_EDGE_PROPERTY(lowercased_name, capitalized_name, capitalized_name, YGEdgeAll)
 
-static CGFloat YGScaleFactor() {
+static CGFloat YGScaleFactor(void) {
     static CGFloat scale;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^() {
 #if TARGET_OS_OSX
-        scale = [NSScreen mainScreen].backingScaleFactor;
+        NSImage *image = [[NSImage alloc] initWithSize:NSMakeSize(1, 1)];
+        [image lockFocus];
+        scale = CGContextGetCTM(NSGraphicsContext.currentContext.graphicsPort).a;
+        [image unlockFocus];
 #else
-        scale = [UIScreen mainScreen].scale;
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(1, 1), YES, 0);
+        scale = CGContextGetCTM(UIGraphicsGetCurrentContext()).a;
+        UIGraphicsEndImageContext();
 #endif
     });
 
     return scale;
 }
 
-static YGConfigRef YGGlobalConfig() {
+static YGConfigRef YGGlobalConfig(void) {
     static YGConfigRef globalConfig;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^() {
@@ -591,10 +596,12 @@ NS_INLINE CGFloat YGGetPointValue(YGValue value) {
 }
 
 - (UIEdgeInsets)margins {
-    return UIEdgeInsetsMake(YGGetPointValue(self.marginTop),
-                            YGGetPointValue(self.marginLeft),
-                            YGGetPointValue(self.marginBottom),
-                            YGGetPointValue(self.marginRight));
+    return (UIEdgeInsets) {
+        YGGetPointValue(self.marginTop),
+        YGGetPointValue(self.marginLeft),
+        YGGetPointValue(self.marginBottom),
+        YGGetPointValue(self.marginRight)
+    };
 }
 
 - (void)setPaddings:(UIEdgeInsets)paddings {
@@ -605,10 +612,12 @@ NS_INLINE CGFloat YGGetPointValue(YGValue value) {
 }
 
 - (UIEdgeInsets)paddings {
-    return UIEdgeInsetsMake(YGGetPointValue(self.paddingTop),
-                            YGGetPointValue(self.paddingLeft),
-                            YGGetPointValue(self.paddingBottom),
-                            YGGetPointValue(self.paddingRight));
+    return (UIEdgeInsets) {
+        YGGetPointValue(self.paddingTop),
+        YGGetPointValue(self.paddingLeft),
+        YGGetPointValue(self.paddingBottom),
+        YGGetPointValue(self.paddingRight)
+    };
 }
 
 - (void)setSize:(CGSize)size {
@@ -617,8 +626,26 @@ NS_INLINE CGFloat YGGetPointValue(YGValue value) {
 }
 
 - (CGSize)size {
-    return CGSizeMake(YGGetPointValue(self.width),
-                      YGGetPointValue(self.height));
+    return (CGSize) {
+        YGGetPointValue(self.width),
+        YGGetPointValue(self.height)
+    };
+}
+
+- (void)setEdges:(UIEdgeInsets)edges {
+    self.top = YGPointValue(edges.top);
+    self.left = YGPointValue(edges.left);
+    self.bottom = YGPointValue(edges.bottom);
+    self.right = YGPointValue(edges.right);
+}
+
+- (UIEdgeInsets)edges {
+    return (UIEdgeInsets) {
+        YGGetPointValue(self.top),
+        YGGetPointValue(self.left),
+        YGGetPointValue(self.bottom),
+        YGGetPointValue(self.right)
+    };
 }
 
 @end

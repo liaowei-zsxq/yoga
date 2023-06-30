@@ -132,7 +132,7 @@
                                YGEdgeVertical)                                                \
         YG_VALUE_EDGE_PROPERTY(lowercased_name, capitalized_name, capitalized_name, YGEdgeAll)
 
-static CGFloat YGScaleFactor() {
+static CGFloat YGScaleFactor(void) {
     static CGFloat scale;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^() {
@@ -151,7 +151,7 @@ static CGFloat YGScaleFactor() {
     return scale;
 }
 
-static YGConfigRef YGGlobalConfig() {
+static YGConfigRef YGGlobalConfig(void) {
     static YGConfigRef globalConfig;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^() {

@@ -596,10 +596,12 @@ NS_INLINE CGFloat YGGetPointValue(YGValue value) {
 }
 
 - (UIEdgeInsets)margins {
-    return UIEdgeInsetsMake(YGGetPointValue(self.marginTop),
-                            YGGetPointValue(self.marginLeft),
-                            YGGetPointValue(self.marginBottom),
-                            YGGetPointValue(self.marginRight));
+    return (UIEdgeInsets) {
+        YGGetPointValue(self.marginTop),
+        YGGetPointValue(self.marginLeft),
+        YGGetPointValue(self.marginBottom),
+        YGGetPointValue(self.marginRight)
+    };
 }
 
 - (void)setPaddings:(UIEdgeInsets)paddings {
@@ -610,10 +612,12 @@ NS_INLINE CGFloat YGGetPointValue(YGValue value) {
 }
 
 - (UIEdgeInsets)paddings {
-    return UIEdgeInsetsMake(YGGetPointValue(self.paddingTop),
-                            YGGetPointValue(self.paddingLeft),
-                            YGGetPointValue(self.paddingBottom),
-                            YGGetPointValue(self.paddingRight));
+    return (UIEdgeInsets) {
+        YGGetPointValue(self.paddingTop),
+        YGGetPointValue(self.paddingLeft),
+        YGGetPointValue(self.paddingBottom),
+        YGGetPointValue(self.paddingRight)
+    };
 }
 
 - (void)setSize:(CGSize)size {
@@ -622,8 +626,26 @@ NS_INLINE CGFloat YGGetPointValue(YGValue value) {
 }
 
 - (CGSize)size {
-    return CGSizeMake(YGGetPointValue(self.width),
-                      YGGetPointValue(self.height));
+    return (CGSize) {
+        YGGetPointValue(self.width),
+        YGGetPointValue(self.height)
+    };
+}
+
+- (void)setEdges:(UIEdgeInsets)edges {
+    self.top = YGPointValue(edges.top);
+    self.left = YGPointValue(edges.left);
+    self.bottom = YGPointValue(edges.bottom);
+    self.right = YGPointValue(edges.right);
+}
+
+- (UIEdgeInsets)edges {
+    return (UIEdgeInsets) {
+        YGGetPointValue(self.top),
+        YGGetPointValue(self.left),
+        YGGetPointValue(self.bottom),
+        YGGetPointValue(self.right)
+    };
 }
 
 @end

@@ -195,16 +195,23 @@ typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
 
 @interface YGLayout (Point)
 
+// top, left, bottom, right of margin
 @property(nonatomic) UIEdgeInsets margins;
 
+// top, left, bottom, right of padding
 @property(nonatomic) UIEdgeInsets paddings;
 
+// width, height
 @property(nonatomic) CGSize size;
+
+// top, left, bottom, right
+@property(nonatomic) UIEdgeInsets edges;
 
 @end
 
 @interface YGLayout (Display)
 
+// set value for isIncludedInLayout and hidden of View
 @property(nonatomic) BOOL isHidden;
 
 @end

@@ -1,41 +1,41 @@
 /*
- * Copyright (c) Facebook, Inc. and its affiliates.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
 
 #include <gtest/gtest.h>
-#include <yoga/YGNode.h>
 #include <yoga/Yoga.h>
 
-static double _baseline(YGNodeRef node, const double width, const double height) {
-  double* baseline = (double*) node->getContext();
+static float
+_baseline(YGNodeConstRef node, const float /*width*/, const float /*height*/) {
+  auto* baseline = (float*)YGNodeGetContext(node);
   return *baseline;
 }
 
 TEST(YogaTest, align_baseline_customer_func) {
-  const YGNodeRef root = YGNodeNew();
+  YGNodeRef root = YGNodeNew();
   YGNodeStyleSetFlexDirection(root, YGFlexDirectionRow);
   YGNodeStyleSetAlignItems(root, YGAlignBaseline);
   YGNodeStyleSetWidth(root, 100);
   YGNodeStyleSetHeight(root, 100);
 
-  const YGNodeRef root_child0 = YGNodeNew();
+  YGNodeRef root_child0 = YGNodeNew();
   YGNodeStyleSetWidth(root_child0, 50);
   YGNodeStyleSetHeight(root_child0, 50);
   YGNodeInsertChild(root, root_child0, 0);
 
-  const YGNodeRef root_child1 = YGNodeNew();
+  YGNodeRef root_child1 = YGNodeNew();
   YGNodeStyleSetWidth(root_child1, 50);
   YGNodeStyleSetHeight(root_child1, 20);
   YGNodeInsertChild(root, root_child1, 1);
 
-  double baselineValue = 10;
-  const YGNodeRef root_child1_child0 = YGNodeNew();
-  root_child1_child0->setContext(&baselineValue);
+  float baselineValue = 10;
+  YGNodeRef root_child1_child0 = YGNodeNew();
+  YGNodeSetContext(root_child1_child0, &baselineValue);
   YGNodeStyleSetWidth(root_child1_child0, 50);
-  root_child1_child0->setBaselineFunc(_baseline);
+  YGNodeSetBaselineFunc(root_child1_child0, _baseline);
   YGNodeStyleSetHeight(root_child1_child0, 20);
   YGNodeInsertChild(root_child1, root_child1_child0, 0);
   YGNodeCalculateLayout(root, YGUndefined, YGUndefined, YGDirectionLTR);

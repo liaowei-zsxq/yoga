@@ -10,13 +10,87 @@
 		1511C08C251ED11900A2C621 /* Yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15865FFE24E58BD800345BD7 /* Yoga.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		1511C0BB251F1BB600A2C621 /* YGLayoutProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511C0BA251F1BB600A2C621 /* YGLayoutProperties.swift */; };
 		153098C22692ED29009B4135 /* YGValueExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153098C12692ED29009B4135 /* YGValueExtensions.swift */; };
-		153098CA26930BAF009B4135 /* Yoga-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 153098C826930BAE009B4135 /* Yoga-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		153B526524E6AD8D008156D3 /* YogaKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 153B526324E6AD8D008156D3 /* YogaKitTests.m */; };
 		153B526B24E6ADFA008156D3 /* Yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15865FFE24E58BD800345BD7 /* Yoga.framework */; };
 		153B526C24E6ADFA008156D3 /* YogaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15865F5424E5834E00345BD7 /* YogaKit.framework */; };
 		153B526E24E6AECF008156D3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 153B526D24E6AECF008156D3 /* libc++.tbd */; };
 		154A6EF524E6B1260091264C /* dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154A6EF424E6B1260091264C /* dummy.swift */; };
 		154D2C9A269362600027364F /* YogaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15865F5424E5834E00345BD7 /* YogaKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		157283692D4397EB00F20253 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1572834C2D4397EB00F20253 /* Node.cpp */; };
+		1572836A2D4397EB00F20253 /* Cache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1572831A2D4397EB00F20253 /* Cache.cpp */; };
+		1572836B2D4397EB00F20253 /* YGEnums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1572835B2D4397EB00F20253 /* YGEnums.cpp */; };
+		1572836C2D4397EB00F20253 /* Baseline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 157283172D4397EB00F20253 /* Baseline.cpp */; };
+		1572836D2D4397EB00F20253 /* event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 157283442D4397EB00F20253 /* event.cpp */; };
+		1572836E2D4397EB00F20253 /* PixelGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 157283212D4397EB00F20253 /* PixelGrid.cpp */; };
+		1572836F2D4397EB00F20253 /* Config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 157283272D4397EB00F20253 /* Config.cpp */; };
+		157283702D4397EB00F20253 /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1572832C2D4397EB00F20253 /* Log.cpp */; };
+		157283712D4397EB00F20253 /* YGConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 157283592D4397EB00F20253 /* YGConfig.cpp */; };
+		157283722D4397EB00F20253 /* YGPixelGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 157283642D4397EB00F20253 /* YGPixelGrid.cpp */; };
+		157283732D4397EB00F20253 /* AbsoluteLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 157283142D4397EB00F20253 /* AbsoluteLayout.cpp */; };
+		157283742D4397EB00F20253 /* AssertFatal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1572832A2D4397EB00F20253 /* AssertFatal.cpp */; };
+		157283752D4397EB00F20253 /* YGNodeLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 157283602D4397EB00F20253 /* YGNodeLayout.cpp */; };
+		157283762D4397EB00F20253 /* YGValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 157283662D4397EB00F20253 /* YGValue.cpp */; };
+		157283772D4397EB00F20253 /* LayoutResults.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1572834A2D4397EB00F20253 /* LayoutResults.cpp */; };
+		157283782D4397EB00F20253 /* YGNodeStyle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 157283622D4397EB00F20253 /* YGNodeStyle.cpp */; };
+		157283792D4397EB00F20253 /* YGNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1572835E2D4397EB00F20253 /* YGNode.cpp */; };
+		1572837A2D4397EB00F20253 /* FlexLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1572831F2D4397EB00F20253 /* FlexLine.cpp */; };
+		1572837B2D4397EB00F20253 /* CalculateLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1572831C2D4397EB00F20253 /* CalculateLayout.cpp */; };
+		1572837C2D4397EB00F20253 /* YGEnums.h in Headers */ = {isa = PBXBuildFile; fileRef = 1572835A2D4397EB00F20253 /* YGEnums.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1572837D2D4397EB00F20253 /* Dimension.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283302D4397EB00F20253 /* Dimension.h */; };
+		1572837E2D4397EB00F20253 /* FlexDirection.h in Headers */ = {isa = PBXBuildFile; fileRef = 1572831D2D4397EB00F20253 /* FlexDirection.h */; };
+		1572837F2D4397EB00F20253 /* Gutter.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283372D4397EB00F20253 /* Gutter.h */; };
+		157283802D4397EB00F20253 /* LayoutableChildren.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283482D4397EB00F20253 /* LayoutableChildren.h */; };
+		157283812D4397EB00F20253 /* NodeType.h in Headers */ = {isa = PBXBuildFile; fileRef = 1572833B2D4397EB00F20253 /* NodeType.h */; };
+		157283822D4397EB00F20253 /* Wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283402D4397EB00F20253 /* Wrap.h */; };
+		157283832D4397EB00F20253 /* PixelGrid.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283202D4397EB00F20253 /* PixelGrid.h */; };
+		157283842D4397EB00F20253 /* Yoga.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283672D4397EB00F20253 /* Yoga.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		157283852D4397EB00F20253 /* YGMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 1572835C2D4397EB00F20253 /* YGMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		157283862D4397EB00F20253 /* Align.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283152D4397EB00F20253 /* Align.h */; };
+		157283872D4397EB00F20253 /* Overflow.h in Headers */ = {isa = PBXBuildFile; fileRef = 1572833C2D4397EB00F20253 /* Overflow.h */; };
+		157283882D4397EB00F20253 /* StyleValuePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283562D4397EB00F20253 /* StyleValuePool.h */; };
+		157283892D4397EB00F20253 /* Justify.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283382D4397EB00F20253 /* Justify.h */; };
+		1572838A2D4397EB00F20253 /* Log.h in Headers */ = {isa = PBXBuildFile; fileRef = 1572832B2D4397EB00F20253 /* Log.h */; };
+		1572838B2D4397EB00F20253 /* LayoutResults.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283492D4397EB00F20253 /* LayoutResults.h */; };
+		1572838C2D4397EB00F20253 /* StyleSizeLength.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283542D4397EB00F20253 /* StyleSizeLength.h */; };
+		1572838D2D4397EB00F20253 /* Config.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283262D4397EB00F20253 /* Config.h */; };
+		1572838E2D4397EB00F20253 /* Direction.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283312D4397EB00F20253 /* Direction.h */; };
+		1572838F2D4397EB00F20253 /* ExperimentalFeature.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283352D4397EB00F20253 /* ExperimentalFeature.h */; };
+		157283902D4397EB00F20253 /* Display.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283322D4397EB00F20253 /* Display.h */; };
+		157283912D4397EB00F20253 /* SizingMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283222D4397EB00F20253 /* SizingMode.h */; };
+		157283922D4397EB00F20253 /* YGPixelGrid.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283632D4397EB00F20253 /* YGPixelGrid.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		157283932D4397EB00F20253 /* MeasureMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 1572833A2D4397EB00F20253 /* MeasureMode.h */; };
+		157283942D4397EB00F20253 /* TrailingPosition.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283232D4397EB00F20253 /* TrailingPosition.h */; };
+		157283952D4397EB00F20253 /* Align.h in Headers */ = {isa = PBXBuildFile; fileRef = 1572832E2D4397EB00F20253 /* Align.h */; };
+		157283962D4397EB00F20253 /* SmallValueBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283512D4397EB00F20253 /* SmallValueBuffer.h */; };
+		157283972D4397EB00F20253 /* YGNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 1572835D2D4397EB00F20253 /* YGNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		157283982D4397EB00F20253 /* StyleLength.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283532D4397EB00F20253 /* StyleLength.h */; };
+		157283992D4397EB00F20253 /* CalculateLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 1572831B2D4397EB00F20253 /* CalculateLayout.h */; };
+		1572839A2D4397EB00F20253 /* FlexLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 1572831E2D4397EB00F20253 /* FlexLine.h */; };
+		1572839B2D4397EB00F20253 /* BoundAxis.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283182D4397EB00F20253 /* BoundAxis.h */; };
+		1572839C2D4397EB00F20253 /* AbsoluteLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283132D4397EB00F20253 /* AbsoluteLayout.h */; };
+		1572839D2D4397EB00F20253 /* Edge.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283332D4397EB00F20253 /* Edge.h */; };
+		1572839E2D4397EB00F20253 /* AssertFatal.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283292D4397EB00F20253 /* AssertFatal.h */; };
+		1572839F2D4397EB00F20253 /* YGNodeStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283612D4397EB00F20253 /* YGNodeStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		157283A02D4397EB00F20253 /* FlexDirection.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283362D4397EB00F20253 /* FlexDirection.h */; };
+		157283A12D4397EB00F20253 /* Comparison.h in Headers */ = {isa = PBXBuildFile; fileRef = 1572834E2D4397EB00F20253 /* Comparison.h */; };
+		157283A22D4397EB00F20253 /* Cache.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283192D4397EB00F20253 /* Cache.h */; };
+		157283A32D4397EB00F20253 /* Baseline.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283162D4397EB00F20253 /* Baseline.h */; };
+		157283A42D4397EB00F20253 /* Errata.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283342D4397EB00F20253 /* Errata.h */; };
+		157283A52D4397EB00F20253 /* BoxSizing.h in Headers */ = {isa = PBXBuildFile; fileRef = 1572832F2D4397EB00F20253 /* BoxSizing.h */; };
+		157283A62D4397EB00F20253 /* PositionType.h in Headers */ = {isa = PBXBuildFile; fileRef = 1572833E2D4397EB00F20253 /* PositionType.h */; };
+		157283A72D4397EB00F20253 /* Unit.h in Headers */ = {isa = PBXBuildFile; fileRef = 1572833F2D4397EB00F20253 /* Unit.h */; };
+		157283A82D4397EB00F20253 /* YGNodeLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 1572835F2D4397EB00F20253 /* YGNodeLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		157283A92D4397EB00F20253 /* StyleValueHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283552D4397EB00F20253 /* StyleValueHandle.h */; };
+		157283AA2D4397EB00F20253 /* YGValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283652D4397EB00F20253 /* YGValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		157283AB2D4397EB00F20253 /* LogLevel.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283392D4397EB00F20253 /* LogLevel.h */; };
+		157283AC2D4397EB00F20253 /* YogaEnums.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283412D4397EB00F20253 /* YogaEnums.h */; };
+		157283AD2D4397EB00F20253 /* Style.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283522D4397EB00F20253 /* Style.h */; };
+		157283AE2D4397EB00F20253 /* FloatOptional.h in Headers */ = {isa = PBXBuildFile; fileRef = 1572834F2D4397EB00F20253 /* FloatOptional.h */; };
+		157283AF2D4397EB00F20253 /* CachedMeasurement.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283472D4397EB00F20253 /* CachedMeasurement.h */; };
+		157283B02D4397EB00F20253 /* PhysicalEdge.h in Headers */ = {isa = PBXBuildFile; fileRef = 1572833D2D4397EB00F20253 /* PhysicalEdge.h */; };
+		157283B12D4397EB00F20253 /* Node.h in Headers */ = {isa = PBXBuildFile; fileRef = 1572834B2D4397EB00F20253 /* Node.h */; };
+		157283B22D4397EB00F20253 /* YGConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283582D4397EB00F20253 /* YGConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		157283B32D4397EB00F20253 /* event.h in Headers */ = {isa = PBXBuildFile; fileRef = 157283432D4397EB00F20253 /* event.h */; };
 		15865F6624E583F000345BD7 /* YGLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 15865F5F24E583F000345BD7 /* YGLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15865F6724E583F000345BD7 /* UIView+Yoga.h in Headers */ = {isa = PBXBuildFile; fileRef = 15865F6024E583F000345BD7 /* UIView+Yoga.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15865F6824E583F000345BD7 /* YGLayout+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 15865F6124E583F000345BD7 /* YGLayout+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -24,36 +98,6 @@
 		15865F6A24E583F000345BD7 /* UIView+Yoga.m in Sources */ = {isa = PBXBuildFile; fileRef = 15865F6324E583F000345BD7 /* UIView+Yoga.m */; };
 		15865F6C24E583F000345BD7 /* YogaKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 15865F6524E583F000345BD7 /* YogaKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1586600824E58C0F00345BD7 /* Yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15865FFE24E58BD800345BD7 /* Yoga.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		1586602924E58C3700345BD7 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1586600924E58C3600345BD7 /* Utils.cpp */; };
-		1586602A24E58C3700345BD7 /* experiments.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1586600B24E58C3600345BD7 /* experiments.cpp */; };
-		1586602B24E58C3700345BD7 /* experiments-inl.h in Headers */ = {isa = PBXBuildFile; fileRef = 1586600C24E58C3600345BD7 /* experiments-inl.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		1586602C24E58C3700345BD7 /* experiments.h in Headers */ = {isa = PBXBuildFile; fileRef = 1586600D24E58C3600345BD7 /* experiments.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		1586602D24E58C3700345BD7 /* YGStyle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1586600E24E58C3600345BD7 /* YGStyle.cpp */; };
-		1586602E24E58C3700345BD7 /* YGNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1586600F24E58C3600345BD7 /* YGNode.cpp */; };
-		1586602F24E58C3700345BD7 /* YGConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1586601024E58C3600345BD7 /* YGConfig.cpp */; };
-		1586603024E58C3700345BD7 /* Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 1586601124E58C3600345BD7 /* Utils.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		1586603124E58C3700345BD7 /* BitUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 1586601224E58C3600345BD7 /* BitUtils.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		1586603224E58C3700345BD7 /* CompactValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1586601324E58C3600345BD7 /* CompactValue.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		1586603324E58C3700345BD7 /* YGValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1586601424E58C3700345BD7 /* YGValue.cpp */; };
-		1586603424E58C3700345BD7 /* YGLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1586601524E58C3700345BD7 /* YGLayout.cpp */; };
-		1586603524E58C3700345BD7 /* log.h in Headers */ = {isa = PBXBuildFile; fileRef = 1586601624E58C3700345BD7 /* log.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		1586603624E58C3700345BD7 /* YGNodePrint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1586601724E58C3700345BD7 /* YGNodePrint.cpp */; };
-		1586603724E58C3700345BD7 /* event.h in Headers */ = {isa = PBXBuildFile; fileRef = 1586601924E58C3700345BD7 /* event.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		1586603824E58C3700345BD7 /* event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1586601A24E58C3700345BD7 /* event.cpp */; };
-		1586603924E58C3700345BD7 /* YGNodePrint.h in Headers */ = {isa = PBXBuildFile; fileRef = 1586601B24E58C3700345BD7 /* YGNodePrint.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		1586603A24E58C3700345BD7 /* Yoga.h in Headers */ = {isa = PBXBuildFile; fileRef = 1586601C24E58C3700345BD7 /* Yoga.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1586603B24E58C3700345BD7 /* YGFloatOptional.h in Headers */ = {isa = PBXBuildFile; fileRef = 1586601D24E58C3700345BD7 /* YGFloatOptional.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		1586603C24E58C3700345BD7 /* YGConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 1586601E24E58C3700345BD7 /* YGConfig.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		1586603D24E58C3700345BD7 /* YGMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 1586601F24E58C3700345BD7 /* YGMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1586603E24E58C3700345BD7 /* YGEnums.h in Headers */ = {isa = PBXBuildFile; fileRef = 1586602024E58C3700345BD7 /* YGEnums.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1586603F24E58C3700345BD7 /* log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1586602124E58C3700345BD7 /* log.cpp */; };
-		1586604024E58C3700345BD7 /* YGStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 1586602224E58C3700345BD7 /* YGStyle.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		1586604124E58C3700345BD7 /* Yoga.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1586602324E58C3700345BD7 /* Yoga.cpp */; };
-		1586604224E58C3700345BD7 /* Yoga-internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 1586602424E58C3700345BD7 /* Yoga-internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		1586604324E58C3700345BD7 /* YGValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1586602524E58C3700345BD7 /* YGValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1586604424E58C3700345BD7 /* YGLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 1586602624E58C3700345BD7 /* YGLayout.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		1586604524E58C3700345BD7 /* YGNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 1586602724E58C3700345BD7 /* YGNode.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		1586604624E58C3700345BD7 /* YGEnums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1586602824E58C3700345BD7 /* YGEnums.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,7 +142,6 @@
 		1511C053251EBED100A2C621 /* YogaKitSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YogaKitSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1511C0BA251F1BB600A2C621 /* YGLayoutProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YGLayoutProperties.swift; sourceTree = "<group>"; };
 		153098C12692ED29009B4135 /* YGValueExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YGValueExtensions.swift; sourceTree = "<group>"; };
-		153098C826930BAE009B4135 /* Yoga-umbrella.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Yoga-umbrella.h"; sourceTree = "<group>"; };
 		153B525B24E6AD6B008156D3 /* YogaKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YogaKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		153B526324E6AD8D008156D3 /* YogaKitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YogaKitTests.m; path = Tests/YogaKitTests.m; sourceTree = SOURCE_ROOT; };
 		153B526424E6AD8D008156D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Tests/Info.plist; sourceTree = SOURCE_ROOT; };
@@ -106,6 +149,81 @@
 		153D326D24E6549A00EDDBEA /* Yoga.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Yoga.modulemap; sourceTree = "<group>"; };
 		153D326E24E6549A00EDDBEA /* Yoga-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Yoga-umbrella.h"; sourceTree = "<group>"; };
 		154A6EF424E6B1260091264C /* dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = dummy.swift; path = Tests/dummy.swift; sourceTree = SOURCE_ROOT; };
+		157283132D4397EB00F20253 /* AbsoluteLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AbsoluteLayout.h; sourceTree = "<group>"; };
+		157283142D4397EB00F20253 /* AbsoluteLayout.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AbsoluteLayout.cpp; sourceTree = "<group>"; };
+		157283152D4397EB00F20253 /* Align.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Align.h; sourceTree = "<group>"; };
+		157283162D4397EB00F20253 /* Baseline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Baseline.h; sourceTree = "<group>"; };
+		157283172D4397EB00F20253 /* Baseline.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Baseline.cpp; sourceTree = "<group>"; };
+		157283182D4397EB00F20253 /* BoundAxis.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoundAxis.h; sourceTree = "<group>"; };
+		157283192D4397EB00F20253 /* Cache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cache.h; sourceTree = "<group>"; };
+		1572831A2D4397EB00F20253 /* Cache.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Cache.cpp; sourceTree = "<group>"; };
+		1572831B2D4397EB00F20253 /* CalculateLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalculateLayout.h; sourceTree = "<group>"; };
+		1572831C2D4397EB00F20253 /* CalculateLayout.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CalculateLayout.cpp; sourceTree = "<group>"; };
+		1572831D2D4397EB00F20253 /* FlexDirection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlexDirection.h; sourceTree = "<group>"; };
+		1572831E2D4397EB00F20253 /* FlexLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlexLine.h; sourceTree = "<group>"; };
+		1572831F2D4397EB00F20253 /* FlexLine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FlexLine.cpp; sourceTree = "<group>"; };
+		157283202D4397EB00F20253 /* PixelGrid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PixelGrid.h; sourceTree = "<group>"; };
+		157283212D4397EB00F20253 /* PixelGrid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PixelGrid.cpp; sourceTree = "<group>"; };
+		157283222D4397EB00F20253 /* SizingMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SizingMode.h; sourceTree = "<group>"; };
+		157283232D4397EB00F20253 /* TrailingPosition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrailingPosition.h; sourceTree = "<group>"; };
+		157283262D4397EB00F20253 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		157283272D4397EB00F20253 /* Config.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Config.cpp; sourceTree = "<group>"; };
+		157283292D4397EB00F20253 /* AssertFatal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssertFatal.h; sourceTree = "<group>"; };
+		1572832A2D4397EB00F20253 /* AssertFatal.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AssertFatal.cpp; sourceTree = "<group>"; };
+		1572832B2D4397EB00F20253 /* Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		1572832C2D4397EB00F20253 /* Log.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Log.cpp; sourceTree = "<group>"; };
+		1572832E2D4397EB00F20253 /* Align.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Align.h; sourceTree = "<group>"; };
+		1572832F2D4397EB00F20253 /* BoxSizing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoxSizing.h; sourceTree = "<group>"; };
+		157283302D4397EB00F20253 /* Dimension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dimension.h; sourceTree = "<group>"; };
+		157283312D4397EB00F20253 /* Direction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Direction.h; sourceTree = "<group>"; };
+		157283322D4397EB00F20253 /* Display.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Display.h; sourceTree = "<group>"; };
+		157283332D4397EB00F20253 /* Edge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Edge.h; sourceTree = "<group>"; };
+		157283342D4397EB00F20253 /* Errata.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Errata.h; sourceTree = "<group>"; };
+		157283352D4397EB00F20253 /* ExperimentalFeature.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExperimentalFeature.h; sourceTree = "<group>"; };
+		157283362D4397EB00F20253 /* FlexDirection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlexDirection.h; sourceTree = "<group>"; };
+		157283372D4397EB00F20253 /* Gutter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Gutter.h; sourceTree = "<group>"; };
+		157283382D4397EB00F20253 /* Justify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Justify.h; sourceTree = "<group>"; };
+		157283392D4397EB00F20253 /* LogLevel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogLevel.h; sourceTree = "<group>"; };
+		1572833A2D4397EB00F20253 /* MeasureMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeasureMode.h; sourceTree = "<group>"; };
+		1572833B2D4397EB00F20253 /* NodeType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NodeType.h; sourceTree = "<group>"; };
+		1572833C2D4397EB00F20253 /* Overflow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Overflow.h; sourceTree = "<group>"; };
+		1572833D2D4397EB00F20253 /* PhysicalEdge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhysicalEdge.h; sourceTree = "<group>"; };
+		1572833E2D4397EB00F20253 /* PositionType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PositionType.h; sourceTree = "<group>"; };
+		1572833F2D4397EB00F20253 /* Unit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Unit.h; sourceTree = "<group>"; };
+		157283402D4397EB00F20253 /* Wrap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Wrap.h; sourceTree = "<group>"; };
+		157283412D4397EB00F20253 /* YogaEnums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YogaEnums.h; sourceTree = "<group>"; };
+		157283432D4397EB00F20253 /* event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = event.h; sourceTree = "<group>"; };
+		157283442D4397EB00F20253 /* event.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = event.cpp; sourceTree = "<group>"; };
+		157283472D4397EB00F20253 /* CachedMeasurement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CachedMeasurement.h; sourceTree = "<group>"; };
+		157283482D4397EB00F20253 /* LayoutableChildren.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayoutableChildren.h; sourceTree = "<group>"; };
+		157283492D4397EB00F20253 /* LayoutResults.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayoutResults.h; sourceTree = "<group>"; };
+		1572834A2D4397EB00F20253 /* LayoutResults.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LayoutResults.cpp; sourceTree = "<group>"; };
+		1572834B2D4397EB00F20253 /* Node.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
+		1572834C2D4397EB00F20253 /* Node.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Node.cpp; sourceTree = "<group>"; };
+		1572834E2D4397EB00F20253 /* Comparison.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Comparison.h; sourceTree = "<group>"; };
+		1572834F2D4397EB00F20253 /* FloatOptional.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FloatOptional.h; sourceTree = "<group>"; };
+		157283512D4397EB00F20253 /* SmallValueBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SmallValueBuffer.h; sourceTree = "<group>"; };
+		157283522D4397EB00F20253 /* Style.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Style.h; sourceTree = "<group>"; };
+		157283532D4397EB00F20253 /* StyleLength.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StyleLength.h; sourceTree = "<group>"; };
+		157283542D4397EB00F20253 /* StyleSizeLength.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StyleSizeLength.h; sourceTree = "<group>"; };
+		157283552D4397EB00F20253 /* StyleValueHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StyleValueHandle.h; sourceTree = "<group>"; };
+		157283562D4397EB00F20253 /* StyleValuePool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StyleValuePool.h; sourceTree = "<group>"; };
+		157283582D4397EB00F20253 /* YGConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YGConfig.h; sourceTree = "<group>"; };
+		157283592D4397EB00F20253 /* YGConfig.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = YGConfig.cpp; sourceTree = "<group>"; };
+		1572835A2D4397EB00F20253 /* YGEnums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YGEnums.h; sourceTree = "<group>"; };
+		1572835B2D4397EB00F20253 /* YGEnums.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = YGEnums.cpp; sourceTree = "<group>"; };
+		1572835C2D4397EB00F20253 /* YGMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YGMacros.h; sourceTree = "<group>"; };
+		1572835D2D4397EB00F20253 /* YGNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YGNode.h; sourceTree = "<group>"; };
+		1572835E2D4397EB00F20253 /* YGNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = YGNode.cpp; sourceTree = "<group>"; };
+		1572835F2D4397EB00F20253 /* YGNodeLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YGNodeLayout.h; sourceTree = "<group>"; };
+		157283602D4397EB00F20253 /* YGNodeLayout.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = YGNodeLayout.cpp; sourceTree = "<group>"; };
+		157283612D4397EB00F20253 /* YGNodeStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YGNodeStyle.h; sourceTree = "<group>"; };
+		157283622D4397EB00F20253 /* YGNodeStyle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = YGNodeStyle.cpp; sourceTree = "<group>"; };
+		157283632D4397EB00F20253 /* YGPixelGrid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YGPixelGrid.h; sourceTree = "<group>"; };
+		157283642D4397EB00F20253 /* YGPixelGrid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = YGPixelGrid.cpp; sourceTree = "<group>"; };
+		157283652D4397EB00F20253 /* YGValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YGValue.h; sourceTree = "<group>"; };
+		157283662D4397EB00F20253 /* YGValue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = YGValue.cpp; sourceTree = "<group>"; };
+		157283672D4397EB00F20253 /* Yoga.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Yoga.h; sourceTree = "<group>"; };
 		15865F5424E5834E00345BD7 /* YogaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YogaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		15865F5F24E583F000345BD7 /* YGLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGLayout.h; sourceTree = "<group>"; };
 		15865F6024E583F000345BD7 /* UIView+Yoga.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Yoga.h"; sourceTree = "<group>"; };
@@ -114,36 +232,6 @@
 		15865F6324E583F000345BD7 /* UIView+Yoga.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Yoga.m"; sourceTree = "<group>"; };
 		15865F6524E583F000345BD7 /* YogaKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YogaKit.h; sourceTree = "<group>"; };
 		15865FFE24E58BD800345BD7 /* Yoga.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Yoga.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1586600924E58C3600345BD7 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
-		1586600B24E58C3600345BD7 /* experiments.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experiments.cpp; sourceTree = "<group>"; };
-		1586600C24E58C3600345BD7 /* experiments-inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "experiments-inl.h"; sourceTree = "<group>"; };
-		1586600D24E58C3600345BD7 /* experiments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experiments.h; sourceTree = "<group>"; };
-		1586600E24E58C3600345BD7 /* YGStyle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = YGStyle.cpp; sourceTree = "<group>"; };
-		1586600F24E58C3600345BD7 /* YGNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = YGNode.cpp; sourceTree = "<group>"; };
-		1586601024E58C3600345BD7 /* YGConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = YGConfig.cpp; sourceTree = "<group>"; };
-		1586601124E58C3600345BD7 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
-		1586601224E58C3600345BD7 /* BitUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitUtils.h; sourceTree = "<group>"; };
-		1586601324E58C3600345BD7 /* CompactValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompactValue.h; sourceTree = "<group>"; };
-		1586601424E58C3700345BD7 /* YGValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = YGValue.cpp; sourceTree = "<group>"; };
-		1586601524E58C3700345BD7 /* YGLayout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = YGLayout.cpp; sourceTree = "<group>"; };
-		1586601624E58C3700345BD7 /* log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log.h; sourceTree = "<group>"; };
-		1586601724E58C3700345BD7 /* YGNodePrint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = YGNodePrint.cpp; sourceTree = "<group>"; };
-		1586601924E58C3700345BD7 /* event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = event.h; sourceTree = "<group>"; };
-		1586601A24E58C3700345BD7 /* event.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = event.cpp; sourceTree = "<group>"; };
-		1586601B24E58C3700345BD7 /* YGNodePrint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGNodePrint.h; sourceTree = "<group>"; };
-		1586601C24E58C3700345BD7 /* Yoga.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Yoga.h; sourceTree = "<group>"; };
-		1586601D24E58C3700345BD7 /* YGFloatOptional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGFloatOptional.h; sourceTree = "<group>"; };
-		1586601E24E58C3700345BD7 /* YGConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGConfig.h; sourceTree = "<group>"; };
-		1586601F24E58C3700345BD7 /* YGMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGMacros.h; sourceTree = "<group>"; };
-		1586602024E58C3700345BD7 /* YGEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGEnums.h; sourceTree = "<group>"; };
-		1586602124E58C3700345BD7 /* log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = log.cpp; sourceTree = "<group>"; };
-		1586602224E58C3700345BD7 /* YGStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGStyle.h; sourceTree = "<group>"; };
-		1586602324E58C3700345BD7 /* Yoga.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Yoga.cpp; sourceTree = "<group>"; };
-		1586602424E58C3700345BD7 /* Yoga-internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Yoga-internal.h"; sourceTree = "<group>"; };
-		1586602524E58C3700345BD7 /* YGValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGValue.h; sourceTree = "<group>"; };
-		1586602624E58C3700345BD7 /* YGLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGLayout.h; sourceTree = "<group>"; };
-		1586602724E58C3700345BD7 /* YGNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGNode.h; sourceTree = "<group>"; };
-		1586602824E58C3700345BD7 /* YGEnums.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = YGEnums.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,14 +281,6 @@
 			path = YogaKit.Swift;
 			sourceTree = "<group>";
 		};
-		153098C726930BAE009B4135 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				153098C826930BAE009B4135 /* Yoga-umbrella.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
 		153B525C24E6AD6B008156D3 /* YogaKitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +299,121 @@
 				153D326D24E6549A00EDDBEA /* Yoga.modulemap */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		157283242D4397EB00F20253 /* algorithm */ = {
+			isa = PBXGroup;
+			children = (
+				157283132D4397EB00F20253 /* AbsoluteLayout.h */,
+				157283142D4397EB00F20253 /* AbsoluteLayout.cpp */,
+				157283152D4397EB00F20253 /* Align.h */,
+				157283162D4397EB00F20253 /* Baseline.h */,
+				157283172D4397EB00F20253 /* Baseline.cpp */,
+				157283182D4397EB00F20253 /* BoundAxis.h */,
+				157283192D4397EB00F20253 /* Cache.h */,
+				1572831A2D4397EB00F20253 /* Cache.cpp */,
+				1572831B2D4397EB00F20253 /* CalculateLayout.h */,
+				1572831C2D4397EB00F20253 /* CalculateLayout.cpp */,
+				1572831D2D4397EB00F20253 /* FlexDirection.h */,
+				1572831E2D4397EB00F20253 /* FlexLine.h */,
+				1572831F2D4397EB00F20253 /* FlexLine.cpp */,
+				157283202D4397EB00F20253 /* PixelGrid.h */,
+				157283212D4397EB00F20253 /* PixelGrid.cpp */,
+				157283222D4397EB00F20253 /* SizingMode.h */,
+				157283232D4397EB00F20253 /* TrailingPosition.h */,
+			);
+			path = algorithm;
+			sourceTree = "<group>";
+		};
+		157283282D4397EB00F20253 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				157283262D4397EB00F20253 /* Config.h */,
+				157283272D4397EB00F20253 /* Config.cpp */,
+			);
+			path = config;
+			sourceTree = "<group>";
+		};
+		1572832D2D4397EB00F20253 /* debug */ = {
+			isa = PBXGroup;
+			children = (
+				157283292D4397EB00F20253 /* AssertFatal.h */,
+				1572832A2D4397EB00F20253 /* AssertFatal.cpp */,
+				1572832B2D4397EB00F20253 /* Log.h */,
+				1572832C2D4397EB00F20253 /* Log.cpp */,
+			);
+			path = debug;
+			sourceTree = "<group>";
+		};
+		157283422D4397EB00F20253 /* enums */ = {
+			isa = PBXGroup;
+			children = (
+				1572832E2D4397EB00F20253 /* Align.h */,
+				1572832F2D4397EB00F20253 /* BoxSizing.h */,
+				157283302D4397EB00F20253 /* Dimension.h */,
+				157283312D4397EB00F20253 /* Direction.h */,
+				157283322D4397EB00F20253 /* Display.h */,
+				157283332D4397EB00F20253 /* Edge.h */,
+				157283342D4397EB00F20253 /* Errata.h */,
+				157283352D4397EB00F20253 /* ExperimentalFeature.h */,
+				157283362D4397EB00F20253 /* FlexDirection.h */,
+				157283372D4397EB00F20253 /* Gutter.h */,
+				157283382D4397EB00F20253 /* Justify.h */,
+				157283392D4397EB00F20253 /* LogLevel.h */,
+				1572833A2D4397EB00F20253 /* MeasureMode.h */,
+				1572833B2D4397EB00F20253 /* NodeType.h */,
+				1572833C2D4397EB00F20253 /* Overflow.h */,
+				1572833D2D4397EB00F20253 /* PhysicalEdge.h */,
+				1572833E2D4397EB00F20253 /* PositionType.h */,
+				1572833F2D4397EB00F20253 /* Unit.h */,
+				157283402D4397EB00F20253 /* Wrap.h */,
+				157283412D4397EB00F20253 /* YogaEnums.h */,
+			);
+			path = enums;
+			sourceTree = "<group>";
+		};
+		157283452D4397EB00F20253 /* event */ = {
+			isa = PBXGroup;
+			children = (
+				157283432D4397EB00F20253 /* event.h */,
+				157283442D4397EB00F20253 /* event.cpp */,
+			);
+			path = event;
+			sourceTree = "<group>";
+		};
+		1572834D2D4397EB00F20253 /* node */ = {
+			isa = PBXGroup;
+			children = (
+				157283472D4397EB00F20253 /* CachedMeasurement.h */,
+				157283482D4397EB00F20253 /* LayoutableChildren.h */,
+				157283492D4397EB00F20253 /* LayoutResults.h */,
+				1572834A2D4397EB00F20253 /* LayoutResults.cpp */,
+				1572834B2D4397EB00F20253 /* Node.h */,
+				1572834C2D4397EB00F20253 /* Node.cpp */,
+			);
+			path = node;
+			sourceTree = "<group>";
+		};
+		157283502D4397EB00F20253 /* numeric */ = {
+			isa = PBXGroup;
+			children = (
+				1572834E2D4397EB00F20253 /* Comparison.h */,
+				1572834F2D4397EB00F20253 /* FloatOptional.h */,
+			);
+			path = numeric;
+			sourceTree = "<group>";
+		};
+		157283572D4397EB00F20253 /* style */ = {
+			isa = PBXGroup;
+			children = (
+				157283512D4397EB00F20253 /* SmallValueBuffer.h */,
+				157283522D4397EB00F20253 /* Style.h */,
+				157283532D4397EB00F20253 /* StyleLength.h */,
+				157283542D4397EB00F20253 /* StyleSizeLength.h */,
+				157283552D4397EB00F20253 /* StyleValueHandle.h */,
+				157283562D4397EB00F20253 /* StyleValuePool.h */,
+			);
+			path = style;
 			sourceTree = "<group>";
 		};
 		15865F4A24E5834E00345BD7 = {
@@ -270,56 +465,33 @@
 		15865FFF24E58BD800345BD7 /* Yoga */ = {
 			isa = PBXGroup;
 			children = (
-				153098C726930BAE009B4135 /* include */,
-				1586601824E58C3700345BD7 /* event */,
-				1586600A24E58C3600345BD7 /* internal */,
-				1586601224E58C3600345BD7 /* BitUtils.h */,
-				1586601324E58C3600345BD7 /* CompactValue.h */,
-				1586602124E58C3700345BD7 /* log.cpp */,
-				1586601624E58C3700345BD7 /* log.h */,
-				1586600924E58C3600345BD7 /* Utils.cpp */,
-				1586601124E58C3600345BD7 /* Utils.h */,
-				1586601024E58C3600345BD7 /* YGConfig.cpp */,
-				1586601E24E58C3700345BD7 /* YGConfig.h */,
-				1586602824E58C3700345BD7 /* YGEnums.cpp */,
-				1586602024E58C3700345BD7 /* YGEnums.h */,
-				1586601D24E58C3700345BD7 /* YGFloatOptional.h */,
-				1586601524E58C3700345BD7 /* YGLayout.cpp */,
-				1586602624E58C3700345BD7 /* YGLayout.h */,
-				1586601F24E58C3700345BD7 /* YGMacros.h */,
-				1586600F24E58C3600345BD7 /* YGNode.cpp */,
-				1586602724E58C3700345BD7 /* YGNode.h */,
-				1586601724E58C3700345BD7 /* YGNodePrint.cpp */,
-				1586601B24E58C3700345BD7 /* YGNodePrint.h */,
-				1586600E24E58C3600345BD7 /* YGStyle.cpp */,
-				1586602224E58C3700345BD7 /* YGStyle.h */,
-				1586601424E58C3700345BD7 /* YGValue.cpp */,
-				1586602524E58C3700345BD7 /* YGValue.h */,
-				1586602424E58C3700345BD7 /* Yoga-internal.h */,
-				1586602324E58C3700345BD7 /* Yoga.cpp */,
-				1586601C24E58C3700345BD7 /* Yoga.h */,
+				157283242D4397EB00F20253 /* algorithm */,
+				157283282D4397EB00F20253 /* config */,
+				1572832D2D4397EB00F20253 /* debug */,
+				157283422D4397EB00F20253 /* enums */,
+				157283452D4397EB00F20253 /* event */,
+				1572834D2D4397EB00F20253 /* node */,
+				157283502D4397EB00F20253 /* numeric */,
+				157283572D4397EB00F20253 /* style */,
+				157283582D4397EB00F20253 /* YGConfig.h */,
+				157283592D4397EB00F20253 /* YGConfig.cpp */,
+				1572835A2D4397EB00F20253 /* YGEnums.h */,
+				1572835B2D4397EB00F20253 /* YGEnums.cpp */,
+				1572835C2D4397EB00F20253 /* YGMacros.h */,
+				1572835D2D4397EB00F20253 /* YGNode.h */,
+				1572835E2D4397EB00F20253 /* YGNode.cpp */,
+				1572835F2D4397EB00F20253 /* YGNodeLayout.h */,
+				157283602D4397EB00F20253 /* YGNodeLayout.cpp */,
+				157283612D4397EB00F20253 /* YGNodeStyle.h */,
+				157283622D4397EB00F20253 /* YGNodeStyle.cpp */,
+				157283632D4397EB00F20253 /* YGPixelGrid.h */,
+				157283642D4397EB00F20253 /* YGPixelGrid.cpp */,
+				157283652D4397EB00F20253 /* YGValue.h */,
+				157283662D4397EB00F20253 /* YGValue.cpp */,
+				157283672D4397EB00F20253 /* Yoga.h */,
 			);
 			name = Yoga;
 			path = ../yoga;
-			sourceTree = "<group>";
-		};
-		1586600A24E58C3600345BD7 /* internal */ = {
-			isa = PBXGroup;
-			children = (
-				1586600B24E58C3600345BD7 /* experiments.cpp */,
-				1586600C24E58C3600345BD7 /* experiments-inl.h */,
-				1586600D24E58C3600345BD7 /* experiments.h */,
-			);
-			path = internal;
-			sourceTree = "<group>";
-		};
-		1586601824E58C3700345BD7 /* event */ = {
-			isa = PBXGroup;
-			children = (
-				1586601924E58C3700345BD7 /* event.h */,
-				1586601A24E58C3700345BD7 /* event.cpp */,
-			);
-			path = event;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,25 +519,62 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1586603E24E58C3700345BD7 /* YGEnums.h in Headers */,
-				1586603A24E58C3700345BD7 /* Yoga.h in Headers */,
-				1586603D24E58C3700345BD7 /* YGMacros.h in Headers */,
-				1586604324E58C3700345BD7 /* YGValue.h in Headers */,
-				153098CA26930BAF009B4135 /* Yoga-umbrella.h in Headers */,
-				1586604524E58C3700345BD7 /* YGNode.h in Headers */,
-				1586604024E58C3700345BD7 /* YGStyle.h in Headers */,
-				1586603124E58C3700345BD7 /* BitUtils.h in Headers */,
-				1586603024E58C3700345BD7 /* Utils.h in Headers */,
-				1586602B24E58C3700345BD7 /* experiments-inl.h in Headers */,
-				1586603724E58C3700345BD7 /* event.h in Headers */,
-				1586603524E58C3700345BD7 /* log.h in Headers */,
-				1586603224E58C3700345BD7 /* CompactValue.h in Headers */,
-				1586603924E58C3700345BD7 /* YGNodePrint.h in Headers */,
-				1586604224E58C3700345BD7 /* Yoga-internal.h in Headers */,
-				1586603C24E58C3700345BD7 /* YGConfig.h in Headers */,
-				1586604424E58C3700345BD7 /* YGLayout.h in Headers */,
-				1586602C24E58C3700345BD7 /* experiments.h in Headers */,
-				1586603B24E58C3700345BD7 /* YGFloatOptional.h in Headers */,
+				157283AA2D4397EB00F20253 /* YGValue.h in Headers */,
+				157283922D4397EB00F20253 /* YGPixelGrid.h in Headers */,
+				1572839F2D4397EB00F20253 /* YGNodeStyle.h in Headers */,
+				157283A82D4397EB00F20253 /* YGNodeLayout.h in Headers */,
+				157283972D4397EB00F20253 /* YGNode.h in Headers */,
+				157283852D4397EB00F20253 /* YGMacros.h in Headers */,
+				1572837C2D4397EB00F20253 /* YGEnums.h in Headers */,
+				157283B22D4397EB00F20253 /* YGConfig.h in Headers */,
+				157283842D4397EB00F20253 /* Yoga.h in Headers */,
+				1572837D2D4397EB00F20253 /* Dimension.h in Headers */,
+				1572837E2D4397EB00F20253 /* FlexDirection.h in Headers */,
+				1572837F2D4397EB00F20253 /* Gutter.h in Headers */,
+				157283802D4397EB00F20253 /* LayoutableChildren.h in Headers */,
+				157283812D4397EB00F20253 /* NodeType.h in Headers */,
+				157283822D4397EB00F20253 /* Wrap.h in Headers */,
+				157283832D4397EB00F20253 /* PixelGrid.h in Headers */,
+				157283862D4397EB00F20253 /* Align.h in Headers */,
+				157283872D4397EB00F20253 /* Overflow.h in Headers */,
+				157283882D4397EB00F20253 /* StyleValuePool.h in Headers */,
+				157283892D4397EB00F20253 /* Justify.h in Headers */,
+				1572838A2D4397EB00F20253 /* Log.h in Headers */,
+				1572838B2D4397EB00F20253 /* LayoutResults.h in Headers */,
+				1572838C2D4397EB00F20253 /* StyleSizeLength.h in Headers */,
+				1572838D2D4397EB00F20253 /* Config.h in Headers */,
+				1572838E2D4397EB00F20253 /* Direction.h in Headers */,
+				1572838F2D4397EB00F20253 /* ExperimentalFeature.h in Headers */,
+				157283902D4397EB00F20253 /* Display.h in Headers */,
+				157283912D4397EB00F20253 /* SizingMode.h in Headers */,
+				157283932D4397EB00F20253 /* MeasureMode.h in Headers */,
+				157283942D4397EB00F20253 /* TrailingPosition.h in Headers */,
+				157283952D4397EB00F20253 /* Align.h in Headers */,
+				157283962D4397EB00F20253 /* SmallValueBuffer.h in Headers */,
+				157283982D4397EB00F20253 /* StyleLength.h in Headers */,
+				157283992D4397EB00F20253 /* CalculateLayout.h in Headers */,
+				1572839A2D4397EB00F20253 /* FlexLine.h in Headers */,
+				1572839B2D4397EB00F20253 /* BoundAxis.h in Headers */,
+				1572839C2D4397EB00F20253 /* AbsoluteLayout.h in Headers */,
+				1572839D2D4397EB00F20253 /* Edge.h in Headers */,
+				1572839E2D4397EB00F20253 /* AssertFatal.h in Headers */,
+				157283A02D4397EB00F20253 /* FlexDirection.h in Headers */,
+				157283A12D4397EB00F20253 /* Comparison.h in Headers */,
+				157283A22D4397EB00F20253 /* Cache.h in Headers */,
+				157283A32D4397EB00F20253 /* Baseline.h in Headers */,
+				157283A42D4397EB00F20253 /* Errata.h in Headers */,
+				157283A52D4397EB00F20253 /* BoxSizing.h in Headers */,
+				157283A62D4397EB00F20253 /* PositionType.h in Headers */,
+				157283A72D4397EB00F20253 /* Unit.h in Headers */,
+				157283A92D4397EB00F20253 /* StyleValueHandle.h in Headers */,
+				157283AB2D4397EB00F20253 /* LogLevel.h in Headers */,
+				157283AC2D4397EB00F20253 /* YogaEnums.h in Headers */,
+				157283AD2D4397EB00F20253 /* Style.h in Headers */,
+				157283AE2D4397EB00F20253 /* FloatOptional.h in Headers */,
+				157283AF2D4397EB00F20253 /* CachedMeasurement.h in Headers */,
+				157283B02D4397EB00F20253 /* PhysicalEdge.h in Headers */,
+				157283B12D4397EB00F20253 /* Node.h in Headers */,
+				157283B32D4397EB00F20253 /* event.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,18 +767,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1586602A24E58C3700345BD7 /* experiments.cpp in Sources */,
-				1586602F24E58C3700345BD7 /* YGConfig.cpp in Sources */,
-				1586602E24E58C3700345BD7 /* YGNode.cpp in Sources */,
-				1586603624E58C3700345BD7 /* YGNodePrint.cpp in Sources */,
-				1586604624E58C3700345BD7 /* YGEnums.cpp in Sources */,
-				1586602D24E58C3700345BD7 /* YGStyle.cpp in Sources */,
-				1586604124E58C3700345BD7 /* Yoga.cpp in Sources */,
-				1586602924E58C3700345BD7 /* Utils.cpp in Sources */,
-				1586603424E58C3700345BD7 /* YGLayout.cpp in Sources */,
-				1586603824E58C3700345BD7 /* event.cpp in Sources */,
-				1586603F24E58C3700345BD7 /* log.cpp in Sources */,
-				1586603324E58C3700345BD7 /* YGValue.cpp in Sources */,
+				157283692D4397EB00F20253 /* Node.cpp in Sources */,
+				1572836A2D4397EB00F20253 /* Cache.cpp in Sources */,
+				1572836B2D4397EB00F20253 /* YGEnums.cpp in Sources */,
+				1572836C2D4397EB00F20253 /* Baseline.cpp in Sources */,
+				1572836D2D4397EB00F20253 /* event.cpp in Sources */,
+				1572836E2D4397EB00F20253 /* PixelGrid.cpp in Sources */,
+				1572836F2D4397EB00F20253 /* Config.cpp in Sources */,
+				157283702D4397EB00F20253 /* Log.cpp in Sources */,
+				157283712D4397EB00F20253 /* YGConfig.cpp in Sources */,
+				157283722D4397EB00F20253 /* YGPixelGrid.cpp in Sources */,
+				157283732D4397EB00F20253 /* AbsoluteLayout.cpp in Sources */,
+				157283742D4397EB00F20253 /* AssertFatal.cpp in Sources */,
+				157283752D4397EB00F20253 /* YGNodeLayout.cpp in Sources */,
+				157283762D4397EB00F20253 /* YGValue.cpp in Sources */,
+				157283772D4397EB00F20253 /* LayoutResults.cpp in Sources */,
+				157283782D4397EB00F20253 /* YGNodeStyle.cpp in Sources */,
+				157283792D4397EB00F20253 /* YGNode.cpp in Sources */,
+				1572837A2D4397EB00F20253 /* FlexLine.cpp in Sources */,
+				1572837B2D4397EB00F20253 /* CalculateLayout.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,7 +911,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -765,7 +981,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -879,6 +1095,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				HEADER_SEARCH_PATHS = "${SRCROOT}/..";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -886,7 +1103,6 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "${SRCROOT}/../yoga/include/Yoga.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.Yoga;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -906,6 +1122,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				HEADER_SEARCH_PATHS = "${SRCROOT}/..";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -913,7 +1130,6 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "${SRCROOT}/../yoga/include/Yoga.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.Yoga;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

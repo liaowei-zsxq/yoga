@@ -1,5 +1,12 @@
 // swift-tools-version:5.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
+/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 
 import PackageDescription
 
@@ -31,9 +38,9 @@ let package = Package(
             name: "YogaKitSwift",
             dependencies: ["YogaKit", "Yoga"],
             path: ".",
-            exclude: ["yoga/include/Yoga.modulemap"],
             sources: ["YogaKit/YogaKit.Swift"],
             cSettings: [
+                .headerSearchPath("."),
                 .headerSearchPath("yoga")
             ]),
         .target(
@@ -49,13 +56,12 @@ let package = Package(
         .target(
             name: "Yoga",
             path: ".",
+            exclude: ["yoga/Yoga.h"],
             sources: ["yoga"],
             publicHeadersPath: "yoga/include",
             cSettings: [
                 .headerSearchPath(".")
             ])
     ],
-    swiftLanguageVersions: [.v5],
-    cLanguageStandard: .gnu11,
-    cxxLanguageStandard: .gnucxx14
+    cxxLanguageStandard: CXXLanguageStandard(rawValue: "c++20")
 )

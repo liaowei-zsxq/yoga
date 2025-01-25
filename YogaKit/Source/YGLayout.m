@@ -387,7 +387,7 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
 
 #pragma mark - Private
 
-static YGSize YGMeasureView(YGNodeRef node, double width, YGMeasureMode widthMode, double height, YGMeasureMode heightMode) {
+static YGSize YGMeasureView(YGNodeConstRef node, double width, YGMeasureMode widthMode, double height, YGMeasureMode heightMode) {
     const CGFloat constrainedWidth = (widthMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : width;
     const CGFloat constrainedHeight = (heightMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : height;
 

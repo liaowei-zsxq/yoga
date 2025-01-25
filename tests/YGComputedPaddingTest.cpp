@@ -1,5 +1,5 @@
 /*
- * Copyright (c) Facebook, Inc. and its affiliates.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -10,7 +10,7 @@
 #include <array>
 
 TEST(YogaTest, computed_layout_padding) {
-  const YGNodeRef root = YGNodeNew();
+  YGNodeRef root = YGNodeNew();
   YGNodeStyleSetWidth(root, 100);
   YGNodeStyleSetHeight(root, 100);
   YGNodeStyleSetPaddingPercent(root, YGEdgeStart, 10);
@@ -37,13 +37,13 @@ TEST(YogaTest, padding_side_overrides_horizontal_and_vertical) {
        YGEdgeLeft,
        YGEdgeRight}};
 
-  for (double edgeValue = 0; edgeValue < 2; ++edgeValue) {
+  for (float edgeValue = 0; edgeValue < 2; ++edgeValue) {
     for (const auto& edge : edges) {
       YGEdge horizontalOrVertical = edge == YGEdgeTop || edge == YGEdgeBottom
           ? YGEdgeVertical
           : YGEdgeHorizontal;
 
-      const YGNodeRef root = YGNodeNew();
+      YGNodeRef root = YGNodeNew();
       YGNodeStyleSetWidth(root, 100);
       YGNodeStyleSetHeight(root, 100);
       YGNodeStyleSetPadding(root, horizontalOrVertical, 10);
@@ -67,9 +67,9 @@ TEST(YogaTest, padding_side_overrides_all) {
        YGEdgeLeft,
        YGEdgeRight}};
 
-  for (double edgeValue = 0; edgeValue < 2; ++edgeValue) {
+  for (float edgeValue = 0; edgeValue < 2; ++edgeValue) {
     for (const auto& edge : edges) {
-      const YGNodeRef root = YGNodeNew();
+      YGNodeRef root = YGNodeNew();
       YGNodeStyleSetWidth(root, 100);
       YGNodeStyleSetHeight(root, 100);
       YGNodeStyleSetPadding(root, YGEdgeAll, 10);
@@ -87,9 +87,9 @@ TEST(YogaTest, padding_side_overrides_all) {
 TEST(YogaTest, padding_horizontal_and_vertical_overrides_all) {
   const std::array<YGEdge, 2> directions = {{YGEdgeHorizontal, YGEdgeVertical}};
 
-  for (double directionValue = 0; directionValue < 2; ++directionValue) {
+  for (float directionValue = 0; directionValue < 2; ++directionValue) {
     for (const auto& direction : directions) {
-      const YGNodeRef root = YGNodeNew();
+      YGNodeRef root = YGNodeNew();
       YGNodeStyleSetWidth(root, 100);
       YGNodeStyleSetHeight(root, 100);
       YGNodeStyleSetPadding(root, YGEdgeAll, 10);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) Facebook, Inc. and its affiliates.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -9,9 +9,9 @@
 #include <yoga/Yoga.h>
 
 TEST(YogaTest, reset_layout_when_child_removed) {
-  const YGNodeRef root = YGNodeNew();
+  YGNodeRef root = YGNodeNew();
 
-  const YGNodeRef root_child0 = YGNodeNew();
+  YGNodeRef root_child0 = YGNodeNew();
   YGNodeStyleSetWidth(root_child0, 100);
   YGNodeStyleSetHeight(root_child0, 100);
   YGNodeInsertChild(root, root_child0, 0);
@@ -31,4 +31,5 @@ TEST(YogaTest, reset_layout_when_child_removed) {
   ASSERT_TRUE(YGFloatIsUndefined(YGNodeLayoutGetHeight(root_child0)));
 
   YGNodeFreeRecursive(root);
+  YGNodeFreeRecursive(root_child0);
 }

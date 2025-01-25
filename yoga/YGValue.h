@@ -1,5 +1,5 @@
 /*
- * Copyright (c) Facebook, Inc. and its affiliates.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -7,45 +7,56 @@
 
 #pragma once
 
-#include <math.h>
-#include "YGEnums.h"
-#include "YGMacros.h"
+#include <stdbool.h>
 
-#if defined(_MSC_VER) && defined(__clang__)
-#define COMPILING_WITH_CLANG_ON_WINDOWS
-#endif
-#if defined(COMPILING_WITH_CLANG_ON_WINDOWS)
+#include <yoga/YGEnums.h>
+#include <yoga/YGMacros.h>
+
+/**
+ * Float value to represent "undefined" in style values.
+ */
+#ifdef __cplusplus
 #include <limits>
 constexpr double YGUndefined = std::numeric_limits<double>::quiet_NaN();
 #else
-YG_EXTERN_C_BEGIN
-
-// Not defined in MSVC++
-#ifndef NAN
-static const uint64_t __nan = 0x7ff8000000000000;
-#define NAN (*(const double*) __nan)
-#endif
-
+#include <math.h>
 #define YGUndefined NAN
 #endif
 
+YG_EXTERN_C_BEGIN
+
+/**
+ * Structure used to represent a dimension in a style.
+ */
 typedef struct YGValue {
   double value;
   YGUnit unit;
 } YGValue;
 
-YOGA_EXPORT extern const YGValue YGValueAuto;
-YOGA_EXPORT extern const YGValue YGValueUndefined;
-YOGA_EXPORT extern const YGValue YGValueZero;
+/**
+ * Constant for a dimension of "auto".
+ */
+YG_EXPORT extern const YGValue YGValueAuto;
 
-#if !defined(COMPILING_WITH_CLANG_ON_WINDOWS)
+/**
+ * Constant for a dimension which is not defined.
+ */
+YG_EXPORT extern const YGValue YGValueUndefined;
+
+/**
+ * Constant for a dimension that is zero-length.
+ */
+YG_EXPORT extern const YGValue YGValueZero;
+
+/**
+ * Whether a dimension represented as a double is defined.
+ */
+YG_EXPORT bool YGFloatIsUndefined(double value);
+
 YG_EXTERN_C_END
-#endif
-#undef COMPILING_WITH_CLANG_ON_WINDOWS
 
+// Equality operators for comparison of YGValue in C++
 #ifdef __cplusplus
-YG_EXTERN_CXX_BEGIN
-
 inline bool operator==(const YGValue& lhs, const YGValue& rhs) {
   if (lhs.unit != rhs.unit) {
     return false;
@@ -54,6 +65,9 @@ inline bool operator==(const YGValue& lhs, const YGValue& rhs) {
   switch (lhs.unit) {
     case YGUnitUndefined:
     case YGUnitAuto:
+    case YGUnitFitContent:
+    case YGUnitMaxContent:
+    case YGUnitStretch:
       return true;
     case YGUnitPoint:
     case YGUnitPercent:
@@ -70,28 +84,4 @@ inline bool operator!=(const YGValue& lhs, const YGValue& rhs) {
 inline YGValue operator-(const YGValue& value) {
   return {-value.value, value.unit};
 }
-
-namespace facebook {
-namespace yoga {
-namespace literals {
-
-inline YGValue operator"" _pt(long double value) {
-  return YGValue{static_cast<double>(value), YGUnitPoint};
-}
-inline YGValue operator"" _pt(unsigned long long value) {
-  return operator"" _pt(static_cast<long double>(value));
-}
-
-inline YGValue operator"" _percent(long double value) {
-  return YGValue{static_cast<double>(value), YGUnitPercent};
-}
-inline YGValue operator"" _percent(unsigned long long value) {
-  return operator"" _percent(static_cast<long double>(value));
-}
-
-} // namespace literals
-} // namespace yoga
-} // namespace facebook
-
-YG_EXTERN_CXX_END
 #endif

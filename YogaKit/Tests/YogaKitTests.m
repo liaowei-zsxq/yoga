@@ -279,11 +279,9 @@
   subview.yoga.isIncludedInLayout = YES;
   [container addSubview:subview];
 
-  XCTAssertFalse(container.yoga.isDirty);
   [container.yoga markDirty];
-  XCTAssertFalse(container.yoga.isDirty);
+  XCTAssertTrue(container.yoga.isDirty);
 
-  XCTAssertFalse(subview.yoga.isDirty);
   [subview.yoga markDirty];
   XCTAssertTrue(subview.yoga.isDirty);
 }

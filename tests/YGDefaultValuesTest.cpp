@@ -1,5 +1,5 @@
 /*
- * Copyright (c) Facebook, Inc. and its affiliates.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -9,10 +9,10 @@
 #include <yoga/Yoga.h>
 
 TEST(YogaTest, assert_default_values) {
-  const YGNodeRef root = YGNodeNew();
+  YGNodeRef root = YGNodeNew();
 
   ASSERT_EQ(0u, YGNodeGetChildCount(root));
-  ASSERT_EQ(NULL, YGNodeGetChild(root, 1));
+  ASSERT_EQ(nullptr, YGNodeGetChild(root, 1));
 
   ASSERT_EQ(YGDirectionInherit, YGNodeStyleGetDirection(root));
   ASSERT_EQ(YGFlexDirectionColumn, YGNodeStyleGetFlexDirection(root));
@@ -20,7 +20,7 @@ TEST(YogaTest, assert_default_values) {
   ASSERT_EQ(YGAlignFlexStart, YGNodeStyleGetAlignContent(root));
   ASSERT_EQ(YGAlignStretch, YGNodeStyleGetAlignItems(root));
   ASSERT_EQ(YGAlignAuto, YGNodeStyleGetAlignSelf(root));
-  ASSERT_EQ(YGPositionTypeStatic, YGNodeStyleGetPositionType(root));
+  ASSERT_EQ(YGPositionTypeRelative, YGNodeStyleGetPositionType(root));
   ASSERT_EQ(YGWrapNoWrap, YGNodeStyleGetFlexWrap(root));
   ASSERT_EQ(YGOverflowVisible, YGNodeStyleGetOverflow(root));
   ASSERT_FLOAT_EQ(0, YGNodeStyleGetFlexGrow(root));
@@ -92,11 +92,11 @@ TEST(YogaTest, assert_default_values) {
 TEST(YogaTest, assert_webdefault_values) {
   YGConfig* config = YGConfigNew();
   YGConfigSetUseWebDefaults(config, true);
-  const YGNodeRef root = YGNodeNewWithConfig(config);
+  YGNodeRef root = YGNodeNewWithConfig(config);
 
   ASSERT_EQ(YGFlexDirectionRow, YGNodeStyleGetFlexDirection(root));
   ASSERT_EQ(YGAlignStretch, YGNodeStyleGetAlignContent(root));
-  ASSERT_FLOAT_EQ(1.0, YGNodeStyleGetFlexShrink(root));
+  ASSERT_FLOAT_EQ(1.0f, YGNodeStyleGetFlexShrink(root));
 
   YGNodeFreeRecursive(root);
   YGConfigFree(config);
@@ -105,12 +105,12 @@ TEST(YogaTest, assert_webdefault_values) {
 TEST(YogaTest, assert_webdefault_values_reset) {
   YGConfig* config = YGConfigNew();
   YGConfigSetUseWebDefaults(config, true);
-  const YGNodeRef root = YGNodeNewWithConfig(config);
+  YGNodeRef root = YGNodeNewWithConfig(config);
   YGNodeReset(root);
 
   ASSERT_EQ(YGFlexDirectionRow, YGNodeStyleGetFlexDirection(root));
   ASSERT_EQ(YGAlignStretch, YGNodeStyleGetAlignContent(root));
-  ASSERT_FLOAT_EQ(1.0, YGNodeStyleGetFlexShrink(root));
+  ASSERT_FLOAT_EQ(1.0f, YGNodeStyleGetFlexShrink(root));
 
   YGNodeFreeRecursive(root);
   YGConfigFree(config);
@@ -118,21 +118,21 @@ TEST(YogaTest, assert_webdefault_values_reset) {
 
 TEST(YogaTest, assert_legacy_stretch_behaviour) {
   YGConfig* config = YGConfigNew();
-  YGConfigSetUseLegacyStretchBehaviour(config, true);
-  const YGNodeRef root = YGNodeNewWithConfig(config);
+  YGConfigSetErrata(config, YGErrataStretchFlexBasis);
+  YGNodeRef root = YGNodeNewWithConfig(config);
   YGNodeStyleSetWidth(root, 500);
   YGNodeStyleSetHeight(root, 500);
 
-  const YGNodeRef root_child0 = YGNodeNewWithConfig(config);
+  YGNodeRef root_child0 = YGNodeNewWithConfig(config);
   YGNodeStyleSetAlignItems(root_child0, YGAlignFlexStart);
   YGNodeInsertChild(root, root_child0, 0);
 
-  const YGNodeRef root_child0_child0 = YGNodeNewWithConfig(config);
+  YGNodeRef root_child0_child0 = YGNodeNewWithConfig(config);
   YGNodeStyleSetFlexGrow(root_child0_child0, 1);
   YGNodeStyleSetFlexShrink(root_child0_child0, 1);
   YGNodeInsertChild(root_child0, root_child0_child0, 0);
 
-  const YGNodeRef root_child0_child0_child0 = YGNodeNewWithConfig(config);
+  YGNodeRef root_child0_child0_child0 = YGNodeNewWithConfig(config);
   YGNodeStyleSetFlexGrow(root_child0_child0_child0, 1);
   YGNodeStyleSetFlexShrink(root_child0_child0_child0, 1);
   YGNodeInsertChild(root_child0_child0, root_child0_child0_child0, 0);
@@ -157,6 +157,17 @@ TEST(YogaTest, assert_legacy_stretch_behaviour) {
   ASSERT_FLOAT_EQ(0, YGNodeLayoutGetTop(root_child0_child0_child0));
   ASSERT_FLOAT_EQ(0, YGNodeLayoutGetWidth(root_child0_child0_child0));
   ASSERT_FLOAT_EQ(500, YGNodeLayoutGetHeight(root_child0_child0_child0));
+
+  YGNodeFreeRecursive(root);
+
+  YGConfigFree(config);
+}
+
+TEST(YogaTest, assert_box_sizing_border_box) {
+  YGConfig* config = YGConfigNew();
+  YGNodeRef root = YGNodeNewWithConfig(config);
+
+  ASSERT_EQ(YGBoxSizingBorderBox, YGNodeStyleGetBoxSizing(root));
 
   YGNodeFreeRecursive(root);
 

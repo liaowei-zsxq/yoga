@@ -1,37 +1,34 @@
 /*
- * Copyright (c) Facebook, Inc. and its affiliates.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
 
 #include <gtest/gtest.h>
+#include <yoga/YGEnums.h>
 #include <yoga/Yoga.h>
 #include <yoga/event/event.h>
-#include <yoga/YGNode.h>
-#include <yoga/testutil/testutil.h>
 
 #include <algorithm>
 #include <functional>
 #include <memory>
 #include <vector>
-#include <yoga/YGEnums.h>
 
-namespace facebook {
-namespace yoga {
-namespace test {
+#include "util/TestUtil.h"
+
+namespace facebook::yoga::test {
 
 template <Event::Type E>
 struct TypedEventTestData {};
 
 template <>
 struct TypedEventTestData<Event::LayoutPassEnd> {
-  void* layoutContext;
   LayoutData layoutData;
 };
 
 struct EventArgs {
-  const YGNode* node;
+  const YGNodeConstRef node;
   Event::Type type;
   std::unique_ptr<void, std::function<void(void*)>> dataPtr;
   std::unique_ptr<void, std::function<void(void*)>> eventTestDataPtr;
@@ -48,12 +45,17 @@ struct EventArgs {
 };
 
 class EventTest : public ::testing::Test {
-  ScopedEventSubscription subscription = {&EventTest::listen};
-  static void listen(const YGNode&, Event::Type, Event::Data);
+  ScopedEventSubscription subscription{&EventTest::listen};
+  static void listen(
+      YGNodeConstRef /*node*/,
+      Event::Type /*type*/,
+      Event::Data /*data*/);
 
-public:
+ public:
   static std::vector<EventArgs> events;
-  static EventArgs& lastEvent() { return events.back(); }
+  static EventArgs& lastEvent() {
+    return events.back();
+  }
   void TearDown() override;
 };
 
@@ -231,9 +233,9 @@ TEST_F(EventTest, layout_events_has_max_measure_cache) {
   YGNodeInsertChild(root, a, 0);
   auto b = YGNodeNew();
   YGNodeInsertChild(root, b, 1);
-  YGNodeStyleSetFlexBasis(a, 10.0);
+  YGNodeStyleSetFlexBasis(a, 10.0f);
 
-  for (auto s : {20, 30, 40}) {
+  for (auto s : {20.0f, 30.0f, 40.0f}) {
     YGNodeCalculateLayout(root, s, s, YGDirectionLTR);
   }
 
@@ -251,7 +253,7 @@ TEST_F(EventTest, layout_events_has_max_measure_cache) {
 TEST_F(EventTest, measure_functions_get_wrapped) {
   auto root = YGNodeNew();
   YGNodeSetMeasureFunc(
-      root, [](YGNodeRef, double, YGMeasureMode, double, YGMeasureMode) {
+      root, [](YGNodeConstRef, float, YGMeasureMode, float, YGMeasureMode) {
         return YGSize{};
       });
 
@@ -269,7 +271,8 @@ TEST_F(EventTest, baseline_functions_get_wrapped) {
   auto child = YGNodeNew();
   YGNodeInsertChild(root, child, 0);
 
-  YGNodeSetBaselineFunc(child, [](YGNodeRef, double, double) { return 0.0; });
+  YGNodeSetBaselineFunc(
+      child, [](YGNodeConstRef, float, float) { return 0.0f; });
   YGNodeStyleSetFlexDirection(root, YGFlexDirectionRow);
   YGNodeStyleSetAlignItems(root, YGAlignBaseline);
 
@@ -285,16 +288,16 @@ TEST_F(EventTest, baseline_functions_get_wrapped) {
 namespace {
 
 template <Event::Type E>
-EventArgs createArgs(const YGNode& node, const Event::Data data) {
+EventArgs createArgs(YGNodeConstRef node, const Event::Data data) {
   using Data = Event::TypedData<E>;
   auto deleteData = [](void* x) { delete static_cast<Data*>(x); };
 
-  return {&node, E, {new Data{(data.get<E>())}, deleteData}};
+  return {node, E, {new Data{(data.get<E>())}, deleteData}, nullptr};
 }
 
 template <Event::Type E>
 EventArgs createArgs(
-    const YGNode& node,
+    YGNodeConstRef node,
     const Event::Data data,
     TypedEventTestData<E> eventTestData) {
   using EventTestData = TypedEventTestData<E>;
@@ -310,7 +313,10 @@ EventArgs createArgs(
 
 } // namespace
 
-void EventTest::listen(const YGNode& node, Event::Type type, Event::Data data) {
+void EventTest::listen(
+    YGNodeConstRef node,
+    Event::Type type,
+    Event::Data data) {
   switch (type) {
     case Event::NodeAllocation:
       events.push_back(createArgs<Event::NodeAllocation>(node, data));
@@ -327,7 +333,7 @@ void EventTest::listen(const YGNode& node, Event::Type type, Event::Data data) {
     case Event::LayoutPassEnd: {
       auto& eventData = data.get<Event::LayoutPassEnd>();
       events.push_back(createArgs<Event::LayoutPassEnd>(
-          node, data, {eventData.layoutContext, *eventData.layoutData}));
+          node, data, {*eventData.layoutData}));
       break;
     }
 
@@ -352,6 +358,4 @@ void EventTest::TearDown() {
 
 std::vector<EventArgs> EventTest::events{};
 
-} // namespace test
-} // namespace yoga
-} // namespace facebook
+} // namespace facebook::yoga::test
